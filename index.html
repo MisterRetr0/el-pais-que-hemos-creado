@@ -1,0 +1,3294 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colombia — El País que Hemos Creado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Bebas+Neue&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --sepia-bg: #1a1208;
+      --sepia-mid: #2e1f0a;
+      --sepia-text: #e8d9b8;
+      --sepia-acc: #c8922a;
+      --sepia-dim: #8a6a3a;
+
+      --verde-bg: #0d2416;
+      --verde-mid: #163b20;
+      --verde-text: #d4f0c8;
+      --verde-acc: #5ec662;
+      --verde-dim: #3a8a42;
+
+      --azul-bg: #0c1a2e;
+      --azul-mid: #142540;
+      --azul-text: #d8eaff;
+      --azul-acc: #6aabf0;
+      --azul-dim: #3d6fa0;
+
+      --scroll-progress: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      .historical-paper {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+
+        background:
+          linear-gradient(rgba(26, 18, 8, .85),
+            rgba(26, 18, 8, .85)),
+          url("https://images.unsplash.com/photo-1516542076529-1ea3854896f2?q=80&w=1600");
+
+        background-size: cover;
+        background-position: center;
+        mix-blend-mode: multiply;
+        opacity: .18;
+      }
+
+      /*background: var(--sepia-bg);*/
+      color: var(--sepia-text);
+      font-family: 'Crimson Text',
+      Georgia,
+      serif;
+      font-size: 20px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── CURSOR PERSONALIZADO ── */
+    #cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--sepia-acc);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s, background 0.4s, width 0.2s, height 0.2s;
+      mix-blend-mode: difference;
+    }
+
+    #cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(200, 146, 42, 0.5);
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.18s cubic-bezier(.25, .46, .45, .94), opacity 0.3s;
+    }
+
+    /* ── BARRA DE PROGRESO ── */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--sepia-acc), #e8d9b8);
+      width: 0%;
+      z-index: 1000;
+      transition: background 0.8s;
+    }
+
+    /* ── NAVEGACIÓN LATERAL ── */
+    #era-nav {
+      position: fixed;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 500;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .nav-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(200, 146, 42, 0.4);
+      background: transparent;
+      cursor: none;
+      transition: background 0.3s, transform 0.3s, border-color 0.3s;
+    }
+
+    .nav-dot.active {
+      background: var(--sepia-acc);
+      border-color: var(--sepia-acc);
+      transform: scale(1.5);
+    }
+
+    .nav-dot:hover {
+      transform: scale(1.4);
+    }
+
+    #mobile-nav {
+      display: none;
+    }
+
+    @media(max-width:900px) {
+
+      #mobile-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        backdrop-filter: blur(24px) saturate(1.4);
+        -webkit-backdrop-filter: blur(24px) saturate(1.4);
+        background: rgba(10, 8, 4, 0.55);
+        border-top: 1px solid rgba(200, 146, 42, 0.18);
+        box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        z-index: 9999;
+        overflow-x: auto;
+        padding: 10px 12px 14px;
+        gap: 8px;
+        scrollbar-width: none;
+      }
+
+      #mobile-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      #mobile-nav.era-2 {
+        background: rgba(10, 28, 14, 0.6);
+        border-top-color: rgba(94, 198, 98, 0.2);
+      }
+
+      #mobile-nav.era-3 {
+        background: rgba(10, 22, 42, 0.6);
+        border-top-color: rgba(106, 171, 240, 0.2);
+      }
+
+      @media (max-width:768px) {
+
+        .quote-stage {
+          min-height: 520px;
+        }
+
+        .gaitan-parallax {
+          height: 65vh;
+          bottom: -60px;
+          opacity: .35;
+        }
+      }
+
+      #mobile-nav button {
+        flex-shrink: 0;
+        border: 1px solid rgba(200, 146, 42, 0.22);
+        background: rgba(200, 146, 42, 0.06);
+        color: #d8c59c;
+        padding: 9px 16px;
+        border-radius: 999px;
+        font-family: 'Bebas Neue';
+        letter-spacing: 1.5px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.15s;
+        white-space: nowrap;
+      }
+
+      #mobile-nav button:active {
+        transform: scale(0.94);
+      }
+
+      #mobile-nav button.active-nav {
+        background: rgba(200, 146, 42, 0.22);
+        border-color: rgba(200, 146, 42, 0.55);
+        color: #f0d9a0;
+      }
+
+      #mobile-nav.era-2 button {
+        border-color: rgba(94, 198, 98, 0.22);
+        background: rgba(94, 198, 98, 0.06);
+        color: #b8edb5;
+      }
+
+      #mobile-nav.era-2 button.active-nav {
+        background: rgba(94, 198, 98, 0.2);
+        border-color: rgba(94, 198, 98, 0.5);
+        color: #d4f0c8;
+      }
+
+      #mobile-nav.era-3 button {
+        border-color: rgba(106, 171, 240, 0.22);
+        background: rgba(106, 171, 240, 0.06);
+        color: #b8d8f8;
+      }
+
+      #mobile-nav.era-3 button.active-nav {
+        background: rgba(106, 171, 240, 0.2);
+        border-color: rgba(106, 171, 240, 0.5);
+        color: #d8eaff;
+      }
+    }
+
+    /* ── ERA LABEL FLOTANTE ── */
+    #era-label {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: rgba(200, 146, 42, 0.6);
+      z-index: 500;
+      transition: opacity 0.5s, color 0.8s;
+      white-space: nowrap;
+    }
+
+    /* ════════════════════════════════════════
+     HERO — PORTADA
+  ════════════════════════════════════════ */
+    #hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--sepia-bg);
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(200, 146, 42, 0.02) 40px, rgba(200, 146, 42, 0.02) 41px),
+        repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(200, 146, 42, 0.02) 40px, rgba(200, 146, 42, 0.02) 41px);
+    }
+
+    #hero .bg-noise {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .hero-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(180px, 30vw, 400px);
+      color: rgba(200, 146, 42, 0.06);
+      position: absolute;
+      top: -4%;
+      right: -2%;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 10px;
+      color: var(--sepia-acc);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 1s 0.3s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Special Elite', monospace;
+      letter-spacing: 2px;
+      font-size: clamp(52px, 8vw, 120px);
+      font-weight: 900;
+      line-height: 0.9;
+      text-align: center;
+      color: var(--sepia-text);
+      opacity: 0;
+      animation: fadeUp 1.2s 0.6s forwards;
+      max-width: 900px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--sepia-acc);
+    }
+
+    .hero-subtitle {
+      font-family: 'Source Serif 4', serif;
+      font-size: 18px;
+      color: var(--sepia-dim);
+      margin-top: 32px;
+      max-width: 480px;
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp 1s 1s forwards;
+      line-height: 1.6;
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: rgba(200, 146, 42, 0.4);
+      opacity: 0;
+      animation: fadeUp 1s 1.5s forwards;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--sepia-acc), transparent);
+      animation: scrollPulse 2s infinite;
+    }
+
+    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        opacity: 0.3;
+        transform: scaleY(1);
+      }
+
+      50% {
+        opacity: 0.8;
+        transform: scaleY(1.1);
+      }
+    }
+
+    /* ════════════════════════════════════════
+     SECCIONES GENERALES
+  ════════════════════════════════════════ */
+    .section {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+    .section.full-width {
+      grid-template-columns: 1fr;
+    }
+
+    /* Numeración estilo History of Animation */
+    .section-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(120px, 22vw, 280px);
+      color: rgba(255, 255, 255, 0.03);
+      position: absolute;
+      bottom: -4%;
+      left: -2%;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      transition: color 1s;
+    }
+
+    .section-content {
+      padding: 80px 60px 80px 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-right {
+      padding: 80px 80px 80px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ERA BADGE */
+    .era-badge {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--sepia-acc);
+      display: inline-block;
+      border: 1px solid rgba(200, 146, 42, 0.3);
+      padding: 4px 12px;
+      margin-bottom: 20px;
+      transition: color 0.8s, border-color 0.8s;
+    }
+
+    .section-era {
+      font-family: 'Special Elite', monospace;
+      font-size: clamp(48px, 7vw, 90px);
+      font-weight: 400;
+      line-height: 0.95;
+      margin-bottom: 28px;
+      letter-spacing: 1px;
+      color: var(--sepia-text);
+      transition: color 0.8s;
+    }
+
+    .section-body {
+      font-family: 'Crimson Text', Georgia, serif;
+      font-size: 19px;
+      line-height: 1.75;
+      color: rgba(232, 217, 184, 0.78);
+      max-width: 520px;
+    }
+
+    .section-body p+p {
+      margin-top: 1.2em;
+    }
+
+    .section-body strong {
+      color: var(--sepia-text);
+      font-weight: 600;
+    }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s cubic-bezier(.25, .46, .45, .94),
+        transform 0.8s cubic-bezier(.25, .46, .45, .94);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal:nth-child(2) {
+      transition-delay: 0.12s;
+    }
+
+    .reveal:nth-child(3) {
+      transition-delay: 0.24s;
+    }
+
+    .reveal:nth-child(4) {
+      transition-delay: 0.36s;
+    }
+
+    /* ════════════════════════════════════════
+     SECCIÓN 1 — LA VIOLENCIA (sepia)
+  ════════════════════════════════════════ */
+    #s-violencia {
+      background: var(--sepia-bg);
+      border-top: 1px solid rgba(200, 146, 42, 0.08);
+    }
+
+    #s-violencia .bg-layer {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(46, 31, 10, 0.8) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .film-overlay {
+      position: absolute;
+      inset: 0;
+
+      background:
+        repeating-linear-gradient(180deg,
+          rgba(255, 255, 255, .02),
+          rgba(255, 255, 255, .02) 1px,
+          transparent 2px,
+          transparent 5px);
+
+      pointer-events: none;
+      opacity: .5;
+      mix-blend-mode: screen;
+    }
+
+    .film-overlay::after {
+      content: '';
+
+      position: absolute;
+      inset: 0;
+
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+
+      opacity: .08;
+    }
+
+    /* ── PNG TANGIBLE (recorte de papel) ── */
+    .png-frame {
+      position: relative;
+      width: 320px;
+    }
+
+    .png-frame::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border: 1px solid rgba(200, 146, 42, 0.15);
+      transform: rotate(-1.5deg);
+    }
+
+    .png-frame::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border: 1px solid rgba(200, 146, 42, 0.08);
+      transform: rotate(1deg);
+    }
+
+    .png-illustration {
+      width: 100%;
+      aspect-ratio: 3/4;
+      position: relative;
+      overflow: hidden;
+      background: var(--sepia-mid);
+    }
+
+    /* Ilustraciones SVG inline en cada sección */
+    .illustration-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .historical-image {
+      width: 100%;
+      height: 520px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .historical-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      filter:
+        grayscale(100%) contrast(1.15) sepia(.5);
+
+      transform: scale(1.05);
+    }
+
+    .historical-figure {
+
+      position: absolute;
+
+      left: 50%;
+
+      bottom: 150px;
+
+      height: 100vh;
+
+      max-height: 900px;
+
+      opacity: 0;
+
+      transform:
+        translateX(-50%) scale(.85);
+
+      transition:
+        opacity 2s ease,
+        transform 2s ease;
+
+      z-index: 6;
+
+      pointer-events: none;
+    }
+
+    .present-image {
+      width: 100%;
+      height: 520px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .present-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+    }
+
+    .present-figure {
+
+      position: absolute;
+
+      left: 50%;
+
+      bottom: 150px;
+
+      height: 100vh;
+
+      max-height: 900px;
+
+      opacity: 0;
+
+      transform:
+        translateX(-50%) scale(.85);
+
+      transition:
+        opacity 2s ease,
+        transform 2s ease;
+
+      z-index: 6;
+
+      pointer-events: none;
+    }
+
+    .section.active .historical-figure {
+      opacity: .99;
+      transform:
+        translateY(0) scale(1);
+    }
+
+    /* ════════════════════════════════════════
+     TIMELINE HORIZONTAL (estilo History of Animation)
+  ════════════════════════════════════════ */
+    .timeline-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 0;
+      overflow: hidden;
+    }
+
+    .timeline-header {
+      padding: 0 80px;
+      margin-bottom: 60px;
+    }
+
+    .timeline-scroll-container {
+      position: relative;
+      padding: 0 80px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .timeline-scroll-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .timeline-track {
+      display: flex;
+      gap: 0;
+      position: relative;
+      min-width: max-content;
+    }
+
+    .timeline-track::before {
+      content: '';
+      position: absolute;
+      top: 80px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200, 146, 42, 0.4) 10%, rgba(200, 146, 42, 0.4) 90%, transparent);
+    }
+
+    .timeline-item {
+      width: 220px;
+      padding: 0 20px;
+      cursor: none;
+      transition: opacity 0.3s;
+    }
+
+    .timeline-item:hover .timeline-dot {
+      transform: scale(1.6);
+      background: var(--sepia-acc);
+    }
+
+    .timeline-item:hover .timeline-content {
+      opacity: 1;
+    }
+
+    .timeline-year {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: var(--sepia-acc);
+      line-height: 1;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .timeline-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(200, 146, 42, 0.4);
+      border: 1px solid var(--sepia-acc);
+      flex-shrink: 0;
+      margin-bottom: 4px;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .timeline-content {
+      opacity: 0.65;
+      transition: opacity 0.3s;
+    }
+
+    .timeline-event-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--sepia-text);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .timeline-desc {
+      font-size: 13px;
+      color: var(--sepia-dim);
+      line-height: 1.5;
+    }
+
+    /* ════════════════════════════════════════
+     PULL QUOTE — estilo History of Animation
+  ════════════════════════════════════════ */
+    .pull-quote-section {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 10%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-gaitan {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-stage {
+      position: relative;
+      min-height: 500px;
+    }
+
+    /* Capa de recorte para el efecto parallax del PNG de Gaitán */
+    .gaitan-parallax {
+
+      position: absolute;
+
+      left: 50%;
+
+      bottom: 120px;
+
+      height: 95vh;
+
+      max-height: 900px;
+
+      opacity: 0;
+
+      z-index: 6;
+
+      pointer-events: none;
+
+      transform:
+        translateX(-50%) scale(.85);
+
+      transition:
+        opacity 2s ease,
+        transform 2s ease;
+    }
+
+    .gaitan-parallax {
+      animation: kenBurnsGaitan 20s ease-in-out infinite alternate;
+    }
+
+    .quote-gaitan.visible .gaitan-parallax {
+
+      opacity: .99;
+
+      transform:
+        translateX(-50%) scale(1);
+    }
+
+    @keyframes kenBurnsGaitan {
+
+      0% {
+        transform:
+          translateY(0) translateX(0) scale(1);
+      }
+
+      100% {
+        transform:
+          translateY(-15px) translateX(-8px) scale(1.05);
+      }
+    }
+
+
+    /*   Capa de recorte para el efecto parallax del PNG de Galán */
+
+    .galan-parallax {
+
+      position: absolute;
+
+      left: 10%;
+
+      bottom: -40px;
+
+      height: 95vh;
+
+      max-height: 500px;
+
+      opacity: 0;
+
+      z-index: 6;
+
+      pointer-events: none;
+
+      transform:
+        translateX(-50%) scale(.85);
+
+      transition:
+        opacity 2s ease,
+        transform 2s ease;
+    }
+
+    .galan-parallax {
+      animation: kenBurnsGalan 20s ease-in-out infinite alternate;
+    }
+
+    .quote-galan.visible .galan-parallax {
+
+      opacity: .99;
+
+      transform:
+        translateX(-50%) scale(1);
+    }
+
+    @keyframes kenBurnsGalan {
+
+      0% {
+        transform:
+          translateY(0) translateX(0) scale(1);
+      }
+
+      100% {
+        transform:
+          translateY(-15px) translateX(-8px) scale(1.05);
+      }
+    }
+
+    .pull-quote-section::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(200px, 30vw, 380px);
+      color: rgba(200, 146, 42, 0.04);
+      position: absolute;
+      top: -10%;
+      left: 5%;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .pull-quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 56px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.25;
+      color: var(--sepia-text);
+      max-width: 900px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .pull-quote-attr {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--sepia-acc);
+      margin-top: 28px;
+      position: relative;
+      z-index: 6;
+    }
+
+    /* ════════════════════════════════════════
+     SECCIÓN PARTE 2 — VERDE (transición)
+  ════════════════════════════════════════ */
+    .part-2 {
+      background: var(--verde-bg) !important;
+      --sepia-text: #d4f0c8;
+      --sepia-acc: #5ec662;
+      --sepia-dim: #3a8a42;
+      --sepia-mid: #163b20;
+    }
+
+    .part-2 .era-badge {
+      color: #5ec662;
+      border-color: rgba(94, 198, 98, 0.3);
+    }
+
+    .part-2 .section-era {
+      color: #d4f0c8;
+    }
+
+    .part-2 .section-body {
+      color: rgba(212, 240, 200, 0.78);
+    }
+
+    .part-2 .section-number {
+      color: rgba(94, 198, 98, 0.04);
+    }
+
+    .part-2 #progress-bar {
+      background: linear-gradient(90deg, #5ec662, #d4f0c8);
+    }
+
+    .part-2 .timeline-track::before {
+      background: linear-gradient(90deg, transparent, rgba(94, 198, 98, 0.4) 10%, rgba(94, 198, 98, 0.4) 90%, transparent);
+    }
+
+    .part-2 .timeline-year {
+      color: #5ec662;
+    }
+
+    .part-2 .timeline-dot {
+      background: rgba(94, 198, 98, 0.4);
+      border-color: #5ec662;
+    }
+
+    /* ════════════════════════════════════════
+     SECCIÓN PARTE 3 — AZUL (esperanza)
+  ════════════════════════════════════════ */
+    .part-3 {
+      background: var(--azul-bg) !important;
+    }
+
+    .part-3 .era-badge {
+      color: #6aabf0;
+      border-color: rgba(106, 171, 240, 0.3);
+    }
+
+    .part-3 .section-era {
+      color: #d8eaff;
+    }
+
+    .part-3 .section-body {
+      color: rgba(216, 234, 255, 0.78);
+    }
+
+    .part-3 .section-number {
+      color: rgba(106, 171, 240, 0.05);
+    }
+
+    .part-3 .pull-quote-section::before {
+      color: rgba(106, 171, 240, 0.05);
+    }
+
+    .part-3 .pull-quote-text {
+      color: #d8eaff;
+    }
+
+    .part-3 .pull-quote-attr {
+      color: #6aabf0;
+    }
+
+    /* ════════════════════════════════════════
+     GRID DE MÉTRICAS
+  ════════════════════════════════════════ */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(106, 171, 240, 0.12);
+      margin: 60px 80px;
+    }
+
+    .metric-card {
+      background: var(--azul-bg);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, #6aabf0, transparent);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .metric-card:hover::before {
+      opacity: 1;
+    }
+
+    .metric-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 6vw, 80px);
+      color: #6aabf0;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .metric-label {
+      font-family: 'Crimson Text', serif;
+      font-size: 16px;
+      color: rgba(216, 234, 255, 0.65);
+      line-height: 1.4;
+    }
+
+    /* ════════════════════════════════════════
+     TESTIMONIOS GRID
+  ════════════════════════════════════════ */
+    .testimony-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      margin: 0 80px 80px;
+      background: rgba(76, 175, 80, 0.08);
+    }
+
+    .testimony-card {
+      background: var(--verde-bg);
+      padding: 48px 40px;
+      position: relative;
+      cursor: none;
+      transition: background 0.4s;
+    }
+
+    .testimony-card:hover {
+      background: rgba(17, 43, 22, 0.95);
+    }
+
+    .testimony-role {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #4caf50;
+      margin-bottom: 16px;
+    }
+
+    .testimony-text {
+      font-family: 'Crimson Text', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: rgba(200, 230, 192, 0.85);
+      line-height: 1.7;
+    }
+
+    .testimony-name {
+      font-family: 'Source Serif 4', serif;
+      font-size: 13px;
+      color: rgba(200, 230, 192, 0.4);
+      margin-top: 20px;
+    }
+
+    /* ════════════════════════════════════════
+     DIVISOR DE PARTE (pantalla de transición)
+  ════════════════════════════════════════ */
+    .part-divider {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px;
+    }
+
+    .part-divider-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(100px, 18vw, 220px);
+      color: rgba(255, 255, 255, 0.03);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .part-divider-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 10px;
+      letter-spacing: 6px;
+      color: var(--sepia-acc);
+      position: relative;
+      z-index: 1;
+    }
+
+    .part-divider-title {
+      font-family: 'Special Elite', monospace;
+      font-size: clamp(36px, 6vw, 72px);
+      font-style: italic;
+      color: var(--sepia-text);
+      max-width: 700px;
+      line-height: 1.15;
+      position: relative;
+      z-index: 1;
+    }
+
+    .part-divider-line {
+      width: 60px;
+      height: 1px;
+      background: var(--sepia-acc);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ════════════════════════════════════════
+     CRÉDITOS FINALES
+  ════════════════════════════════════════ */
+    #credits {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 40px;
+      background: var(--azul-bg);
+      position: relative;
+    }
+
+    .credits-flag {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 48px;
+    }
+
+    .flag-stripe {
+      width: 24px;
+      height: 80px;
+      border-radius: 2px;
+    }
+
+    #credits h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 48px);
+      color: #c5d8f5;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    #credits p {
+      font-size: 16px;
+      color: rgba(197, 216, 245, 0.5);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    #credits .credits-line {
+      width: 60px;
+      height: 1px;
+      background: #4a90d9;
+      margin: 32px auto;
+    }
+
+    /* ── ANIMACIONES GLOBALES ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── MEDIA QUERIES ── */
+    @media (max-width: 900px) {
+      .section {
+        grid-template-columns: 1fr;
+      }
+
+      .section-right {
+        display: none;
+      }
+
+      .section-content {
+        padding: 60px 32px;
+      }
+
+      .metrics-grid {
+        grid-template-columns: 1fr;
+        margin: 40px 32px;
+      }
+
+      .testimony-grid {
+        grid-template-columns: 1fr;
+        margin: 0 32px 60px;
+      }
+
+      .timeline-header {
+        padding: 0 32px;
+      }
+
+      .timeline-scroll-container {
+        padding: 0 32px;
+      }
+
+      #era-nav {
+        display: none;
+      }
+    }
+
+    /* ════════════════════════════════════════
+     PARTE 1 — TEXTURA DE PERIÓDICO (sinestesia olfativa)
+  ════════════════════════════════════════ */
+    .newspaper-texture {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      /* Columnas tipográficas fantasma */
+      background-image:
+        /* Líneas horizontales de texto simuladas */
+        repeating-linear-gradient(180deg,
+          transparent, transparent 22px,
+          rgba(200, 146, 42, 0.025) 22px, rgba(200, 146, 42, 0.025) 23px),
+        /* Separador vertical de columna */
+        repeating-linear-gradient(90deg,
+          transparent, transparent calc(50% - 0.5px),
+          rgba(200, 146, 42, 0.04) calc(50% - 0.5px), rgba(200, 146, 42, 0.04) calc(50% + 0.5px),
+          transparent calc(50% + 0.5px), transparent 100%);
+      opacity: 0.7;
+    }
+
+    .newspaper-texture::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      /* Grain de papel de periódico */
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.07'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+      opacity: 0.6;
+    }
+
+    /* Mancha de humedad / envejecimiento */
+    .paper-stain {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 40% at 15% 85%, rgba(120, 80, 20, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 88% 10%, rgba(100, 60, 10, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 30% 25% at 50% 50%, rgba(80, 50, 10, 0.03) 0%, transparent 60%);
+      z-index: 1;
+    }
+
+    /* ════════════════════════════════════════
+     PARTE 2 — PIZARRA / NATURALEZA COLOMBIANA
+  ════════════════════════════════════════ */
+    .chalkboard-texture {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      /* Textura de pizarra / pared con venas */
+      background-image:
+        repeating-linear-gradient(-45deg,
+          transparent, transparent 3px,
+          rgba(94, 198, 98, 0.008) 3px, rgba(94, 198, 98, 0.008) 4px),
+        repeating-linear-gradient(45deg,
+          transparent, transparent 5px,
+          rgba(255, 255, 255, 0.006) 5px, rgba(255, 255, 255, 0.006) 6px);
+    }
+
+    .chalkboard-texture::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='chalk'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.4' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23chalk)' opacity='0.05'/%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+
+    /* Neblina colombiana / niebla de montaña */
+    .nature-mist {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(94, 198, 98, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 10% 100%, rgba(50, 150, 80, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 90% 50%, rgba(30, 100, 50, 0.04) 0%, transparent 60%);
+    }
+
+    /* ════════════════════════════════════════
+     PARTE 3 — FUTURO / PERSONAS Y TECNOLOGÍA
+  ════════════════════════════════════════ */
+    .future-grid {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background-image:
+        linear-gradient(rgba(106, 171, 240, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(106, 171, 240, 0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    }
+
+    .future-glow {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 100%, rgba(106, 171, 240, 0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 20%, rgba(80, 140, 220, 0.06) 0%, transparent 60%);
+    }
+
+    /* ════════════════════════════════════════
+     SISTEMA DE AUDIO — REPRODUCTOR FLOTANTE
+  ════════════════════════════════════════ */
+    #audio-engine {
+      position: fixed;
+      left: 28px;
+      bottom: 28px;
+      z-index: 800;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    #audio-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: rgba(200, 146, 42, 0.4);
+      transition: color 0.8s, opacity 0.5s;
+      opacity: 0;
+    }
+
+    #audio-label.visible {
+      opacity: 1;
+    }
+
+    #audio-toggle {
+      pointer-events: all;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(200, 146, 42, 0.25);
+      background: rgba(26, 18, 8, 0.7);
+      backdrop-filter: blur(12px);
+      color: rgba(200, 146, 42, 0.6);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.3s, color 0.3s, background 0.8s, transform 0.2s;
+      cursor: none;
+    }
+
+    #audio-toggle:hover {
+      border-color: rgba(200, 146, 42, 0.6);
+      color: rgba(200, 146, 42, 0.9);
+      transform: scale(1.1);
+    }
+
+    #audio-toggle.playing {
+      border-color: rgba(200, 146, 42, 0.5);
+      color: rgba(200, 146, 42, 0.9);
+      animation: audioPulse 2s ease-in-out infinite;
+    }
+
+    #audio-toggle svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    @keyframes audioPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(200, 146, 42, 0);
+      }
+
+      50% {
+        box-shadow: 0 0 0 8px rgba(200, 146, 42, 0.08);
+      }
+    }
+
+    /* Indicador de onda (cuando hay audio activo) */
+    #audio-wave {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 16px;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    #audio-wave.active {
+      opacity: 1;
+    }
+
+    #audio-wave span {
+      width: 2px;
+      background: rgba(200, 146, 42, 0.5);
+      border-radius: 1px;
+      animation: waveBar 1.2s ease-in-out infinite;
+    }
+
+    #audio-wave span:nth-child(1) {
+      height: 4px;
+      animation-delay: 0s;
+    }
+
+    #audio-wave span:nth-child(2) {
+      height: 10px;
+      animation-delay: 0.1s;
+    }
+
+    #audio-wave span:nth-child(3) {
+      height: 7px;
+      animation-delay: 0.2s;
+    }
+
+    #audio-wave span:nth-child(4) {
+      height: 13px;
+      animation-delay: 0.15s;
+    }
+
+    #audio-wave span:nth-child(5) {
+      height: 6px;
+      animation-delay: 0.05s;
+    }
+
+    @keyframes waveBar {
+
+      0%,
+      100% {
+        transform: scaleY(0.4);
+      }
+
+      50% {
+        transform: scaleY(1);
+      }
+    }
+
+    /* Speech bubble para nombre del track */
+    #audio-track-name {
+      font-family: 'Special Elite', monospace;
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: rgba(200, 146, 42, 0.55);
+      max-width: 140px;
+      line-height: 1.4;
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+    }
+
+    #audio-track-name.visible {
+      opacity: 1;
+    }
+
+    @media(max-width:900px) {
+      #audio-engine {
+        bottom: 80px;
+        /* arriba del nav móvil */
+        left: 16px;
+      }
+    }
+
+    /* ── Ajuste media query footer padding en móvil ── */
+    @media(max-width:900px) {
+      #credits {
+        padding-bottom: 100px;
+      }
+    }
+
+    /* ════════════════════════════════════════
+     TRANSICIÓN "LA GUERRA SE TRANSFORMA"
+     Pantalla sticky que tapa mientras haces scroll
+    ════════════════════════════════════════ */
+    #guerra-transforma {
+      position: relative;
+      background: #0b0808;
+    }
+
+    .gt-spacer {
+      height: 200vh;
+      /* espacio para scroll que revela la siguiente sección */
+    }
+
+    .gt-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #0b0808;
+      /* La cover se va con clip-path conforme scrolleas */
+    }
+
+    .gt-sticky::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg,
+          transparent, transparent 22px,
+          rgba(200, 146, 42, 0.018) 22px, rgba(200, 146, 42, 0.018) 23px);
+      pointer-events: none;
+    }
+
+    /* Ruido de película sobre el interstitial */
+    .gt-sticky::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .gt-title-wrap {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .gt-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 11px;
+      letter-spacing: 6px;
+      color: rgba(200, 146, 42, 0.45);
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .gt-title {
+      font-family: 'Special Elite', monospace;
+      font-size: clamp(48px, 9vw, 130px);
+      font-weight: 400;
+      line-height: 0.92;
+      color: var(--sepia-text);
+      letter-spacing: 1px;
+    }
+
+    .gt-title em {
+      font-style: italic;
+      color: var(--sepia-acc);
+      display: block;
+    }
+
+    .gt-line {
+      width: 50px;
+      height: 1px;
+      background: var(--sepia-acc);
+      margin: 28px auto 0;
+      opacity: 0.5;
+    }
+
+    /* Scroll-driven reveal: el título se hace clip-path hacia arriba */
+    /* Controlado por JS (IntersectionObserver + scroll position) */
+    .gt-sticky.revealing .gt-title-wrap {
+      animation: gtFadeOut 0.4s ease forwards;
+    }
+
+    @keyframes gtFadeOut {
+      to {
+        opacity: 0;
+        transform: translateY(-30px);
+        filter: blur(4px);
+      }
+    }
+
+    /* ════════════════════════════════════════
+     TESTIMONIOS — WRAPPER CON FONDO CORRECTO
+    ════════════════════════════════════════ */
+    .testimony-grid-wrapper {
+      position: relative;
+      background: var(--verde-bg);
+      overflow: hidden;
+    }
+
+    .testimony-grid-wrapper .testimony-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      margin: 0;
+      background: rgba(94, 198, 98, 0.08);
+    }
+
+    .testimony-grid-wrapper .testimony-card {
+      background: var(--verde-bg);
+      padding: 48px 40px;
+      position: relative;
+      cursor: default;
+      transition: background 0.4s;
+    }
+
+    .testimony-grid-wrapper .testimony-card:hover {
+      background: #163b20;
+    }
+
+    .testimony-grid-wrapper .chalkboard-texture,
+    .testimony-grid-wrapper .nature-mist {
+      border-radius: 0;
+    }
+
+    @media(max-width:900px) {
+      .testimony-grid-wrapper .testimony-grid {
+        grid-template-columns: 1fr;
+        margin: 0 0 0 0;
+      }
+
+      .testimony-grid-wrapper .testimony-card {
+        padding: 36px 24px;
+      }
+    }
+
+    /* ════════════════════════════════════════
+     MÉTRICAS — WRAPPER CON FONDO CORRECTO
+    ════════════════════════════════════════ */
+    .metrics-wrapper {
+      position: relative;
+      background: var(--azul-bg);
+      overflow: hidden;
+    }
+
+    .metrics-wrapper .metrics-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(106, 171, 240, 0.12);
+      margin: 0;
+    }
+
+    .metrics-wrapper .metric-card {
+      background: var(--azul-bg);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metrics-wrapper .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--azul-acc), transparent);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .metrics-wrapper .metric-card:hover::before {
+      opacity: 1;
+    }
+
+    .metrics-wrapper .metric-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 6vw, 80px);
+      color: var(--azul-acc);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .metrics-wrapper .metric-label {
+      font-family: 'Crimson Text', serif;
+      font-size: 16px;
+      color: rgba(216, 234, 255, 0.6);
+      line-height: 1.4;
+    }
+
+    @media(max-width:900px) {
+      .metrics-wrapper .metrics-grid {
+        grid-template-columns: 1fr;
+        margin: 0;
+      }
+
+      .metrics-wrapper .metric-card {
+        padding: 32px 24px;
+      }
+    }
+
+    /* ── Audio toggle: cuando hay mute, icono cambia ── */
+    #audio-toggle[data-muted="true"] {
+      opacity: 0.4;
+    }
+
+    /* ── Prefers reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+
+      .reveal,
+      .bg-layer,
+      .png-layer {
+        transition: none !important;
+        transform: none !important;
+      }
+
+      .hero-eyebrow,
+      .hero-title,
+      .hero-subtitle,
+      .hero-scroll-hint {
+        animation: none;
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CURSOR -->
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- PROGRESS BAR -->
+  <div id="progress-bar"></div>
+
+  <!-- NAV DOTS -->
+  <nav id="era-nav" aria-label="Navegación por secciones">
+    <div class="nav-dot active" data-target="hero" title="Inicio"></div>
+    <div class="nav-dot" data-target="s-violencia" title="La Violencia"></div>
+    <div class="nav-dot" data-target="s-bogotazo" title="El Bogotazo"></div>
+    <div class="nav-dot" data-target="s-presidencias" title="Presidencias"></div>
+    <div class="nav-dot" data-target="s-paisexcluido" title="El País Excluido"></div>
+    <div class="nav-dot" data-target="s-farc" title="Guerrillas"></div>
+    <div class="nav-dot" data-target="s-narco" title="Narcotráfico"></div>
+    <div class="nav-dot" data-target="s-paramilitarismo" title="Paramilitarismo"></div>
+    <div class="nav-dot" data-target="s-victimas" title="Las Víctimas"></div>
+    <div class="nav-dot" data-target="s-constitucion" title="Constitución"></div>
+    <div class="nav-dot" data-target="s-procesos-paz" title="Procesos de Paz"></div>
+    <div class="nav-dot" data-target="s-verdad" title="Comisión Verdad"></div>
+    <div class="nav-dot" data-target="s-futuro" title="Colombia Posible"></div>
+  </nav>
+
+  <!-- ERA LABEL -->
+  <div id="era-label">DESPLAZARSE PARA EXPLORAR</div>
+
+  <!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+  <section id="hero">
+    <div class="bg-noise"></div>
+    <div class="newspaper-texture"></div>
+    <div class="paper-stain"></div>
+    <div class="hero-number">CO</div>
+    <div class="hero-eyebrow">Una narrativa histórica · 1946 – Hoy</div>
+    <h1 class="hero-title">El País<br>que <em>Hemos</em><br>Creado</h1>
+    <p class="hero-subtitle">De La Violencia a la búsqueda de la paz. La historia que nos formó, la verdad que nos debe
+      liberar.</p>
+    <div class="hero-scroll-hint">
+      <span>DESPLAZAR</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+     PARTE 1 DIVIDER
+══════════════════════════════════════ -->
+  <div class="part-divider" style="background:#1a1208; position:relative;">
+    <div class="newspaper-texture" style="opacity:0.5;"></div>
+    <div class="paper-stain"></div>
+    <div class="part-divider-number">1</div>
+    <div class="part-divider-label reveal">Parte Primera</div>
+    <div class="part-divider-line reveal"></div>
+    <h2 class="part-divider-title reveal">El País que Hemos Creado</h2>
+  </div>
+
+  <!-- ══════════════════════════════════════
+     S1 — LA VIOLENCIA
+══════════════════════════════════════ -->
+  <section class="section" id="s-violencia" data-era="La Violencia · 1946–1958" data-part="1">
+    <div class="bg-layer"></div>
+    <div class="newspaper-texture"></div>
+    <div class="paper-stain"></div>
+    <div class="section-number">1</div>
+
+    <div class="section-content">
+      <div class="era-badge reveal">1946 — 1958</div>
+      <h2 class="section-era reveal">La<br>Violencia</h2>
+      <div class="section-body reveal">
+        <p>Entre 1946 y 1958, Colombia vivió uno de los períodos más sangrientos de su historia: <strong>La
+            Violencia</strong>. Un conflicto bipartidista entre liberales y conservadores que dejó entre 200.000 y
+          300.000 muertos y desplazó a cientos de miles de campesinos.</p>
+        <p>No fue una guerra declarada. Fue una masacre silenciosa en veredas, en trochas, en la noche. El Estado miraba
+          o participaba. Las familias se dividieron por el color de una cédula.</p>
+      </div>
+    </div>
+
+    <div class="section-right">
+      <div class="historical-image">
+        <img src="imagenes/violencia2.png">
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+     S2 — EL BOGOTAZO
+══════════════════════════════════════ -->
+  <section class="section" id="s-bogotazo" data-era="El Bogotazo · 9 de Abril 1948" data-part="1"
+    style="background:#140e04; position:relative;">
+    <div class="newspaper-texture"></div>
+    <div class="paper-stain"></div>
+    <div class="section-number">2</div>
+    <div class="section-right" style="order:-1; padding: 80px 40px 80px 80px;">
+      <div class="historical-image">
+        <img src="imagenes/bogotazo.jpg">
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="era-badge reveal">9 de Abril · 1948</div>
+      <h2 class="section-era reveal">El<br>Bogotazo</h2>
+      <div class="section-body reveal">
+        <p>El <strong>9 de abril de 1948</strong>, el líder liberal Jorge Eliécer Gaitán fue asesinado en Bogotá. La
+          noticia desencadenó un levantamiento espontáneo que destruyó el centro de la capital y se extendió por todo el
+          país.</p>
+        <p>Gaitán era el político más popular que Colombia había tenido jamás. Su muerte no fue el inicio de la guerra;
+          fue su momento más visible. Colombia llevaba años ardiendo por dentro.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PULL QUOTE — GAITÁN -->
+  <div class="pull-quote-section quote-gaitan" style="background:#100b02;">
+
+    <div class="quote-stage">
+
+      <img src="imagenes/GaitanRecorte.png" class="gaitan-parallax" alt="Jorge Eliécer Gaitán">
+
+      <div class="pull-quote-text reveal">
+        "El pueblo es superior a sus dirigentes.
+      </div>
+
+      <div class="pull-quote-text reveal" style="z-index:7;">
+        Votad por Colombia, no por los partidos."
+      </div>
+
+      <div class="pull-quote-attr reveal">
+        — Jorge Eliécer Gaitán · 1947
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════
+     S3 — PRESIDENCIAS / TIMELINE
+══════════════════════════════════════ -->
+  <section class="timeline-section" id="s-presidencias" data-era="República · Frente Nacional" data-part="1"
+    style="background:#12100a; position:relative;">
+    <div class="newspaper-texture"></div>
+    <div class="paper-stain"></div>
+    <div class="section-number" style="right:0; left:auto; bottom:-4%; font-size:clamp(100px,18vw,240px);">3</div>
+    <div class="timeline-header">
+      <div class="era-badge reveal">1950 — 1990</div>
+      <h2 class="section-era reveal">El Frente<br>Nacional</h2>
+      <p class="section-body reveal" style="max-width:600px;">Para acabar con la guerra bipartidista, liberales y
+        conservadores pactaron repartirse el poder por 16 años. El Frente Nacional (1958–1974) estabilizó el país pero
+        excluyó a todos los demás. Esa exclusión engendró las guerrillas.</p>
+    </div>
+
+    <div class="timeline-scroll-container" id="presidents-timeline">
+      <div class="timeline-track">
+        <div class="timeline-item reveal">
+          <div class="timeline-year">1958 <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-event-title">Alberto Lleras Camargo</div>
+            <div class="timeline-desc">Primer presidente del Frente Nacional. Liberal. Implementó la paridad
+              burocrática.</div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">1962 <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-event-title">Guillermo León Valencia</div>
+            <div class="timeline-desc">Conservador. Su gobierno enfrenta las primeras guerrillas campesinas.</div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">1964 <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-event-title">Nacimiento FARC y ELN</div>
+            <div class="timeline-desc">Marquetalia (FARC) y Simacota (ELN) marcan el inicio del conflicto armado
+              moderno.</div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">1966 <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-event-title">Carlos Lleras Restrepo</div>
+            <div class="timeline-desc">Liberal. Reforma agraria y apertura económica. Colombia crece pero la guerrilla
+              también.</div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">1970 <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-event-title">El "Robo" Electoral</div>
+            <div class="timeline-desc">Gustavo Rojas Pinilla pierde ante Misael Pastrana en elecciones disputadas. Nace
+              el M-19.</div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">1974 <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-event-title">Fin del Frente Nacional</div>
+            <div class="timeline-desc">Alfonso López Michelsen gana las primeras elecciones libres. El daño ya estaba
+              hecho.</div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">1982 <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-event-title">Belisario Betancur</div>
+            <div class="timeline-desc">Primer intento serio de paz con las FARC. Los Acuerdos de La Uribe (1984) no
+              sobreviven.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+     S4 — El PAIS EXCLUIDO
+══════════════════════════════════════ -->
+  <section class="section" id="s-paisexcluido" data-era="El País Excluido" data-part="1"
+    style="background:#140e04; position:relative;">
+    <div class="newspaper-texture"></div>
+    <div class="paper-stain"></div>
+    <div class="section-number">4</div>
+    <div class="section-right" style="order:-1; padding: 80px 40px 80px 80px;">
+      <div class="historical-image">
+        <img src="imagenes/Violencia3.png">
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="era-badge reveal">9 de Abril · 1948</div>
+      <h2 class="section-era reveal">El<br>País Excluido</h2>
+      <div class="section-body reveal">
+        <p>Lorem Ipsum</p>
+        <p>Lorem Ipsum</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+     S5 — FARC / GUERRILLAS
+══════════════════════════════════════ -->
+  <section class="section" id="s-farc" data-era="Guerrillas · 1964–2016" data-part="1"
+    style="background:#0e0f08; position:relative;">
+    <div class="newspaper-texture" style="opacity:0.5;"></div>
+    <div class="section-number">5</div>
+    <div class="section-content">
+      <div class="era-badge reveal">1964 — 2016</div>
+      <h2 class="section-era reveal">Las<br>Guerrillas</h2>
+      <div class="section-body reveal">
+        <p>Las <strong>FARC</strong> nacieron en 1964 en Marquetalia como autodefensas campesinas. El
+          <strong>ELN</strong>, inspirado en la revolución cubana, surgió el mismo año en Simacota, Santander. El
+          <strong>M-19</strong> apareció en 1970 como respuesta al fraude electoral.
+        </p>
+        <p>Durante décadas, el conflicto armado cobró más de <strong>220.000 vidas</strong>, desplazó a 8 millones de
+          colombianos y dejó 80.000 desaparecidos. Colombia no tuvo una guerra. Tuvo muchas, simultáneas, invisibles.
+        </p>
+      </div>
+    </div>
+    <div class="section-right">
+      <div class="historical-image">
+        <img src="imagenes/guerrilla.png">
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+     TRANSICIÓN — LA GUERRA SE TRANSFORMA
+══════════════════════════════════════ -->
+  <div id="guerra-transforma" data-part="1">
+    <div class="gt-sticky">
+      <div class="gt-title-wrap">
+        <span class="gt-label">1980</span>
+        <h2 class="gt-title">La guerra<br><em>se transforma</em></h2>
+        <div class="gt-line"></div>
+      </div>
+    </div>
+    <div class="gt-spacer"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+     S6 — NARCOTRÁFICO
+══════════════════════════════════════ -->
+  <section class="section" id="s-narco" data-era="Narcotráfico · 1980–2006" data-part="1"
+    style="background:#110808; position:relative;">
+    <div class="newspaper-texture" style="opacity:0.45;"></div>
+    <div class="section-number">6</div>
+    <div class="section-right" style="order:-1; padding: 80px 40px 80px 80px;">
+      <div class="historical-image">
+        <img src="imagenes/galanPeriodico.jpeg">
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="era-badge reveal">1980 — 2006</div>
+      <h2 class="section-era reveal">El Narco<br>y el Terror</h2>
+      <div class="section-body reveal">
+        <p><strong>El narcotráfico degradó </strong> la guerra en una disputa por rentas ilícitas que financió a todos
+          los
+          bandos e impuso
+          una narcocultura que erosionó la ética social. Su poder corruptor cooptó instituciones y ejecutó un despojo
+          masivo de tierras que funcionó como una violenta contrarreforma agraria nacional. </p>
+        <p>Tras el fin de los grandes carteles, el fenómeno mutó en redes fragmentadas y volátiles. Estas estructuras
+          mantienen el control territorial y la violencia en las periferias donde la presencia del Estado sigue siendo
+          insuficiente.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PULL QUOTE — GAITÁN -->
+  <div class="pull-quote-section quote-galan" style="background:#100b02;">
+
+    <div class="quote-stage">
+
+      <img src="imagenes/GalanRecorte.png" class="galan-parallax" alt="Luis Carlos Galán">
+
+      <div class="pull-quote-text reveal">
+        "Se puede matar a los hombres,
+      </div>
+
+      <div class="pull-quote-text reveal" style="z-index:7;">
+        pero no a las ideas."
+      </div>
+
+      <div class="pull-quote-attr reveal">
+        — Luis Carlos Galán · 1989
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+     S7 — PARAMILITARISMO
+══════════════════════════════════════ -->
+  <section class="section" id="s-paramilitarismo" data-era="Paramilitarismo · 1990–2006" data-part="1"
+    style="background:#0f1108;">
+    <div class="section-number">7</div>
+    <div class="section-content">
+      <div class="era-badge reveal">1990–2006</div>
+      <h2 class="section-era reveal">Para-<br>militarismo</h2>
+      <div class="section-body reveal">
+        <p>Legitimado desde <strong>1968</strong>, el paramilitarismo operó como un <strong>ejército paralelo de élites,
+            militares y
+            narcos</strong>. Bajo
+          las AUC, perpetró masacres y un despojo masivo de tierras que funcionó como una violenta contrarreforma
+          agraria nacional.</p>
+        <p>Su alianza escaló con la parapolítica, cooptando una tercera parte del Congreso para su proyecto de poder.
+          Tras la desmovilización de 2006, mutó en estructuras fragmentadas que aún controlan zonas donde la ausencia
+          estatal perpetúa la violencia. </p>
+      </div>
+    </div>
+    <div class="section-right">
+      <div class="historical-image">
+        <img src="imagenes/AUC.jpg">
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+     S8 — VICTIMAS
+══════════════════════════════════════ -->
+  <section class="section" id="s-victimas" data-era="Victimas · 1980–2006" data-part="1"
+    style="background:#110808; position:relative;">
+    <div class="newspaper-texture" style="opacity:0.45;"></div>
+    <div class="section-number">8</div>
+    <div class="section-right" style="order:-1; padding: 80px 40px 80px 80px;">
+      <div class="historical-image">
+        <img src="imagenes/Violencia.png">
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="era-badge reveal">1980 — 2006</div>
+      <h2 class="section-era reveal">Las Víctimas</h2>
+      <div class="section-body reveal">
+        <p>Lorem Ipsum</p>
+        <p>Lorem Ipsum</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+     S9 — CONSTITUCIÓN 1991
+══════════════════════════════════════ -->
+  <section class="section" id="s-constitucion" data-era="Constitución · 1991" data-part="1" style="background:#0f1108;">
+    <div class="section-number">9</div>
+    <div class="section-content">
+      <div class="era-badge reveal">1991</div>
+      <h2 class="section-era reveal">La Nueva<br>Constitución</h2>
+      <div class="section-body reveal">
+        <p>En 1991, Colombia adoptó una nueva Constitución, considerada una de las más avanzadas del mundo. Reconoció la
+          diversidad étnica y cultural, creó la Corte Constitucional, y amplió los derechos fundamentales.</p>
+        <p>Fue el intento más serio de refundar el país. Surgió de la paz con el M-19 y la presión de una generación
+          harta de violencia. Pero el conflicto no se detuvo. <strong>El papel lo aguanta todo.</strong></p>
+      </div>
+    </div>
+    <div class="section-right">
+      <div class="historical-image">
+        <img src="imagenes/7mPapeleta.jpg">
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+     S10 — PROCESOS DE PAZ
+══════════════════════════════════════ -->
+  <section class="section" id="s-procesos-paz" data-era="Procesos de Paz · 2016" data-part="1"
+    style="background:#110808; position:relative;">
+    <div class="newspaper-texture" style="opacity:0.45;"></div>
+    <div class="section-number">10</div>
+    <div class="section-right" style="order:-1; padding: 80px 40px 80px 80px;">
+      <div class="historical-image">
+        <img src="imagenes/AcuerdoPaz.webp">
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="era-badge reveal">2016</div>
+      <h2 class="section-era reveal">Los Procesos de Paz</h2>
+      <div class="section-body reveal">
+        <p>Lorem Ipsum</p>
+        <p>Lorem Ipsum</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+     PARTE 2 DIVIDER
+══════════════════════════════════════ -->
+  <div class="part-divider part-2" style="background:#0d2416; position:relative;">
+    <div class="chalkboard-texture"></div>
+    <div class="nature-mist"></div>
+    <div class="part-divider-number" style="color:rgba(94,198,98,0.04)">2</div>
+    <div class="part-divider-label reveal" style="color:#5ec662;">Parte Segunda</div>
+    <div class="part-divider-line reveal" style="background:#5ec662;"></div>
+    <h2 class="part-divider-title reveal" style="color:#d4f0c8;">El País en Disputa</h2>
+  </div>
+
+  <!-- ══════════════════════════════════════
+     S11 — COMISIÓN DE LA VERDAD
+══════════════════════════════════════ -->
+  <section class="section part-2" id="s-verdad" data-era="Comisión de la Verdad · 2022" data-part="2"
+    style="background:#0d2416; position:relative;">
+    <div class="chalkboard-texture"></div>
+    <div class="nature-mist"></div>
+    <div class="section-number" style="color:rgba(94,198,98,0.04)">11</div>
+    <div class="section-content">
+      <div class="era-badge reveal">2017 — 2022</div>
+      <h2 class="section-era reveal" style="color:#d4f0c8;">La<br>Verdad</h2>
+      <div class="section-body reveal" style="color:rgba(212,240,200,0.78)">
+        <p>El Acuerdo de Paz de 2016 entre el Gobierno y las FARC creó el <strong>Sistema Integral de Verdad, Justicia,
+            Reparación y No Repetición</strong>. En su centro: la Comisión para el Esclarecimiento de la Verdad.</p>
+        <p>Cinco años después, en 2022, el informe final <em>"Hay Futuro si Hay Verdad"</em> documentó el conflicto en
+          900 páginas. Lo que encontraron no fue la historia de dos bandos. Fue la historia de millones de víctimas.</p>
+      </div>
+    </div>
+    <div class="section-right">
+      <div class="present-image">
+        <img src="imagenes/HFSHV.jpg">
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS GRID -->
+  <div class="testimony-grid-wrapper part-2">
+    <div class="chalkboard-texture" style="border-radius:0;"></div>
+    <div class="nature-mist"></div>
+    <div class="testimony-grid">
+      <div class="testimony-card reveal">
+        <div class="testimony-role">Víctima · Departamento del Chocó</div>
+        <div class="testimony-text">"Nos tocó salir corriendo, sin nada. Mi mamá no alcanzó a coger ni los zapatos. Así
+          salimos de la casa que mi papá construyó ladrillo a ladrillo."</div>
+        <div class="testimony-name">Mujer desplazada · 2001</div>
+      </div>
+      <div class="testimony-card reveal">
+        <div class="testimony-role">Excombatiente FARC · Zona de Reincorporación</div>
+        <div class="testimony-text">"Uno llega creyendo que la revolución lo justifica todo. Con los años entiende que
+          lo
+          único que quedó fue dolor, de todos los lados."</div>
+        <div class="testimony-name">Hombre en proceso de reincorporación · 2019</div>
+      </div>
+      <div class="testimony-card reveal">
+        <div class="testimony-role">Soldado retirado · Córdoba</div>
+        <div class="testimony-text">"Nadie nos preparó para lo que veíamos. Y tampoco nos prepararon para volver a casa
+          y
+          tener que vivir con eso adentro."</div>
+        <div class="testimony-name">Veterano del Ejército · 2021</div>
+      </div>
+      <div class="testimony-card reveal">
+        <div class="testimony-role">Líder indígena · Sierra Nevada</div>
+        <div class="testimony-text">"Nuestros territorios no son el escenario de la guerra. Son nuestra vida. Cada árbol
+          que quemaron era un ancestro."</div>
+        <div class="testimony-name">Mamo del pueblo Arhuaco · 2018</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+     S12 — CARIBE AFIRMATIVO
+══════════════════════════════════════ -->
+  <section class="section part-2" id="s-caribe" data-era="Caribe Afirmativo · 2019" data-part="2"
+    style="background:#0d2416; position:relative;">
+    <div class="chalkboard-texture"></div>
+    <div class="nature-mist"></div>
+    <div class="section-number" style="color:rgba(94,198,98,0.04)">12</div>
+    <div class="section-right" style="order:-1; padding: 80px 40px 80px 80px;">
+      <div class="present-image">
+        <img src="imagenes/CaribeAfirmativo.jpeg">
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="era-badge reveal">2019</div>
+      <h2 class="section-era reveal">Caribe Afirmativo</h2>
+      <div class="section-body reveal">
+        <p>Tras 1958, el conflicto mutó de una guerra bipartidista a una insurgencia impulsada por la exclusión y la
+          desigualdad agraria. En los ochenta, el narcotráfico degradó la lucha en una disputa por rentas ilícitas que
+          financió al paramilitarismo y ejecutó un despojo masivo de tierras. </p>
+        <p>Pese a la Constitución de 1991 y las
+          ofensivas estatales, la persistente ausencia institucional en las regiones mantiene vigente la violencia.
+          Colombia permanece como el escenario del conflicto sin negociar más antiguo del mundo. </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+     S13 — PARO NACIONAL 2021
+══════════════════════════════════════ -->
+  <section class="section part-2" id="s-paro" data-era="Paro Nacional · 2021" data-part="2"
+    style="background:#0d2416; position:relative;">
+    <div class="chalkboard-texture"></div>
+    <div class="nature-mist"></div>
+    <div class="section-number" style="color:rgba(94,198,98,0.04)">13</div>
+    <div class="section-content">
+      <div class="era-badge reveal">2021</div>
+      <h2 class="section-era reveal" style="color:#d4f0c8;">Paro<br>Nacional 2021</h2>
+      <div class="section-body reveal" style="color:rgba(212,240,200,0.78)">
+        <p>El Paro Nacional de 2021 <strong>movilizó por 50 días a jóvenes y grupos étnicos contra una reforma
+            tributaria y la
+            brutalidad policial </strong>. Las redes sociales fueron el motor principal para la coordinación de la
+          protesta y la
+          denuncia internacional frente a la represión. </p>
+        <p>Esta movilización transformó la participación política juvenil,
+          siendo determinante para el <strong>giro electoral que llevó a Gustavo Petro a la presidencia en
+            2022</strong>. El paro
+          consolidó una nueva etapa de exigencia ciudadana que trasladó el descontento de las calles y el entorno
+          digital hacia las urnas. </p>
+      </div>
+    </div>
+    <div class="section-right">
+      <div class="present-image">
+        <img src="imagenes/ParoNacionalPato.jpeg">
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+     S14 — PTA/FI 
+══════════════════════════════════════ -->
+  <section class="section part-2" id="s-ptafi" data-era="PTA/FI · 2022-2026" data-part="2"
+    style="background:#0d2416; position:relative;">
+    <div class="chalkboard-texture"></div>
+    <div class="nature-mist"></div>
+    <div class="section-number" style="color:rgba(94,198,98,0.04)">14</div>
+    <div class="section-right" style="order:-1; padding: 80px 40px 80px 80px;">
+      <div class="present-image">
+        <img src="imagenes/PTA.jpg">
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="era-badge reveal">2022-2026</div>
+      <h2 class="section-era reveal">PTA/FI</h2>
+      <div class="section-body reveal">
+        <p>El PTA/FI 3.0 <strong>lleva universitarios al campo para enfrentar el abandono estatal </strong>. Aunque es
+          un avance,
+          muestra
+          que el Estado aún requiere de la acción juvenil para cubrir vacíos estructurales que históricamente han
+          alimentado la violencia en las periferias.</p>
+        <p>Esta labor demuestra un compromiso juvenil con la transformación
+          del territorio. Al atacar la exclusión regional, el programa busca resolver causas profundas que las fuentes
+          señalan como los principales obstáculos para lograr una paz estable. </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+     PARTE 3 DIVIDER
+══════════════════════════════════════ -->
+  <div class="part-divider part-3" style="background:#0c1a2e; position:relative;">
+    <div class="future-grid"></div>
+    <div class="future-glow"></div>
+    <div class="part-divider-number" style="color:rgba(106,171,240,0.05)">3</div>
+    <div class="part-divider-label reveal" style="color:#6aabf0;">Parte Tercera</div>
+    <div class="part-divider-line reveal" style="background:#6aabf0;"></div>
+    <h2 class="part-divider-title reveal" style="color:#d8eaff;">La Colombia Posible</h2>
+  </div>
+
+  <!-- ══════════════════════════════════════
+     S8 — FUTURO / RECONCILIACIÓN
+══════════════════════════════════════ -->
+  <section class="section part-3" id="s-futuro" data-era="La Colombia Posible" data-part="3"
+    style="background:#0c1a2e; position:relative;">
+    <div class="future-grid"></div>
+    <div class="future-glow"></div>
+    <div class="section-number" style="color:rgba(106,171,240,0.05)">8</div>
+    <div class="section-right" style="order:-1; padding: 80px 40px 80px 80px;">
+      <div class="present-image">
+        <img src="imagenes/AcuerdoPaz.webp">
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="era-badge reveal" style="color:#6aabf0; border-color:rgba(106,171,240,0.3)">2016 — Hoy</div>
+      <h2 class="section-era reveal" style="color:#d8eaff;">La Paz<br>Imperfecta</h2>
+      <div class="section-body reveal" style="color:rgba(216,234,255,0.78)">
+        <p>El <strong>Acuerdo de Paz de 2016</strong> fue histórico. Las FARC se desmovilizaron. La JEP comenzó a
+          investigar los crímenes de guerra de todos los actores. Más de 13.000 excombatientes están en proceso de
+          reincorporación.</p>
+        <p>La paz no llegó de golpe. Llegó incompleta, cuestionada, amenazada por disidencias y por la violencia contra
+          líderes sociales. Pero llegó. Y eso, en Colombia, no es poco.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- MÉTRICAS POSCONFLICTO -->
+  <div class="metrics-wrapper part-3">
+    <div class="future-grid"></div>
+    <div class="future-glow"></div>
+    <div class="metrics-grid">
+      <div class="metric-card reveal">
+        <div class="metric-number">13.202</div>
+        <div class="metric-label">excombatientes FARC en proceso de reincorporación civil</div>
+      </div>
+      <div class="metric-card reveal">
+        <div class="metric-number">900+</div>
+        <div class="metric-label">páginas del informe de la Comisión de la Verdad (2022)</div>
+      </div>
+      <div class="metric-card reveal">
+        <div class="metric-number">8M</div>
+        <div class="metric-label">personas desplazadas internamente — la mayor crisis en América</div>
+      </div>
+      <div class="metric-card reveal">
+        <div class="metric-number">220K</div>
+        <div class="metric-label">víctimas mortales del conflicto armado 1958–2016</div>
+      </div>
+      <div class="metric-card reveal">
+        <div class="metric-number">80K</div>
+        <div class="metric-label">personas desaparecidas forzosamente durante el conflicto</div>
+      </div>
+      <div class="metric-card reveal">
+        <div class="metric-number">2016</div>
+        <div class="metric-label">año de la firma del Acuerdo Final — La Habana, Cuba</div>
+      </div>
+    </div>
+  </div>
+  <!-- PULL QUOTE FINAL -->
+  <div class="pull-quote-section part-3" style="background:#0c1a2e; position:relative;">
+    <div class="future-grid" style="opacity:0.5;"></div>
+    <div>
+      <div class="pull-quote-text reveal" style="color:#d8eaff;">
+        "Colombia no es el país de la violencia. Es el país que sobrevivió a ella, y que todavía tiene algo que decir."
+      </div>
+      <div class="pull-quote-attr reveal" style="color:#6aabf0;">— Comisión para el Esclarecimiento de la Verdad · 2022
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+     CRÉDITOS
+══════════════════════════════════════ -->
+  <section id="credits" style="background:#0c1a2e; position:relative;">
+    <div class="future-glow"></div>
+    <div class="credits-flag">
+      <div class="flag-stripe" style="background:#FFD700; width:40px;"></div>
+      <div class="flag-stripe" style="background:#003087; width:20px;"></div>
+      <div class="flag-stripe" style="background:#CE1126; width:20px;"></div>
+    </div>
+    <h2 class="reveal" style="color:#d8eaff;">Colombia — El País que Hemos Creado</h2>
+    <div class="credits-line" style="background:#6aabf0;"></div>
+    <p class="reveal" style="color:rgba(216,234,255,0.5);">Un proyecto de memoria histórica y narrativa visual sobre el
+      conflicto armado colombiano, sus
+      víctimas, y la búsqueda de la paz.</p>
+    <p class="reveal" style="margin-top:16px; font-size:13px; color:rgba(216,234,255,0.25);">
+      Fuentes: Comisión para el Esclarecimiento de la Verdad (2022) · Centro Nacional de Memoria Histórica · ¡Basta Ya!
+      (2013) · Jurisdicción Especial para la Paz
+    </p>
+  </section>
+
+  <script>
+    // ══════════════════════════════════════════
+    // CURSOR PERSONALIZADO
+    // ══════════════════════════════════════════
+    const cursor = document.getElementById('cursor');
+    const cursorRing = document.getElementById('cursorRing') || document.getElementById('cursor-ring');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+
+    function animateCursorRing() {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      cursorRing.style.left = ringX + 'px';
+      cursorRing.style.top = ringY + 'px';
+      requestAnimationFrame(animateCursorRing);
+    }
+    animateCursorRing();
+
+    // ══════════════════════════════════════════
+    // BARRA DE PROGRESO
+    // ══════════════════════════════════════════
+    const progressBar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      progressBar.style.width = progress + '%';
+    }, { passive: true });
+
+    // ══════════════════════════════════════════
+    // ERA LABEL + NAV DOTS
+    // ══════════════════════════════════════════
+    const eraLabel = document.getElementById('era-label');
+    const sections = document.querySelectorAll('[data-era]');
+    const navDots = document.querySelectorAll('.nav-dot');
+    const allSections = ['hero', 's-violencia', 's-bogotazo', 's-presidencias', 's-paisexcluido', 's-farc', 's-narco', 's-paramilitarismo', 's-victimas', 's-constitucion', 's-procesos-paz', 's-verdad', 's-futuro'];
+
+    // Nav dot click — usa data-target directamente
+    navDots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const target = document.getElementById(dot.dataset.target);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // IntersectionObserver para era label y nav
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const era = entry.target.dataset.era;
+          if (era) { eraLabel.textContent = era; }
+
+          // Actualizar nav dot activo por data-target
+          navDots.forEach(d => d.classList.remove('active'));
+          const matchDot = document.querySelector(`.nav-dot[data-target="${entry.target.id}"]`);
+          if (matchDot) matchDot.classList.add('active');
+        }
+      });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.section, #hero').forEach(s => sectionObserver.observe(s));
+
+    // ══════════════════════════════════════════
+    // REVEAL ON SCROLL
+    // ══════════════════════════════════════════
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ══════════════════════════════════════════
+    // PARALLAX — 3 CAPAS
+    // ══════════════════════════════════════════
+    const parallaxSections = document.querySelectorAll('.section');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      let ticking = false;
+
+      function updateParallax() {
+        parallaxSections.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          const inView = rect.top < window.innerHeight && rect.bottom > 0;
+          if (!inView) return;
+
+          const scrollOffset = -rect.top;
+
+          // BG Layer: velocidad 0.3 → se mueve 70% del scroll
+          const bgLayer = section.querySelector('.bg-layer');
+          if (bgLayer) {
+            bgLayer.style.transform = `translateY(${scrollOffset * 0.3}px)`;
+          }
+
+          // PNG Layer: velocidad 1.15 → se mueve 15% MÁS que el scroll
+          const pngLayer = section.querySelector('.png-layer');
+          if (pngLayer) {
+            const baseRotate = pngLayer.style.transform.match(/rotate\(([^)]+)\)/);
+            const rot = baseRotate ? baseRotate[0] : '';
+            pngLayer.style.transform = `${rot} translateY(${scrollOffset * -0.12}px)`;
+          }
+        });
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }, { passive: true });
+    }
+
+    // ══════════════════════════════════════════
+    // TIMELINE DRAG TO SCROLL
+    // ══════════════════════════════════════════
+    const timelineContainer = document.getElementById('presidents-timeline');
+    if (timelineContainer) {
+      let isDragging = false, startX, scrollLeft;
+      timelineContainer.addEventListener('mousedown', e => {
+        isDragging = true;
+        startX = e.pageX - timelineContainer.offsetLeft;
+        scrollLeft = timelineContainer.scrollLeft;
+        timelineContainer.style.cursor = 'grabbing';
+      });
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+        timelineContainer.style.cursor = '';
+      });
+      timelineContainer.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - timelineContainer.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        timelineContainer.scrollLeft = scrollLeft - walk;
+      });
+    }
+
+    // Color del progress bar según parte
+    const partObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const part = entry.target.dataset.part;
+          if (part === '2') progressBar.style.background = 'linear-gradient(90deg, #5ec662, #d4f0c8)';
+          else if (part === '3') progressBar.style.background = 'linear-gradient(90deg, #6aabf0, #d8eaff)';
+          else progressBar.style.background = 'linear-gradient(90deg, #c8922a, #e8d9b8)';
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('[data-part]').forEach(s => partObserver.observe(s));
+  </script>
+  <!-- AUDIO ENGINE -->
+  <div id="audio-engine">
+    <div id="audio-track-name"></div>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button id="audio-toggle" title="Activar audio de ambiente" aria-label="Activar audio" data-muted="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path id="audio-icon-path"
+            d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.5m0 0l-3 .857A1.5 1.5 0 004.5 18h.001M9 15.75v-10.5"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+      <div id="audio-wave">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <div id="audio-label">AUDIO</div>
+  </div>
+
+  <nav id="mobile-nav">
+    <button data-target="hero">Inicio</button>
+    <button data-target="s-violencia">1946</button>
+    <button data-target="s-bogotazo">1948</button>
+    <button data-target="s-presidencias">F. Nac.</button>
+    <button data-target="s-paisexcluido">Excluidos</button>
+    <button data-target="s-farc">Guerrillas</button>
+    <button data-target="s-narco">Narco</button>
+    <button data-target="s-paramilitarismo">Paracos</button>
+    <button data-target="s-victimas">Víctimas</button>
+    <button data-target="s-constitucion">1991</button>
+    <button data-target="s-procesos-paz">Paz</button>
+    <button data-target="s-verdad">Verdad</button>
+    <button data-target="s-futuro">Futuro</button>
+  </nav>
+
+  <script>
+    // ══════════════════════════════════════════
+    // MOBILE NAV — scroll activo + colores por era
+    // ══════════════════════════════════════════
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileButtons = mobileNav ? mobileNav.querySelectorAll('button') : [];
+
+    mobileButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById(btn.dataset.target);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Actualizar botón activo en mobile nav y color de la barra
+    function updateMobileNav(sectionId, part) {
+      mobileButtons.forEach(btn => {
+        btn.classList.toggle('active-nav', btn.dataset.target === sectionId);
+      });
+      if (mobileNav) {
+        mobileNav.className = '';
+        mobileNav.id = 'mobile-nav';
+        if (part === '2') mobileNav.classList.add('era-2');
+        else if (part === '3') mobileNav.classList.add('era-3');
+        // Scroll the active button into view in the nav
+        const activeBtn = mobileNav.querySelector('.active-nav');
+        if (activeBtn) {
+          activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      }
+    }
+
+    // Observer to track current section for mobile nav
+    const mobileNavObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const part = entry.target.dataset.part || '1';
+          updateMobileNav(entry.target.id, part);
+        }
+      });
+    }, { threshold: 0.45 });
+
+    document.querySelectorAll('.section, #hero').forEach(s => mobileNavObserver.observe(s));
+  </script>
+
+  <!-- PULL QUOTE — GAITÁN -->
+  <script>
+    const gaitanQuote = document.querySelector('.quote-gaitan');
+    if (gaitanQuote) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setTimeout(() => { gaitanQuote.classList.add('visible'); }, 3000);
+          }
+        });
+      }, { threshold: .20 });
+      observer.observe(gaitanQuote);
+    }
+
+    window.addEventListener('scroll', () => {
+      const figure = document.querySelector('.gaitan-parallax');
+      const section = document.querySelector('.quote-gaitan');
+      if (!figure || !section) return;
+      const rect = section.getBoundingClientRect();
+      const progress = (window.innerHeight - rect.top) * 0.25;
+      figure.style.transform = `translateX(-50%) translateY(${-progress}px) scale(1)`;
+    });
+  </script>
+
+  <!-- PULL QUOTE — GALAN -->
+  <script>
+    const galanQuote = document.querySelector('.quote-galan');
+    if (galanQuote) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setTimeout(() => { galanQuote.classList.add('visible'); }, 2000);
+          }
+        });
+      }, { threshold: .20 });
+      observer.observe(galanQuote);
+    }
+  </script>
+
+  <!-- ══════════════════════════════════════════════════════
+     SISTEMA DE AUDIO — WEB AUDIO API
+     
+     Arquitectura:
+     - AudioContext con osciladores + filtros por era
+     - Parte 1 (sepia): frecuencia grave 40–80Hz, ruido filtrado
+       → Evoca tensión, tierra, papel viejo
+     - Parte 2 (verde): drone 110Hz + armónico 220Hz, reverb largo
+       → Evoca selva, montaña, neblina colombiana
+     - Parte 3 (azul): pad 528Hz + 432Hz, tono esperanzador
+       → Evoca apertura, futuro, posibilidad
+     
+     ESPACIO PARA DISCURSOS:
+     Cuando tengas los audios, cargarlos así:
+       audioSpeech.src = 'audios/gaitan_discurso.mp3';
+       audioSpeech.play();
+     Los <audio> elements están listos abajo.
+  ══════════════════════════════════════════════════════ -->
+
+  <!-- Elementos audio para discursos — descomenta src cuando tengas los archivos -->
+  <audio id="speech-gaitan" preload="none">
+    <source src="audios/GalanQuote.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="speech-galan" preload="none">
+    <source src="audios/GalanQuote.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="speech-verdad" preload="none">
+    <source src="audios/GalanQuote.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // ══════════════════════════════════════════════════════════════
+    // SISTEMA DE AUDIO COMPLETO
+    // ══════════════════════════════════════════════════════════════
+    //
+    // FRECUENCIAS REVISADAS — psicología + neurofisiología:
+    //
+    // PARTE 1 (sepia/conflicto):
+    //   - 55 Hz drone sine filtrado → sub-bass que se siente físicamente
+    //     sin ser dañino. Evoca peso, tierra, pasado oscuro.
+    //   - LFO 0.06 Hz modulando amplitud → respiración muy lenta, tensión.
+    //   - 165 Hz armónico (3x55) con ataque suave → añade cuerpo sin agresión.
+    //   - Todo por debajo de 200 Hz, reverb medio.
+    //   → Contexto: lectura crítica, memoria, gravedad. NO frecs > 200Hz
+    //     en parte 1 para evitar estimulación excesiva durante contenido pesado.
+    //
+    // PARTE 2 (verde/presente):
+    //   - 174 Hz sine (frecuencia de Solfeggio "anclaje") → serenidad
+    //   - 396 Hz (otro Solfeggio, "liberación de culpa") → apropiado
+    //     para testimonios, escucha activa, reflexión. Sutil, bajo gain.
+    //   - Reverb largo → sensación de espacio abierto, territorio.
+    //   - NO beating desestabilizador. Todo puro, limpio.
+    //
+    // PARTE 3 (azul/futuro):
+    //   - Patrón melódico en Do mayor (C4=261, E4=329, G4=392, A4=440)
+    //   - Arpeggio lento: notas cada ~4 seg con envolvente ADSR suave
+    //   - 174 Hz base continua como raíz
+    //   - Reverb largo → apertura, esperanza
+    //   → Melodía → no solo frecuencias, algo que se pueda "tararear" mentalmente
+    //
+    // AUDIOS DE DISCURSOS:
+    //   - Se activan UNA SOLA VEZ por sesión al hacer scroll a la pull quote
+    //   - Ambiente baja a 15% con fade-in 1.5s antes de que empiece el discurso
+    //   - El discurso entra con fade-in de 0.8s
+    //   - Al terminar: eco (reverb wet sube) y fade-out 2.5s, luego ambiente sube
+    //   - Si el usuario se devuelve, el discurso NO vuelve a sonar
+    //
+    // PARA ACTIVAR DISCURSOS:
+    //   1. Descomenta las <source> en los <audio> de arriba
+    //   2. Descomenta el bloque SPEECH SYSTEM abajo
+    // ══════════════════════════════════════════════════════════════
+
+    (function () {
+      'use strict';
+
+      // ── Estado global ──
+      let audioCtx = null;
+      let isMuted = false;
+      let currentPart = '1';
+      let masterGain = null;
+      let ambientNodes = [];
+      let audioStarted = false;
+      let transitioning = false;
+
+      // ── Speech: cada quote sólo se reproduce una vez ──
+      const speechPlayed = { gaitan: false, galan: false, verdad: false };
+
+      const audioToggle = document.getElementById('audio-toggle');
+      const audioWave = document.getElementById('audio-wave');
+      const audioLabel = document.getElementById('audio-label');
+      const audioTrackName = document.getElementById('audio-track-name');
+
+      // ──────────────────────────────────────────────
+      // HELPER: crea reverb impulse response sintético
+      // ──────────────────────────────────────────────
+      function makeReverb(ctx, duration = 2.5, decay = 1.8) {
+        const conv = ctx.createConvolver();
+        const len = ctx.sampleRate * duration;
+        const ir = ctx.createBuffer(2, len, ctx.sampleRate);
+        for (let ch = 0; ch < 2; ch++) {
+          const d = ir.getChannelData(ch);
+          for (let i = 0; i < len; i++) {
+            d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, decay);
+          }
+        }
+        conv.buffer = ir;
+        return conv;
+      }
+
+      // ──────────────────────────────────────────────
+      // HELPER: oscilador con fade-in suave
+      // ──────────────────────────────────────────────
+      function makeOsc(ctx, type, freq, peakGain, fadeIn, dest) {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0, ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(peakGain, ctx.currentTime + fadeIn);
+        osc.connect(gain);
+        gain.connect(dest);
+        osc.start();
+        return { osc, gain };
+      }
+
+      // ──────────────────────────────────────────────
+      // CONFIGURACIÓN DE AMBIENTES POR PARTE
+      // ──────────────────────────────────────────────
+      const ambientConfig = {
+
+        '1': {
+          label: 'MEMORIA · PESO',
+          trackName: 'Conflicto\n55 Hz + 165 Hz',
+          build(ctx, master) {
+            const nodes = [];
+            const rev = makeReverb(ctx, 2.0, 2.2);
+            const revGain = ctx.createGain();
+            revGain.gain.setValueAtTime(0, ctx.currentTime);
+            revGain.gain.linearRampToValueAtTime(0.22, ctx.currentTime + 5);
+            rev.connect(revGain);
+            revGain.connect(master);
+
+            // Drone 55 Hz — peso, tierra, pasado
+            const lp = ctx.createBiquadFilter();
+            lp.type = 'lowpass';
+            lp.frequency.value = 220;
+            lp.Q.value = 0.7;
+
+            const { osc: o1, gain: g1 } = makeOsc(ctx, 'sine', 55, 0.28, 4, lp);
+            lp.connect(master);
+            lp.connect(rev);
+
+            // LFO muy lento: respiración pesada 0.06 Hz
+            const lfo = ctx.createOscillator();
+            lfo.frequency.value = 0.06;
+            const lfoG = ctx.createGain();
+            lfoG.gain.value = 0.12;
+            lfo.connect(lfoG);
+            lfoG.connect(g1.gain);
+            lfo.start();
+
+            // Armónico 165 Hz (3x55) — añade cuerpo
+            const { osc: o2, gain: g2 } = makeOsc(ctx, 'triangle', 165, 0.08, 6, master);
+
+            nodes.push(o1, g1, lp, lfo, lfoG, o2, g2, rev, revGain);
+            return nodes;
+          }
+        },
+
+        '2': {
+          label: 'TERRITORIO · REFLEXIÓN',
+          trackName: 'Presente\n174 Hz + 396 Hz',
+          build(ctx, master) {
+            const nodes = [];
+            const rev = makeReverb(ctx, 3.5, 1.5);
+            const revGain = ctx.createGain();
+            revGain.gain.setValueAtTime(0, ctx.currentTime);
+            revGain.gain.linearRampToValueAtTime(0.28, ctx.currentTime + 6);
+            rev.connect(revGain);
+            revGain.connect(master);
+
+            // 174 Hz — anclaje, serenidad
+            const { osc: o1, gain: g1 } = makeOsc(ctx, 'sine', 174, 0.18, 5, master);
+            o1.connect(rev);
+
+            // LFO suave en vibrato 0.12 Hz
+            const lfo1 = ctx.createOscillator();
+            lfo1.frequency.value = 0.12;
+            const lfoG1 = ctx.createGain();
+            lfoG1.gain.value = 0.8;
+            lfo1.connect(lfoG1);
+            lfoG1.connect(o1.frequency);
+            lfo1.start();
+
+            // 396 Hz — Solfeggio, liberación, escucha activa
+            const { osc: o2, gain: g2 } = makeOsc(ctx, 'sine', 396, 0.055, 8, master);
+            o2.connect(rev);
+
+            // Leve pulso en 396
+            const lfo2 = ctx.createOscillator();
+            lfo2.frequency.value = 0.07;
+            const lfoG2 = ctx.createGain();
+            lfoG2.gain.value = 0.03;
+            lfo2.connect(lfoG2);
+            lfoG2.connect(g2.gain);
+            lfo2.start();
+
+            nodes.push(o1, g1, lfo1, lfoG1, o2, g2, lfo2, lfoG2, rev, revGain);
+            return nodes;
+          }
+        },
+
+        '3': {
+          label: 'ESPERANZA · MELODÍA',
+          trackName: 'Colombia Posible\nDo Mayor',
+          build(ctx, master) {
+            const nodes = [];
+            const rev = makeReverb(ctx, 4.0, 1.3);
+            const revGain = ctx.createGain();
+            revGain.gain.setValueAtTime(0, ctx.currentTime);
+            revGain.gain.linearRampToValueAtTime(0.35, ctx.currentTime + 7);
+            rev.connect(revGain);
+            revGain.connect(master);
+
+            // Base: 174 Hz continuo
+            const { osc: oBase, gain: gBase } = makeOsc(ctx, 'sine', 174, 0.1, 5, master);
+            oBase.connect(rev);
+
+            // Arpeggio melódico en Do mayor: C4, E4, G4, A4, G4, E4...
+            // Notas: 261.63, 329.63, 392.00, 440.00
+            const melody = [261.63, 329.63, 392.00, 440.00, 392.00, 329.63];
+            const noteLen = 4.2; // segundos por nota
+            let noteIdx = 0;
+            let arpActive = true;
+
+            function playNote() {
+              if (!arpActive || isMuted) return;
+              const freq = melody[noteIdx % melody.length];
+              noteIdx++;
+
+              const osc = ctx.createOscillator();
+              const env = ctx.createGain();
+              osc.type = 'triangle';
+              osc.frequency.value = freq;
+
+              // ADSR suave
+              const t = ctx.currentTime;
+              env.gain.setValueAtTime(0, t);
+              env.gain.linearRampToValueAtTime(0.08, t + 0.4);   // attack
+              env.gain.linearRampToValueAtTime(0.055, t + 1.2);  // decay→sustain
+              env.gain.linearRampToValueAtTime(0, t + noteLen);  // release
+
+              osc.connect(env);
+              env.connect(master);
+              env.connect(rev);
+              osc.start(t);
+              osc.stop(t + noteLen + 0.1);
+              nodes.push(osc, env);
+
+              setTimeout(playNote, noteLen * 1000);
+            }
+
+            setTimeout(playNote, 2500); // delay inicial
+
+            // Cleanup helper
+            const cleanup = { stop: () => { arpActive = false; } };
+            nodes.push(oBase, gBase, rev, revGain, cleanup);
+            return nodes;
+          }
+        }
+      };
+
+      // ──────────────────────────────────────────────
+      // GESTIÓN DEL CONTEXTO Y NODOS
+      // ──────────────────────────────────────────────
+      function initCtx() {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+      }
+
+      function stopAmbient(fadeDuration = 1.8) {
+        return new Promise(resolve => {
+          if (!masterGain) { resolve(); return; }
+          const t = audioCtx.currentTime;
+          masterGain.gain.cancelScheduledValues(t);
+          masterGain.gain.setValueAtTime(masterGain.gain.value, t);
+          masterGain.gain.linearRampToValueAtTime(0, t + fadeDuration);
+          setTimeout(() => {
+            ambientNodes.forEach(n => {
+              try { if (n.stop) n.stop(); n.disconnect(); } catch (e) { }
+            });
+            ambientNodes = [];
+            masterGain = null;
+            resolve();
+          }, fadeDuration * 1000 + 100);
+        });
+      }
+
+      async function launchAmbient(part) {
+        if (!audioCtx || isMuted) return;
+        const config = ambientConfig[part] || ambientConfig['1'];
+
+        masterGain = audioCtx.createGain();
+        masterGain.gain.value = isMuted ? 0 : 0.55;
+        masterGain.connect(audioCtx.destination);
+
+        const nodes = config.build(audioCtx, masterGain);
+        ambientNodes = [masterGain, ...nodes];
+
+        audioLabel.textContent = config.label;
+        audioTrackName.textContent = config.trackName;
+        audioLabel.classList.add('visible');
+        audioTrackName.classList.add('visible');
+      }
+
+      async function switchPart(newPart) {
+        if (transitioning || newPart === currentPart) return;
+        transitioning = true;
+        currentPart = newPart;
+
+        if (!isMuted && audioStarted) {
+          await stopAmbient(2.0);
+          await launchAmbient(newPart);
+        }
+        transitioning = false;
+
+        // Actualizar color del botón
+        const colors = {
+          '1': { border: 'rgba(200,146,42,0.25)', color: 'rgba(200,146,42,0.65)', label: 'rgba(200,146,42,0.4)' },
+          '2': { border: 'rgba(94,198,98,0.3)', color: 'rgba(94,198,98,0.7)', label: 'rgba(94,198,98,0.45)' },
+          '3': { border: 'rgba(106,171,240,0.3)', color: 'rgba(106,171,240,0.7)', label: 'rgba(106,171,240,0.45)' }
+        };
+        const c = colors[newPart] || colors['1'];
+        audioToggle.style.borderColor = c.border;
+        audioToggle.style.color = c.color;
+        audioLabel.style.color = c.label;
+      }
+
+      // ──────────────────────────────────────────────
+      // AUTOSTART: al primer scroll o interacción
+      // ──────────────────────────────────────────────
+      async function startAudio() {
+        if (audioStarted) return;
+        audioStarted = true;
+        initCtx();
+        await launchAmbient(currentPart);
+        audioToggle.classList.add('playing');
+        audioWave.classList.add('active');
+        audioToggle.setAttribute('data-muted', 'false');
+        audioToggle.setAttribute('aria-label', 'Silenciar audio de ambiente');
+        audioToggle.title = 'Silenciar';
+        // Icono: speaker con ondas → X
+        updateToggleIcon(false);
+      }
+
+      // Autostart en primera interacción del usuario
+      const startEvents = ['scroll', 'click', 'touchstart', 'keydown'];
+      function onFirstInteraction() {
+        startAudio();
+        startEvents.forEach(ev => window.removeEventListener(ev, onFirstInteraction));
+      }
+      startEvents.forEach(ev => window.addEventListener(ev, onFirstInteraction, { once: false, passive: true }));
+
+      // ──────────────────────────────────────────────
+      // MUTE / UNMUTE (botón de accesibilidad)
+      // ──────────────────────────────────────────────
+      function updateToggleIcon(muted) {
+        const path = audioToggle.querySelector('#audio-icon-path');
+        if (!path) return;
+        if (muted) {
+          // Icono de parlante tachado
+          path.setAttribute('d', 'M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z');
+        } else {
+          // Icono de nota musical
+          path.setAttribute('d', 'M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.5m0 0l-3 .857A1.5 1.5 0 004.5 18h.001M9 15.75v-10.5');
+        }
+      }
+
+      audioToggle.addEventListener('click', async () => {
+        if (!audioStarted) {
+          await startAudio();
+          return;
+        }
+        initCtx();
+        isMuted = !isMuted;
+        audioToggle.setAttribute('data-muted', isMuted.toString());
+
+        if (isMuted) {
+          // Fade out ambiente
+          if (masterGain) {
+            const t = audioCtx.currentTime;
+            masterGain.gain.cancelScheduledValues(t);
+            masterGain.gain.setValueAtTime(masterGain.gain.value, t);
+            masterGain.gain.linearRampToValueAtTime(0, t + 1.5);
+          }
+          audioToggle.classList.remove('playing');
+          audioWave.classList.remove('active');
+          audioToggle.setAttribute('aria-label', 'Activar audio');
+          audioToggle.title = 'Activar audio';
+          updateToggleIcon(true);
+        } else {
+          // Fade in ambiente
+          if (masterGain) {
+            const t = audioCtx.currentTime;
+            masterGain.gain.cancelScheduledValues(t);
+            masterGain.gain.setValueAtTime(0, t);
+            masterGain.gain.linearRampToValueAtTime(0.55, t + 2);
+          } else {
+            await launchAmbient(currentPart);
+          }
+          audioToggle.classList.add('playing');
+          audioWave.classList.add('active');
+          audioToggle.setAttribute('aria-label', 'Silenciar audio');
+          audioToggle.title = 'Silenciar';
+          updateToggleIcon(false);
+        }
+      });
+
+      // ──────────────────────────────────────────────
+      // OBSERVER: cambio de parte → transición de ambiente
+      // ──────────────────────────────────────────────
+      const partObserver2 = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const p = entry.target.dataset.part || '1';
+            if (p !== currentPart) switchPart(p);
+          }
+        });
+      }, { threshold: 0.45 });
+
+      document.querySelectorAll('[data-part]').forEach(el => partObserver2.observe(el));
+
+      // ──────────────────────────────────────────────
+      // SPEECH SYSTEM — audios de discursos
+      // Solo se reproducen UNA VEZ por sesión.
+      // Entran con fade + ambiente baja. Salen con eco.
+      // ACTIVA DESCOMENTANDO las <source> en los <audio>
+      // ──────────────────────────────────────────────
+      function playSpeech(audioEl, speechKey) {
+        if (speechPlayed[speechKey]) return;
+        speechPlayed[speechKey] = true; // marcar YA para no disparar dos veces
+
+        // Verificar que haya fuente de audio real (src en el elemento o en <source> hijo)
+        const hasSrc = (audioEl.src && audioEl.src !== window.location.href && audioEl.src !== '')
+          || (audioEl.querySelector('source')?.src);
+        if (!audioEl || !hasSrc) {
+          speechPlayed[speechKey] = false; // sin fuente → resetear para cuando se añada
+          return;
+        }
+
+        // Si el audio del contexto aún no ha arrancado, iniciarlo primero
+        if (!audioStarted) {
+          startAudio().then(() => doPlaySpeech(audioEl));
+        } else {
+          doPlaySpeech(audioEl);
+        }
+      }
+
+      function doPlaySpeech(audioEl) {
+        if (!audioCtx) return;
+
+        // Bajar ambiente con fade
+        if (masterGain && !isMuted) {
+          const t = audioCtx.currentTime;
+          masterGain.gain.cancelScheduledValues(t);
+          masterGain.gain.setValueAtTime(masterGain.gain.value, t);
+          masterGain.gain.linearRampToValueAtTime(0.10, t + 1.5);
+        }
+
+        // Fade in del discurso tras 1.2s (deja que baje el ambiente antes)
+        audioEl.volume = 0;
+        audioEl.currentTime = 0;
+        setTimeout(() => {
+          const playPromise = audioEl.play();
+          if (playPromise) playPromise.catch(err => console.warn('Speech play error:', err));
+
+          let vol = 0;
+          const fadeIn = setInterval(() => {
+            vol = Math.min(vol + 0.04, 0.88);
+            audioEl.volume = vol;
+            if (vol >= 0.88) clearInterval(fadeIn);
+          }, 60);
+        }, 1200);
+
+        // Al terminar: eco gradual + subir ambiente
+        audioEl.onended = () => {
+          // Eco: bajar volumen lentamente (simula reverb tail)
+          let vol = audioEl.volume;
+          const echoFade = setInterval(() => {
+            vol = Math.max(vol - 0.025, 0);
+            audioEl.volume = vol;
+            if (vol <= 0) clearInterval(echoFade);
+          }, 100);
+
+          // Subir ambiente después de 2.5s
+          setTimeout(() => {
+            if (masterGain && !isMuted) {
+              const t = audioCtx.currentTime;
+              masterGain.gain.cancelScheduledValues(t);
+              masterGain.gain.setValueAtTime(masterGain.gain.value, t);
+              masterGain.gain.linearRampToValueAtTime(0.55, t + 3.5);
+            }
+          }, 2500);
+        };
+      }
+
+      const speechGaitan = document.getElementById('speech-gaitan');
+      const speechGalan = document.getElementById('speech-galan');
+      const speechVerdad = document.getElementById('speech-verdad');
+
+      const speechObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          if (entry.target.classList.contains('quote-gaitan')) playSpeech(speechGaitan, 'gaitan');
+          if (entry.target.classList.contains('quote-galan')) playSpeech(speechGalan, 'galan');
+          if (entry.target.id === 's-verdad') playSpeech(speechVerdad, 'verdad');
+        });
+      }, { threshold: 0.25 }); // threshold bajo: dispara cuando el 25% de la sección entra
+
+      document.querySelectorAll('.quote-gaitan, .quote-galan, #s-verdad').forEach(el => {
+        speechObserver.observe(el);
+      });
+
+      // ──────────────────────────────────────────────
+      // GT SECTION — scroll-driven reveal
+      // El título "La guerra se transforma" se desvanece
+      // conforme el usuario hace scroll hacia el narco
+      // ──────────────────────────────────────────────
+      const gtSection = document.getElementById('guerra-transforma');
+      const gtSticky = gtSection ? gtSection.querySelector('.gt-sticky') : null;
+      const gtTitleWrap = gtSticky ? gtSticky.querySelector('.gt-title-wrap') : null;
+
+      if (gtSection && gtTitleWrap) {
+        window.addEventListener('scroll', () => {
+          const rect = gtSection.getBoundingClientRect();
+          // Cuánto del spacer hemos scrolleado (0 = entrando, 1 = casi saliendo)
+          const scrolled = -rect.top / (rect.height - window.innerHeight);
+          const clamped = Math.max(0, Math.min(1, scrolled));
+
+          // Primera mitad: el título se mantiene. Segunda mitad: desaparece
+          const fadeStart = 0.4;
+          const opacity = clamped < fadeStart ? 1 : 1 - ((clamped - fadeStart) / (1 - fadeStart));
+          const translateY = clamped < fadeStart ? 0 : -((clamped - fadeStart) / (1 - fadeStart)) * 40;
+          const blur = clamped < fadeStart ? 0 : ((clamped - fadeStart) / (1 - fadeStart)) * 8;
+
+          gtTitleWrap.style.opacity = Math.max(0, opacity);
+          gtTitleWrap.style.transform = `translateY(${translateY}px)`;
+          gtTitleWrap.style.filter = `blur(${blur}px)`;
+        }, { passive: true });
+      }
+
+    })(); // end IIFE
+  </script>
+</body>
+
+</html>
