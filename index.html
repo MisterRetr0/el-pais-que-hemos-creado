@@ -61,7 +61,6 @@
         opacity: .18;
       }
 
-      /*background: var(--sepia-bg);*/
       color: var(--sepia-text);
       font-family: 'Crimson Text',
       Georgia,
@@ -187,9 +186,27 @@
         }
 
         .gaitan-parallax {
-          height: 65vh;
-          bottom: -60px;
-          opacity: .35;
+          height: 70vh;
+          bottom: -20px;
+          left: 50% !important;
+          transform: translateX(-50%) scale(.85) translateY(20px) !important;
+          opacity: 0;
+        }
+
+        .quote-gaitan.visible .gaitan-parallax {
+          opacity: .55 !important;
+          transform: translateX(-50%) scale(1) translateY(0) !important;
+        }
+
+        .quote-gaitan.exiting .gaitan-parallax {
+          opacity: 0 !important;
+          transform: translateX(-50%) scale(.9) translateY(40px) !important;
+        }
+
+        .galan-parallax {
+          left: 50% !important;
+          max-height: 420px;
+          bottom: -20px;
         }
       }
 
@@ -347,7 +364,7 @@
       left: 50%;
       transform: translateX(-50%);
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 10px;
+      font-size: 16px;
       letter-spacing: 4px;
       color: rgba(200, 146, 42, 0.4);
       opacity: 0;
@@ -395,7 +412,6 @@
       grid-template-columns: 1fr;
     }
 
-    /* Numeración estilo History of Animation */
     .section-number {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(120px, 22vw, 280px);
@@ -424,10 +440,9 @@
       z-index: 2;
     }
 
-    /* ERA BADGE */
     .era-badge {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 10px;
+      font-size: 16px;
       letter-spacing: 4px;
       color: var(--sepia-acc);
       display: inline-block;
@@ -465,7 +480,6 @@
       font-weight: 600;
     }
 
-    /* ── REVEAL ANIMATIONS ── */
     .reveal {
       opacity: 0;
       transform: translateY(28px);
@@ -491,7 +505,7 @@
     }
 
     /* ════════════════════════════════════════
-     SECCIÓN 1 — LA VIOLENCIA (sepia)
+     SECCIÓN 1 — LA VIOLENCIA
   ════════════════════════════════════════ */
     #s-violencia {
       background: var(--sepia-bg);
@@ -523,49 +537,10 @@
 
     .film-overlay::after {
       content: '';
-
       position: absolute;
       inset: 0;
-
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-
       opacity: .08;
-    }
-
-    /* ── PNG TANGIBLE (recorte de papel) ── */
-    .png-frame {
-      position: relative;
-      width: 320px;
-    }
-
-    .png-frame::before {
-      content: '';
-      position: absolute;
-      inset: -12px;
-      border: 1px solid rgba(200, 146, 42, 0.15);
-      transform: rotate(-1.5deg);
-    }
-
-    .png-frame::after {
-      content: '';
-      position: absolute;
-      inset: -6px;
-      border: 1px solid rgba(200, 146, 42, 0.08);
-      transform: rotate(1deg);
-    }
-
-    .png-illustration {
-      width: 100%;
-      aspect-ratio: 3/4;
-      position: relative;
-      overflow: hidden;
-      background: var(--sepia-mid);
-    }
-
-    /* Ilustraciones SVG inline en cada sección */
-    .illustration-svg {
-      width: 100%;
-      height: 100%;
     }
 
     .historical-image {
@@ -579,37 +554,8 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-
-      filter:
-        grayscale(100%) contrast(1.15) sepia(.5);
-
+      filter: grayscale(100%) contrast(1.15) sepia(.5);
       transform: scale(1.05);
-    }
-
-    .historical-figure {
-
-      position: absolute;
-
-      left: 50%;
-
-      bottom: 150px;
-
-      height: 100vh;
-
-      max-height: 900px;
-
-      opacity: 0;
-
-      transform:
-        translateX(-50%) scale(.85);
-
-      transition:
-        opacity 2s ease,
-        transform 2s ease;
-
-      z-index: 6;
-
-      pointer-events: none;
     }
 
     .present-image {
@@ -626,40 +572,8 @@
       transform: scale(1.05);
     }
 
-    .present-figure {
-
-      position: absolute;
-
-      left: 50%;
-
-      bottom: 150px;
-
-      height: 100vh;
-
-      max-height: 900px;
-
-      opacity: 0;
-
-      transform:
-        translateX(-50%) scale(.85);
-
-      transition:
-        opacity 2s ease,
-        transform 2s ease;
-
-      z-index: 6;
-
-      pointer-events: none;
-    }
-
-    .section.active .historical-figure {
-      opacity: .99;
-      transform:
-        translateY(0) scale(1);
-    }
-
     /* ════════════════════════════════════════
-     TIMELINE HORIZONTAL (estilo History of Animation)
+     TIMELINE HORIZONTAL
   ════════════════════════════════════════ */
     .timeline-section {
       min-height: 100vh;
@@ -696,7 +610,7 @@
     .timeline-track::before {
       content: '';
       position: absolute;
-      top: 80px;
+      top: 30px;
       left: 0;
       right: 0;
       height: 1px;
@@ -762,7 +676,7 @@
     }
 
     /* ════════════════════════════════════════
-     PULL QUOTE — estilo History of Animation
+     PULL QUOTE
   ════════════════════════════════════════ */
     .pull-quote-section {
       min-height: 70vh;
@@ -775,7 +689,8 @@
       overflow: hidden;
     }
 
-    .quote-gaitan {
+    .quote-gaitan,
+    .quote-galan {
       position: relative;
       overflow: hidden;
     }
@@ -785,109 +700,62 @@
       min-height: 500px;
     }
 
-    /* Capa de recorte para el efecto parallax del PNG de Gaitán */
-    .gaitan-parallax {
-
+    .gaitan-parallax,
+    .galan-parallax {
       position: absolute;
-
-      left: 50%;
-
       bottom: 120px;
-
       height: 95vh;
-
       max-height: 900px;
-
       opacity: 0;
-
       z-index: 6;
-
       pointer-events: none;
-
-      transform:
-        translateX(-50%) scale(.85);
-
-      transition:
-        opacity 2s ease,
-        transform 2s ease;
+      transform: translateX(-50%) scale(.85) translateY(20px);
+      transition: opacity 2.2s ease, transform 2.2s ease;
     }
 
     .gaitan-parallax {
+      left: 50%;
       animation: kenBurnsGaitan 20s ease-in-out infinite alternate;
     }
 
-    .quote-gaitan.visible .gaitan-parallax {
-
-      opacity: .99;
-
-      transform:
-        translateX(-50%) scale(1);
-    }
-
-    @keyframes kenBurnsGaitan {
-
-      0% {
-        transform:
-          translateY(0) translateX(0) scale(1);
-      }
-
-      100% {
-        transform:
-          translateY(-15px) translateX(-8px) scale(1.05);
-      }
-    }
-
-
-    /*   Capa de recorte para el efecto parallax del PNG de Galán */
-
     .galan-parallax {
-
-      position: absolute;
-
       left: 10%;
-
       bottom: -40px;
-
-      height: 95vh;
-
       max-height: 500px;
-
-      opacity: 0;
-
-      z-index: 6;
-
-      pointer-events: none;
-
-      transform:
-        translateX(-50%) scale(.85);
-
-      transition:
-        opacity 2s ease,
-        transform 2s ease;
-    }
-
-    .galan-parallax {
       animation: kenBurnsGalan 20s ease-in-out infinite alternate;
     }
 
+    .quote-gaitan.visible .gaitan-parallax,
     .quote-galan.visible .galan-parallax {
-
       opacity: .99;
-
-      transform:
-        translateX(-50%) scale(1);
+      transform: translateX(-50%) scale(1) translateY(0);
     }
 
-    @keyframes kenBurnsGalan {
+    /* Salida: desvanece hacia abajo — muerte */
+    .quote-gaitan.exiting .gaitan-parallax,
+    .quote-galan.exiting .galan-parallax {
+      opacity: 0;
+      transform: translateX(-50%) scale(.9) translateY(40px);
+      transition: opacity 3s ease-out, transform 3s ease-out;
+    }
 
+    @keyframes kenBurnsGaitan {
       0% {
-        transform:
-          translateY(0) translateX(0) scale(1);
+        transform: translateY(0) translateX(0) scale(1);
       }
 
       100% {
-        transform:
-          translateY(-15px) translateX(-8px) scale(1.05);
+        transform: translateY(-15px) translateX(-8px) scale(1.05);
+      }
+    }
+
+    @keyframes kenBurnsGalan {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+      }
+
+      100% {
+        transform: translateY(-15px) translateX(-8px) scale(1.05);
       }
     }
 
@@ -917,7 +785,7 @@
 
     .pull-quote-attr {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 12px;
+      font-size: 16px;
       letter-spacing: 4px;
       color: var(--sepia-acc);
       margin-top: 28px;
@@ -926,7 +794,7 @@
     }
 
     /* ════════════════════════════════════════
-     SECCIÓN PARTE 2 — VERDE (transición)
+     SECCIÓN PARTE 2 — VERDE
   ════════════════════════════════════════ */
     .part-2 {
       background: var(--verde-bg) !important;
@@ -971,7 +839,7 @@
     }
 
     /* ════════════════════════════════════════
-     SECCIÓN PARTE 3 — AZUL (esperanza)
+     SECCIÓN PARTE 3 — AZUL
   ════════════════════════════════════════ */
     .part-3 {
       background: var(--azul-bg) !important;
@@ -1102,7 +970,7 @@
     }
 
     /* ════════════════════════════════════════
-     DIVISOR DE PARTE (pantalla de transición)
+     DIVISOR DE PARTE
   ════════════════════════════════════════ */
     .part-divider {
       min-height: 60vh;
@@ -1130,7 +998,7 @@
 
     .part-divider-label {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 10px;
+      font-size: 16px;
       letter-spacing: 6px;
       color: var(--sepia-acc);
       position: relative;
@@ -1222,14 +1090,71 @@
     @media (max-width: 900px) {
       .section {
         grid-template-columns: 1fr;
+        position: relative;
       }
 
+      /* Imagen pasa a ser fondo absoluto de la sección */
       .section-right {
-        display: none;
+        position: absolute !important;
+        inset: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 0 !important;
+        order: 0 !important;
+        display: flex !important;
+        align-items: stretch !important;
+        justify-content: stretch !important;
       }
 
+      .section-right .historical-image,
+      .section-right .present-image {
+        width: 100%;
+        height: 100%;
+        min-height: 100vh;
+      }
+
+      .section-right .historical-image img,
+      .section-right .present-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0.2;
+      }
+
+      /* Overlay para garantizar legibilidad */
+      .section-right::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom,
+            rgba(26, 18, 8, 0.55) 0%,
+            rgba(26, 18, 8, 0.35) 40%,
+            rgba(26, 18, 8, 0.65) 100%);
+        z-index: 1;
+      }
+
+      .part-2 .section-right::after {
+        background: linear-gradient(to bottom,
+            rgba(13, 36, 22, 0.6) 0%,
+            rgba(13, 36, 22, 0.35) 40%,
+            rgba(13, 36, 22, 0.7) 100%);
+      }
+
+      .part-3 .section-right::after {
+        background: linear-gradient(to bottom,
+            rgba(12, 26, 46, 0.6) 0%,
+            rgba(12, 26, 46, 0.35) 40%,
+            rgba(12, 26, 46, 0.7) 100%);
+      }
+
+      /* Contenido por encima */
       .section-content {
-        padding: 60px 32px;
+        position: relative;
+        z-index: 2;
+        padding: 60px 28px;
+        background: transparent;
       }
 
       .metrics-grid {
@@ -1253,23 +1178,24 @@
       #era-nav {
         display: none;
       }
+
+      #credits {
+        padding-bottom: 100px;
+      }
     }
 
     /* ════════════════════════════════════════
-     PARTE 1 — TEXTURA DE PERIÓDICO (sinestesia olfativa)
+     PARTE 1 — TEXTURA DE PERIÓDICO
   ════════════════════════════════════════ */
     .newspaper-texture {
       position: absolute;
       inset: 0;
       pointer-events: none;
       z-index: 1;
-      /* Columnas tipográficas fantasma */
       background-image:
-        /* Líneas horizontales de texto simuladas */
         repeating-linear-gradient(180deg,
           transparent, transparent 22px,
           rgba(200, 146, 42, 0.025) 22px, rgba(200, 146, 42, 0.025) 23px),
-        /* Separador vertical de columna */
         repeating-linear-gradient(90deg,
           transparent, transparent calc(50% - 0.5px),
           rgba(200, 146, 42, 0.04) calc(50% - 0.5px), rgba(200, 146, 42, 0.04) calc(50% + 0.5px),
@@ -1281,13 +1207,11 @@
       content: '';
       position: absolute;
       inset: 0;
-      /* Grain de papel de periódico */
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.07'/%3E%3C/svg%3E");
       mix-blend-mode: multiply;
       opacity: 0.6;
     }
 
-    /* Mancha de humedad / envejecimiento */
     .paper-stain {
       position: absolute;
       inset: 0;
@@ -1300,14 +1224,13 @@
     }
 
     /* ════════════════════════════════════════
-     PARTE 2 — PIZARRA / NATURALEZA COLOMBIANA
+     PARTE 2 — PIZARRA / NATURALEZA
   ════════════════════════════════════════ */
     .chalkboard-texture {
       position: absolute;
       inset: 0;
       pointer-events: none;
       z-index: 1;
-      /* Textura de pizarra / pared con venas */
       background-image:
         repeating-linear-gradient(-45deg,
           transparent, transparent 3px,
@@ -1325,7 +1248,6 @@
       opacity: 0.5;
     }
 
-    /* Neblina colombiana / niebla de montaña */
     .nature-mist {
       position: absolute;
       inset: 0;
@@ -1338,7 +1260,7 @@
     }
 
     /* ════════════════════════════════════════
-     PARTE 3 — FUTURO / PERSONAS Y TECNOLOGÍA
+     PARTE 3 — FUTURO
   ════════════════════════════════════════ */
     .future-grid {
       position: absolute;
@@ -1362,172 +1284,7 @@
     }
 
     /* ════════════════════════════════════════
-     SISTEMA DE AUDIO — REPRODUCTOR FLOTANTE
-  ════════════════════════════════════════ */
-    #audio-engine {
-      position: fixed;
-      left: 28px;
-      bottom: 28px;
-      z-index: 800;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-      pointer-events: none;
-    }
-
-    #audio-label {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 9px;
-      letter-spacing: 3px;
-      color: rgba(200, 146, 42, 0.4);
-      transition: color 0.8s, opacity 0.5s;
-      opacity: 0;
-    }
-
-    #audio-label.visible {
-      opacity: 1;
-    }
-
-    #audio-toggle {
-      pointer-events: all;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 1px solid rgba(200, 146, 42, 0.25);
-      background: rgba(26, 18, 8, 0.7);
-      backdrop-filter: blur(12px);
-      color: rgba(200, 146, 42, 0.6);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: border-color 0.3s, color 0.3s, background 0.8s, transform 0.2s;
-      cursor: none;
-    }
-
-    #audio-toggle:hover {
-      border-color: rgba(200, 146, 42, 0.6);
-      color: rgba(200, 146, 42, 0.9);
-      transform: scale(1.1);
-    }
-
-    #audio-toggle.playing {
-      border-color: rgba(200, 146, 42, 0.5);
-      color: rgba(200, 146, 42, 0.9);
-      animation: audioPulse 2s ease-in-out infinite;
-    }
-
-    #audio-toggle svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    @keyframes audioPulse {
-
-      0%,
-      100% {
-        box-shadow: 0 0 0 0 rgba(200, 146, 42, 0);
-      }
-
-      50% {
-        box-shadow: 0 0 0 8px rgba(200, 146, 42, 0.08);
-      }
-    }
-
-    /* Indicador de onda (cuando hay audio activo) */
-    #audio-wave {
-      display: flex;
-      align-items: flex-end;
-      gap: 2px;
-      height: 16px;
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-
-    #audio-wave.active {
-      opacity: 1;
-    }
-
-    #audio-wave span {
-      width: 2px;
-      background: rgba(200, 146, 42, 0.5);
-      border-radius: 1px;
-      animation: waveBar 1.2s ease-in-out infinite;
-    }
-
-    #audio-wave span:nth-child(1) {
-      height: 4px;
-      animation-delay: 0s;
-    }
-
-    #audio-wave span:nth-child(2) {
-      height: 10px;
-      animation-delay: 0.1s;
-    }
-
-    #audio-wave span:nth-child(3) {
-      height: 7px;
-      animation-delay: 0.2s;
-    }
-
-    #audio-wave span:nth-child(4) {
-      height: 13px;
-      animation-delay: 0.15s;
-    }
-
-    #audio-wave span:nth-child(5) {
-      height: 6px;
-      animation-delay: 0.05s;
-    }
-
-    @keyframes waveBar {
-
-      0%,
-      100% {
-        transform: scaleY(0.4);
-      }
-
-      50% {
-        transform: scaleY(1);
-      }
-    }
-
-    /* Speech bubble para nombre del track */
-    #audio-track-name {
-      font-family: 'Special Elite', monospace;
-      font-size: 10px;
-      letter-spacing: 1px;
-      color: rgba(200, 146, 42, 0.55);
-      max-width: 140px;
-      line-height: 1.4;
-      opacity: 0;
-      transition: opacity 0.5s;
-      pointer-events: none;
-    }
-
-    #audio-track-name.visible {
-      opacity: 1;
-    }
-
-    @media(max-width:900px) {
-      #audio-engine {
-        bottom: 80px;
-        /* arriba del nav móvil */
-        left: 16px;
-      }
-    }
-
-    /* ── Ajuste media query footer padding en móvil ── */
-    @media(max-width:900px) {
-      #credits {
-        padding-bottom: 100px;
-      }
-    }
-
-    /* ════════════════════════════════════════
      TRANSICIÓN "LA GUERRA SE TRANSFORMA"
-     Pantalla sticky que tapa mientras haces scroll
     ════════════════════════════════════════ */
     #guerra-transforma {
       position: relative;
@@ -1536,7 +1293,6 @@
 
     .gt-spacer {
       height: 200vh;
-      /* espacio para scroll que revela la siguiente sección */
     }
 
     .gt-sticky {
@@ -1548,7 +1304,6 @@
       justify-content: center;
       overflow: hidden;
       background: #0b0808;
-      /* La cover se va con clip-path conforme scrolleas */
     }
 
     .gt-sticky::before {
@@ -1562,7 +1317,6 @@
       pointer-events: none;
     }
 
-    /* Ruido de película sobre el interstitial */
     .gt-sticky::after {
       content: '';
       position: absolute;
@@ -1580,7 +1334,7 @@
 
     .gt-label {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 11px;
+      font-size: 16px;
       letter-spacing: 6px;
       color: rgba(200, 146, 42, 0.45);
       display: block;
@@ -1610,8 +1364,6 @@
       opacity: 0.5;
     }
 
-    /* Scroll-driven reveal: el título se hace clip-path hacia arriba */
-    /* Controlado por JS (IntersectionObserver + scroll position) */
     .gt-sticky.revealing .gt-title-wrap {
       animation: gtFadeOut 0.4s ease forwards;
     }
@@ -1625,7 +1377,7 @@
     }
 
     /* ════════════════════════════════════════
-     TESTIMONIOS — WRAPPER CON FONDO CORRECTO
+     WRAPPERS DE GRID
     ════════════════════════════════════════ */
     .testimony-grid-wrapper {
       position: relative;
@@ -1663,7 +1415,7 @@
     @media(max-width:900px) {
       .testimony-grid-wrapper .testimony-grid {
         grid-template-columns: 1fr;
-        margin: 0 0 0 0;
+        margin: 0;
       }
 
       .testimony-grid-wrapper .testimony-card {
@@ -1671,9 +1423,6 @@
       }
     }
 
-    /* ════════════════════════════════════════
-     MÉTRICAS — WRAPPER CON FONDO CORRECTO
-    ════════════════════════════════════════ */
     .metrics-wrapper {
       position: relative;
       background: var(--azul-bg);
@@ -1744,7 +1493,6 @@
       opacity: 0.4;
     }
 
-    /* ── Prefers reduced motion ── */
     @media (prefers-reduced-motion: reduce) {
 
       .reveal,
@@ -1762,41 +1510,519 @@
         opacity: 1;
       }
     }
+
+    /* ════════════════════════════════════════
+     SPLASH SCREEN
+  ════════════════════════════════════════ */
+    #splash-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #0e0c07;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      transition: opacity 1s ease, transform 1s ease, visibility 1s ease;
+      cursor: default;
+    }
+
+    #splash-screen.hidden {
+      opacity: 0;
+      transform: scale(1.05);
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .splash-flag {
+      display: flex;
+      gap: 0;
+      margin-bottom: 40px;
+    }
+
+    .splash-flag-stripe {
+      height: 6px;
+      border-radius: 3px;
+    }
+
+    .splash-icon {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 32px;
+      color: rgba(200, 146, 42, 0.6);
+    }
+
+    .splash-title {
+      font-family: 'Special Elite', monospace;
+      font-size: clamp(28px, 5vw, 52px);
+      color: #e8d9b8;
+      text-align: center;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+
+    .splash-title em {
+      color: var(--sepia-acc);
+      font-style: italic;
+    }
+
+    .splash-subtitle {
+      font-family: 'Source Serif 4', serif;
+      font-size: 15px;
+      color: rgba(232, 217, 184, 0.45);
+      text-align: center;
+      max-width: 460px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+      padding: 0 24px;
+    }
+
+    .splash-notices {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 48px;
+      max-width: 440px;
+      padding: 0 24px;
+    }
+
+    .splash-notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-family: 'Source Serif 4', serif;
+      font-size: 13px;
+      color: rgba(232, 217, 184, 0.55);
+      line-height: 1.5;
+    }
+
+    .splash-notice-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: var(--sepia-acc);
+      opacity: 0.7;
+    }
+
+    .splash-notice strong {
+      color: rgba(232, 217, 184, 0.75);
+    }
+
+    .splash-enter-btn {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 15px;
+      letter-spacing: 4px;
+      color: #e8d9b8;
+      background: transparent;
+      border: 1px solid rgba(200, 146, 42, 0.35);
+      padding: 14px 48px;
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.2s;
+      border-radius: 2px;
+    }
+
+    .splash-enter-btn:hover {
+      background: rgba(200, 146, 42, 0.12);
+      border-color: rgba(200, 146, 42, 0.65);
+      color: var(--sepia-acc);
+      transform: translateY(-1px);
+    }
+
+    .splash-enter-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Aviso landscape: solo en móvil portrait */
+    #splash-landscape-hint {
+      display: none;
+    }
+
+    @media (max-width: 768px) and (orientation: portrait) {
+      #splash-landscape-hint {
+        display: flex;
+      }
+    }
+
+    body.splash-active,
+    html.splash-active {
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .splash-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(200, 146, 42, 0.25);
+      margin: 0 auto 40px;
+    }
+
+    /* ── AUDIO ENGINE — dos botones ── */
+    #audio-engine {
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      z-index: 800;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    #audio-track-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: rgba(200, 146, 42, 0.3);
+      margin-bottom: 6px;
+      white-space: pre-line;
+      line-height: 1.4;
+      max-width: 160px;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    #audio-track-name.visible {
+      opacity: 1;
+    }
+
+    .audio-btn-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #audio-toggle,
+    #voice-toggle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(200, 146, 42, 0.25);
+      background: rgba(10, 8, 4, 0.55);
+      backdrop-filter: blur(12px);
+      color: rgba(200, 146, 42, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    #audio-toggle svg,
+    #voice-toggle svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    #audio-toggle.playing {
+      border-color: rgba(200, 146, 42, 0.5);
+    }
+
+    #voice-toggle.playing {
+      border-color: rgba(200, 146, 42, 0.5);
+    }
+
+    #voice-toggle.muted {
+      border-color: rgba(200, 146, 42, 0.2);
+      background: rgba(10, 8, 4, 0.3);
+      color: rgba(200, 146, 42, 0.35);
+      opacity: 0.6;
+    }
+
+    #voice-toggle[data-muted="true"] {
+      border-color: rgba(200, 146, 42, 0.15) !important;
+      background: rgba(10, 8, 4, 0.25) !important;
+      color: rgba(200, 146, 42, 0.25) !important;
+    }
+
+    #audio-wave {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+    }
+
+    #audio-wave span {
+      display: block;
+      width: 2px;
+      background: rgba(200, 146, 42, 0.5);
+      border-radius: 1px;
+      height: 3px;
+      transition: height 0.3s;
+    }
+
+    #audio-wave.active span:nth-child(1) {
+      animation: wave1 1.1s ease-in-out infinite;
+    }
+
+    #audio-wave.active span:nth-child(2) {
+      animation: wave2 1.3s ease-in-out infinite;
+    }
+
+    #audio-wave.active span:nth-child(3) {
+      animation: wave3 0.9s ease-in-out infinite;
+    }
+
+    #audio-wave.active span:nth-child(4) {
+      animation: wave1 1.4s ease-in-out infinite;
+    }
+
+    #audio-wave.active span:nth-child(5) {
+      animation: wave2 1.0s ease-in-out infinite;
+    }
+
+    @keyframes wave1 {
+
+      0%,
+      100% {
+        height: 3px;
+      }
+
+      50% {
+        height: 10px;
+      }
+    }
+
+    @keyframes wave2 {
+
+      0%,
+      100% {
+        height: 6px;
+      }
+
+      50% {
+        height: 3px;
+      }
+    }
+
+    @keyframes wave3 {
+
+      0%,
+      100% {
+        height: 8px;
+      }
+
+      50% {
+        height: 4px;
+      }
+    }
+
+    #audio-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 8px;
+      letter-spacing: 2.5px;
+      color: rgba(200, 146, 42, 0.4);
+      opacity: 0;
+      transition: opacity 0.5s, color 0.8s;
+      margin-top: 2px;
+    }
+
+    #audio-label.visible {
+      opacity: 1;
+    }
+
+    /* ── PARTE 3 NUEVAS SECCIONES ── */
+    .hope-section {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      background: #0c1a2e;
+    }
+
+    .hope-section .section-era {
+      color: #d8eaff;
+    }
+
+    .hope-section .section-body {
+      color: rgba(216, 234, 255, 0.78);
+    }
+
+    .hope-section .era-badge {
+      color: #6aabf0;
+      border-color: rgba(106, 171, 240, 0.3);
+    }
+
+    .hope-stat-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 28px;
+    }
+
+    .hope-stat {
+      padding: 16px 20px;
+      border: 1px solid rgba(106, 171, 240, 0.15);
+      background: rgba(106, 171, 240, 0.04);
+      border-radius: 2px;
+    }
+
+    .hope-stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: #6aabf0;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .hope-stat-desc {
+      font-family: 'Source Serif 4', serif;
+      font-size: 12px;
+      color: rgba(216, 234, 255, 0.5);
+      line-height: 1.45;
+    }
+
+    .hope-callout {
+      margin-top: 28px;
+      padding: 20px 24px;
+      border-left: 2px solid rgba(106, 171, 240, 0.4);
+      background: rgba(106, 171, 240, 0.04);
+      font-family: 'Source Serif 4', serif;
+      font-size: 15px;
+      color: rgba(216, 234, 255, 0.7);
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    .hope-tag {
+      display: inline-block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: rgba(106, 171, 240, 0.6);
+      border: 1px solid rgba(106, 171, 240, 0.2);
+      padding: 3px 10px;
+      margin-bottom: 12px;
+      margin-right: 8px;
+    }
+
+    .brechas-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .brecha-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .brecha-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: rgba(106, 171, 240, 0.45);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 28px;
+    }
+
+    .brecha-text {
+      font-family: 'Source Serif 4', serif;
+      font-size: 14px;
+      color: rgba(216, 234, 255, 0.65);
+      line-height: 1.55;
+      padding-top: 2px;
+    }
+
+    .brecha-text strong {
+      color: rgba(216, 234, 255, 0.88);
+    }
+
+    @media (max-width: 900px) {
+      .hope-section {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- CURSOR -->
+  <div id="splash-screen">
+    <div class="splash-flag">
+      <div class="splash-flag-stripe" style="background:#FFD700; width:60px; height:5px;"></div>
+      <div class="splash-flag-stripe" style="background:#003087; width:30px; height:5px;"></div>
+      <div class="splash-flag-stripe" style="background:#CE1126; width:30px; height:5px;"></div>
+    </div>
+    <h1 class="splash-title">El País que<br><em>Hemos Creado</em></h1>
+    <div class="splash-divider"></div>
+    <div class="splash-notices">
+      <div class="splash-notice">
+        <svg class="splash-notice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path
+            d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span><strong>Mejor experiencia con audífonos.</strong> Esta narrativa incluye paisajes sonoros diseñados para
+          acompañar el recorrido histórico.</span>
+      </div>
+      <div class="splash-notice">
+        <svg class="splash-notice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path
+            d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span><strong>Experiencia visual animada.</strong> El sitio contiene transiciones, paralaje y efectos de scroll
+          para una inmersión narrativa completa.</span>
+      </div>
+      <div class="splash-notice">
+        <svg class="splash-notice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path
+            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span><strong>Contenido sensible.</strong> Esta narrativa aborda el conflicto armado colombiano con testimonios
+          y datos reales sobre violencia, desplazamiento y víctimas.</span>
+      </div>
+      <div class="splash-notice" id="splash-landscape-hint">
+        <svg class="splash-notice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path
+            d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18h3"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span><strong>Mejor en horizontal.</strong> Gira tu dispositivo para una experiencia visual más completa.</span>
+      </div>
+    </div>
+    <button class="splash-enter-btn" id="splash-enter">ENTRAR A LA EXPERIENCIA</button>
+  </div>
+
   <div id="cursor"></div>
   <div id="cursor-ring"></div>
 
-  <!-- PROGRESS BAR -->
   <div id="progress-bar"></div>
 
-  <!-- NAV DOTS -->
   <nav id="era-nav" aria-label="Navegación por secciones">
     <div class="nav-dot active" data-target="hero" title="Inicio"></div>
     <div class="nav-dot" data-target="s-violencia" title="La Violencia"></div>
     <div class="nav-dot" data-target="s-bogotazo" title="El Bogotazo"></div>
-    <div class="nav-dot" data-target="s-presidencias" title="Presidencias"></div>
+    <div class="nav-dot" data-target="s-presidencias" title="Frente Nacional"></div>
     <div class="nav-dot" data-target="s-paisexcluido" title="El País Excluido"></div>
-    <div class="nav-dot" data-target="s-farc" title="Guerrillas"></div>
+    <div class="nav-dot" data-target="s-farc" title="FARC-ELN-M19"></div>
     <div class="nav-dot" data-target="s-narco" title="Narcotráfico"></div>
     <div class="nav-dot" data-target="s-paramilitarismo" title="Paramilitarismo"></div>
     <div class="nav-dot" data-target="s-victimas" title="Las Víctimas"></div>
     <div class="nav-dot" data-target="s-constitucion" title="Constitución"></div>
     <div class="nav-dot" data-target="s-procesos-paz" title="Procesos de Paz"></div>
+    <div class="nav-dot" data-target="s-resistencia" title="Resistencia Civil"></div>
     <div class="nav-dot" data-target="s-verdad" title="Comisión Verdad"></div>
+    <div class="nav-dot" data-target="s-caribe" title="Caribe Afirmativo"></div>
+    <div class="nav-dot" data-target="s-paro" title="Paro Nacional"></div>
+    <div class="nav-dot" data-target="s-ptafi" title="PTA"></div>
     <div class="nav-dot" data-target="s-futuro" title="Colombia Posible"></div>
+    <div class="nav-dot" data-target="s-brechas" title="Brechas"></div>
+    <div class="nav-dot" data-target="s-internacional" title="Situación Internacional"></div>
   </nav>
 
-  <!-- ERA LABEL -->
   <div id="era-label">DESPLAZARSE PARA EXPLORAR</div>
 
-  <!-- ══════════════════════════════════════
-     HERO
-══════════════════════════════════════ -->
   <section id="hero">
     <div class="bg-noise"></div>
     <div class="newspaper-texture"></div>
@@ -1806,28 +2032,18 @@
     <h1 class="hero-title">El País<br>que <em>Hemos</em><br>Creado</h1>
     <p class="hero-subtitle">De La Violencia a la búsqueda de la paz. La historia que nos formó, la verdad que nos debe
       liberar.</p>
-    <div class="hero-scroll-hint">
-      <span>DESPLAZAR</span>
-      <div class="scroll-line"></div>
-    </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-     PARTE 1 DIVIDER
-══════════════════════════════════════ -->
   <div class="part-divider" style="background:#1a1208; position:relative;">
     <div class="newspaper-texture" style="opacity:0.5;"></div>
     <div class="paper-stain"></div>
     <div class="part-divider-number">1</div>
-    <div class="part-divider-label reveal">Parte Primera</div>
+    <div class="part-divider-label reveal">Primera Parte</div>
     <div class="part-divider-line reveal"></div>
     <h2 class="part-divider-title reveal">El País que Hemos Creado</h2>
   </div>
 
-  <!-- ══════════════════════════════════════
-     S1 — LA VIOLENCIA
-══════════════════════════════════════ -->
-  <section class="section" id="s-violencia" data-era="La Violencia · 1946–1958" data-part="1">
+  <section class="section" id="s-violencia" data-ambience="violencia" data-era="La Violencia · 1946–1958" data-part="1">
     <div class="bg-layer"></div>
     <div class="newspaper-texture"></div>
     <div class="paper-stain"></div>
@@ -1839,12 +2055,12 @@
       <div class="section-body reveal">
         <p>Entre 1946 y 1958, Colombia vivió uno de los períodos más sangrientos de su historia: <strong>La
             Violencia</strong>. Un conflicto bipartidista entre liberales y conservadores que dejó entre 200.000 y
-          300.000 muertos y desplazó a cientos de miles de campesinos.</p>
+          300.000 muertos. La exclusión política y el despojo de tierras fueron su combustible.</p>
         <p>No fue una guerra declarada. Fue una masacre silenciosa en veredas, en trochas, en la noche. El Estado miraba
-          o participaba. Las familias se dividieron por el color de una cédula.</p>
+          o participaba. Y aunque el Frente Nacional (1958) apaciguó la pugna partidista, <strong>no resolvió la
+            injusticia agraria</strong>. Solo pospuso la explosión.</p>
       </div>
     </div>
-
     <div class="section-right">
       <div class="historical-image">
         <img src="imagenes/violencia2.png">
@@ -1852,9 +2068,6 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-     S2 — EL BOGOTAZO
-══════════════════════════════════════ -->
   <section class="section" id="s-bogotazo" data-era="El Bogotazo · 9 de Abril 1948" data-part="1"
     style="background:#140e04; position:relative;">
     <div class="newspaper-texture"></div>
@@ -1878,27 +2091,13 @@
     </div>
   </section>
 
-  <!-- PULL QUOTE — GAITÁN -->
   <div class="pull-quote-section quote-gaitan" style="background:#100b02;">
-
     <div class="quote-stage">
-
       <img src="imagenes/GaitanRecorte.png" class="gaitan-parallax" alt="Jorge Eliécer Gaitán">
-
-      <div class="pull-quote-text reveal">
-        "El pueblo es superior a sus dirigentes.
-      </div>
-
-      <div class="pull-quote-text reveal" style="z-index:7;">
-        Votad por Colombia, no por los partidos."
-      </div>
-
-      <div class="pull-quote-attr reveal">
-        — Jorge Eliécer Gaitán · 1947
-      </div>
-
+      <div class="pull-quote-text reveal">"El pueblo es superior a sus dirigentes.</div>
+      <div class="pull-quote-text reveal" style="z-index:7;">Votad por Colombia, no por los partidos."</div>
+      <div class="pull-quote-attr reveal">— Jorge Eliécer Gaitán · 1947</div>
     </div>
-
   </div>
 
   <!-- ══════════════════════════════════════
@@ -1973,21 +2172,45 @@
           </div>
         </div>
         <div class="timeline-item reveal">
-          <div class="timeline-year">1982 <div class="timeline-dot"></div>
+          <div class="timeline-year">1984 <div class="timeline-dot"></div>
           </div>
           <div class="timeline-content">
-            <div class="timeline-event-title">Belisario Betancur</div>
-            <div class="timeline-desc">Primer intento serio de paz con las FARC. Los Acuerdos de La Uribe (1984) no
-              sobreviven.</div>
+            <div class="timeline-event-title">Nacimiento de la Unión Patriótica</div>
+            <div class="timeline-desc">Nació de los acuerdos de paz con las FARC. Miles de sus militantes y candidatos
+              fueron asesinados sistemáticamente en los años siguientes.</div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">1989 <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-event-title">Los Magnicidios</div>
+            <div class="timeline-desc">El Cartel de Medellín asesina a Luis Carlos Galán y a otros dos candidatos
+              presidenciales. Colombia pierde a su generación de líderes.</div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">1997 <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-event-title">Federación Paramilitar</div>
+            <div class="timeline-desc">Los grupos paramilitares se unifican en las AUC. Su estrategia de masacres para
+              el control territorial alcanza niveles industriales.</div>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">1999 <div class="timeline-dot"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-event-title">El Caguán</div>
+            <div class="timeline-desc">Los diálogos con las FARC fracasan. La zona de despeje fortaleció militarmente a
+              la guerrilla y agudizó la desconfianza ciudadana en la paz.</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-     S4 — El PAIS EXCLUIDO
-══════════════════════════════════════ -->
   <section class="section" id="s-paisexcluido" data-era="El País Excluido" data-part="1"
     style="background:#140e04; position:relative;">
     <div class="newspaper-texture"></div>
@@ -1999,19 +2222,19 @@
       </div>
     </div>
     <div class="section-content">
-      <div class="era-badge reveal">9 de Abril · 1948</div>
+      <div class="era-badge reveal">1948 — 1964</div>
       <h2 class="section-era reveal">El<br>País Excluido</h2>
       <div class="section-body reveal">
-        <p>Lorem Ipsum</p>
-        <p>Lorem Ipsum</p>
+        <p>Aunque el <strong>Frente Nacional (1958–1974)</strong> puso fin a la guerra bipartidista, lo hizo a un costo
+          enorme: repartir el poder exclusivamente entre liberales y conservadores, cerrando la puerta a cualquier otra
+          fuerza política.</p>
+        <p>Esa exclusión estructural fue el caldo de cultivo de las guerrillas revolucionarias. Los campesinos que no
+          encontraron respuesta en las urnas empezaron a buscarla en el monte.</p>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-     S5 — FARC / GUERRILLAS
-══════════════════════════════════════ -->
-  <section class="section" id="s-farc" data-era="Guerrillas · 1964–2016" data-part="1"
+  <section class="section" id="s-farc" data-ambience="violencia" data-era="Guerrillas · 1964–2016" data-part="1"
     style="background:#0e0f08; position:relative;">
     <div class="newspaper-texture" style="opacity:0.5;"></div>
     <div class="section-number">5</div>
@@ -2019,13 +2242,10 @@
       <div class="era-badge reveal">1964 — 2016</div>
       <h2 class="section-era reveal">Las<br>Guerrillas</h2>
       <div class="section-body reveal">
-        <p>Las <strong>FARC</strong> nacieron en 1964 en Marquetalia como autodefensas campesinas. El
-          <strong>ELN</strong>, inspirado en la revolución cubana, surgió el mismo año en Simacota, Santander. El
-          <strong>M-19</strong> apareció en 1970 como respuesta al fraude electoral.
-        </p>
-        <p>Durante décadas, el conflicto armado cobró más de <strong>220.000 vidas</strong>, desplazó a 8 millones de
-          colombianos y dejó 80.000 desaparecidos. Colombia no tuvo una guerra. Tuvo muchas, simultáneas, invisibles.
-        </p>
+        <p>Las <strong>FARC</strong> nacieron en 1964 en Marquetalia como autodefensas campesinas, hartas del abandono y
+          el despojo. El <strong>ELN</strong>, inspirado en la revolución cubana, surgió en Simacota.</p>
+        <p>Durante décadas, el conflicto cobró más de <strong>260.000 vidas</strong>, desplazó a 8 millones de
+          colombianos y dejó 80.000 desaparecidos. En los ochenta, el narcotráfico degradó la lucha ideológica.</p>
       </div>
     </div>
     <div class="section-right">
@@ -2035,9 +2255,6 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-     TRANSICIÓN — LA GUERRA SE TRANSFORMA
-══════════════════════════════════════ -->
   <div id="guerra-transforma" data-part="1">
     <div class="gt-sticky">
       <div class="gt-title-wrap">
@@ -2049,10 +2266,7 @@
     <div class="gt-spacer"></div>
   </div>
 
-  <!-- ══════════════════════════════════════
-     S6 — NARCOTRÁFICO
-══════════════════════════════════════ -->
-  <section class="section" id="s-narco" data-era="Narcotráfico · 1980–2006" data-part="1"
+  <section class="section" id="s-narco" data-ambience="violencia" data-era="Narcotráfico · 1980–2006" data-part="1"
     style="background:#110808; position:relative;">
     <div class="newspaper-texture" style="opacity:0.45;"></div>
     <div class="section-number">6</div>
@@ -2065,60 +2279,35 @@
       <div class="era-badge reveal">1980 — 2006</div>
       <h2 class="section-era reveal">El Narco<br>y el Terror</h2>
       <div class="section-body reveal">
-        <p><strong>El narcotráfico degradó </strong> la guerra en una disputa por rentas ilícitas que financió a todos
-          los
-          bandos e impuso
-          una narcocultura que erosionó la ética social. Su poder corruptor cooptó instituciones y ejecutó un despojo
-          masivo de tierras que funcionó como una violenta contrarreforma agraria nacional. </p>
-        <p>Tras el fin de los grandes carteles, el fenómeno mutó en redes fragmentadas y volátiles. Estas estructuras
-          mantienen el control territorial y la violencia en las periferias donde la presencia del Estado sigue siendo
-          insuficiente.</p>
+        <p><strong>El narcotráfico degradó</strong> la guerra en una disputa por rentas ilícitas que financió a todos
+          los bandos e impuso una narcocultura que erosionó la ética social.</p>
+        <p>Tras el fin de los grandes carteles, el fenómeno mutó en redes fragmentadas que mantienen el control
+          territorial.</p>
       </div>
     </div>
   </section>
 
-  <!-- PULL QUOTE — GAITÁN -->
   <div class="pull-quote-section quote-galan" style="background:#100b02;">
-
     <div class="quote-stage">
-
       <img src="imagenes/GalanRecorte.png" class="galan-parallax" alt="Luis Carlos Galán">
-
-      <div class="pull-quote-text reveal">
-        "Se puede matar a los hombres,
-      </div>
-
-      <div class="pull-quote-text reveal" style="z-index:7;">
-        pero no a las ideas."
-      </div>
-
-      <div class="pull-quote-attr reveal">
-        — Luis Carlos Galán · 1989
-      </div>
-
+      <div class="pull-quote-text reveal">"Se puede matar a los hombres,</div>
+      <div class="pull-quote-text reveal" style="z-index:7;">pero no a las ideas."</div>
+      <div class="pull-quote-attr reveal">— Luis Carlos Galán · 1989</div>
     </div>
-
   </div>
 
-
-  <!-- ══════════════════════════════════════
-     S7 — PARAMILITARISMO
-══════════════════════════════════════ -->
-  <section class="section" id="s-paramilitarismo" data-era="Paramilitarismo · 1990–2006" data-part="1"
-    style="background:#0f1108;">
+  <section class="section" id="s-paramilitarismo" data-ambience="violencia" data-era="Paramilitarismo · 1990–2006"
+    data-part="1" style="background:#0f1108;">
     <div class="section-number">7</div>
     <div class="section-content">
       <div class="era-badge reveal">1990–2006</div>
       <h2 class="section-era reveal">Para-<br>militarismo</h2>
       <div class="section-body reveal">
-        <p>Legitimado desde <strong>1968</strong>, el paramilitarismo operó como un <strong>ejército paralelo de élites,
-            militares y
-            narcos</strong>. Bajo
-          las AUC, perpetró masacres y un despojo masivo de tierras que funcionó como una violenta contrarreforma
-          agraria nacional.</p>
-        <p>Su alianza escaló con la parapolítica, cooptando una tercera parte del Congreso para su proyecto de poder.
-          Tras la desmovilización de 2006, mutó en estructuras fragmentadas que aún controlan zonas donde la ausencia
-          estatal perpetúa la violencia. </p>
+        <p>Consolidado en 1982 con un pacto entre ganaderos, militares y narcos, el paramilitarismo operó como un
+          <strong>ejército paralelo</strong>. Perpetró masacres y un despojo masivo de tierras que funcionó como
+          contrarreforma agraria.
+        </p>
+        <p>Su alianza con el poder escaló con la parapolítica. Tras la desmovilización de 2006, el fenómeno mutó.</p>
       </div>
     </div>
     <div class="section-right">
@@ -2128,41 +2317,40 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-     S8 — VICTIMAS
-══════════════════════════════════════ -->
-  <section class="section" id="s-victimas" data-era="Victimas · 1980–2006" data-part="1"
-    style="background:#110808; position:relative;">
+  <section class="section" id="s-victimas" data-ambience="victimas" data-era="Víctimas y Despojo · 1980–2004"
+    data-part="1" style="background:#110808; position:relative;">
     <div class="newspaper-texture" style="opacity:0.45;"></div>
     <div class="section-number">8</div>
     <div class="section-right" style="order:-1; padding: 80px 40px 80px 80px;">
       <div class="historical-image">
-        <img src="imagenes/Violencia.png">
+        <!-- Puedes cambiar esta imagen por una alusiva al desplazamiento -->
+        <img src="imagenes/Violencia.png" alt="Desplazamiento Forzado">
       </div>
     </div>
     <div class="section-content">
-      <div class="era-badge reveal">1980 — 2006</div>
-      <h2 class="section-era reveal">Las Víctimas</h2>
+      <div class="era-badge reveal">1980 — 2004</div>
+      <h2 class="section-era reveal">El Gran<br>Despojo</h2>
       <div class="section-body reveal">
-        <p>Lorem Ipsum</p>
-        <p>Lorem Ipsum</p>
+        <p>El desplazamiento forzado no fue un simple daño colateral, sino una <strong>estrategia sistemática de
+            despojo</strong>. Entre masacres paramilitares y operaciones militares que invisibilizaban la tragedia, los
+          territorios campesinos se vaciaron para dar paso a proyectos extractivos.</p>
+        <p>Ante ciudades desbordadas por la pobreza, la Corte Constitucional emitió en 2004 la <strong>Sentencia
+            T-025</strong>. Aunque declaró un Estado de Cosas Inconstitucional por el fracaso del Estado, para los más
+          de ocho millones de desplazados el reconocimiento llegó cuando sus tierras ya habían cambiado de manos.</p>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-     S9 — CONSTITUCIÓN 1991
-══════════════════════════════════════ -->
   <section class="section" id="s-constitucion" data-era="Constitución · 1991" data-part="1" style="background:#0f1108;">
     <div class="section-number">9</div>
     <div class="section-content">
       <div class="era-badge reveal">1991</div>
       <h2 class="section-era reveal">La Nueva<br>Constitución</h2>
       <div class="section-body reveal">
-        <p>En 1991, Colombia adoptó una nueva Constitución, considerada una de las más avanzadas del mundo. Reconoció la
-          diversidad étnica y cultural, creó la Corte Constitucional, y amplió los derechos fundamentales.</p>
-        <p>Fue el intento más serio de refundar el país. Surgió de la paz con el M-19 y la presión de una generación
-          harta de violencia. Pero el conflicto no se detuvo. <strong>El papel lo aguanta todo.</strong></p>
+        <p>En 1991, movidos por la "séptima papeleta", los colombianos exigieron una nueva Constitución. Por primera
+          vez se sentaron juntos exguerrilleros del M-19, representantes indígenas y afrodescendientes.</p>
+        <p>Pero el conflicto no se detuvo. Las FARC y el ELN no participaron y siguieron en guerra. El papel lo aguanta
+          todo.</p>
       </div>
     </div>
     <div class="section-right">
@@ -2172,9 +2360,6 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-     S10 — PROCESOS DE PAZ
-══════════════════════════════════════ -->
   <section class="section" id="s-procesos-paz" data-era="Procesos de Paz · 2016" data-part="1"
     style="background:#110808; position:relative;">
     <div class="newspaper-texture" style="opacity:0.45;"></div>
@@ -2185,18 +2370,43 @@
       </div>
     </div>
     <div class="section-content">
-      <div class="era-badge reveal">2016</div>
-      <h2 class="section-era reveal">Los Procesos de Paz</h2>
+      <div class="era-badge reveal">1984 — 2016</div>
+      <h2 class="section-era reveal">Los Procesos<br>de Paz</h2>
       <div class="section-body reveal">
-        <p>Lorem Ipsum</p>
-        <p>Lorem Ipsum</p>
+        <p>Colombia intentó la paz muchas veces antes de lograrla. Los diálogos del Caguán, la desmovilización del M-19.
+          Cada intento dejó una lección y una herida.</p>
+        <p>El Acuerdo Final de 2016 con las FARC fue el paso más audaz. Hasta hoy, el más profundo.</p>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-     PARTE 2 DIVIDER
-══════════════════════════════════════ -->
+  <section class="section part-1" id="s-resistencia" data-ambience="naturaleza" data-era="Resistencia Civil · 1997–Hoy"
+    data-part="2" style="position:relative;">
+    <div class="chalkboard-texture"></div>
+    <div class="nature-mist"></div>
+    <div class="section-number">11</div>
+    <div class="section-content">
+      <div class="era-badge reveal">1997 — 2025</div>
+      <h2 class="section-era reveal">La Paz<br>Autónoma</h2>
+      <div class="section-body reveal">
+        <p>Frente a la crudeza del conflicto, en 1997 nació la <strong>Comunidad de Paz de San José de
+            Apartadó</strong>, un colectivo campesino en el Urabá antioqueño que decidió declararse neutral ante todos
+          los actores armados. Su resistencia ha sido civil, documentando crímenes y forjando una economía autónoma del
+          cacao.</p>
+        <p>Su lucha obligó al Estado a <strong>pedir perdón públicamente en junio de 2025</strong>. Hoy se erigen como
+          un símbolo mundial de que es posible construir dignidad en medio de la guerra, incluso cuando la impunidad y
+          las amenazas paramilitares siguen latentes en el territorio.</p>
+      </div>
+    </div>
+    <div class="section-right">
+      <div class="historical-image">
+        <!-- Reemplazar con imagen de campesinos/cacao/San José de Apartadó -->
+        <img src="imagenes/SanJoseApartado.jpg" alt="Comunidad de Paz de San José de Apartadó"
+          style="filter: grayscale(80%) sepia(0.3) contrast(1.1);">
+      </div>
+    </div>
+  </section>
+
   <div class="part-divider part-2" style="background:#0d2416; position:relative;">
     <div class="chalkboard-texture"></div>
     <div class="nature-mist"></div>
@@ -2206,11 +2416,8 @@
     <h2 class="part-divider-title reveal" style="color:#d4f0c8;">El País en Disputa</h2>
   </div>
 
-  <!-- ══════════════════════════════════════
-     S11 — COMISIÓN DE LA VERDAD
-══════════════════════════════════════ -->
-  <section class="section part-2" id="s-verdad" data-era="Comisión de la Verdad · 2022" data-part="2"
-    style="background:#0d2416; position:relative;">
+  <section class="section part-2" id="s-verdad" data-ambience="presente" data-era="Comisión de la Verdad · 2022"
+    data-part="2" style="background:#0d2416; position:relative;">
     <div class="chalkboard-texture"></div>
     <div class="nature-mist"></div>
     <div class="section-number" style="color:rgba(94,198,98,0.04)">11</div>
@@ -2218,10 +2425,9 @@
       <div class="era-badge reveal">2017 — 2022</div>
       <h2 class="section-era reveal" style="color:#d4f0c8;">La<br>Verdad</h2>
       <div class="section-body reveal" style="color:rgba(212,240,200,0.78)">
-        <p>El Acuerdo de Paz de 2016 entre el Gobierno y las FARC creó el <strong>Sistema Integral de Verdad, Justicia,
-            Reparación y No Repetición</strong>. En su centro: la Comisión para el Esclarecimiento de la Verdad.</p>
-        <p>Cinco años después, en 2022, el informe final <em>"Hay Futuro si Hay Verdad"</em> documentó el conflicto en
-          900 páginas. Lo que encontraron no fue la historia de dos bandos. Fue la historia de millones de víctimas.</p>
+        <p>El Acuerdo de Paz de 2016 creó el Sistema Integral de Verdad, Justicia, Reparación y No Repetición.</p>
+        <p>En 2022, el informe final <em>"Hay Futuro si Hay Verdad"</em> documentó el conflicto en 900 páginas.
+          No fue la historia de dos bandos. Fue la historia de millones de víctimas.</p>
       </div>
     </div>
     <div class="section-right">
@@ -2231,7 +2437,6 @@
     </div>
   </section>
 
-  <!-- TESTIMONIOS GRID -->
   <div class="testimony-grid-wrapper part-2">
     <div class="chalkboard-texture" style="border-radius:0;"></div>
     <div class="nature-mist"></div>
@@ -2246,28 +2451,12 @@
         <div class="testimony-role">Excombatiente FARC · Zona de Reincorporación</div>
         <div class="testimony-text">"Uno llega creyendo que la revolución lo justifica todo. Con los años entiende que
           lo
-          único que quedó fue dolor, de todos los lados."</div>
+          único que quedó fue dolor."</div>
         <div class="testimony-name">Hombre en proceso de reincorporación · 2019</div>
-      </div>
-      <div class="testimony-card reveal">
-        <div class="testimony-role">Soldado retirado · Córdoba</div>
-        <div class="testimony-text">"Nadie nos preparó para lo que veíamos. Y tampoco nos prepararon para volver a casa
-          y
-          tener que vivir con eso adentro."</div>
-        <div class="testimony-name">Veterano del Ejército · 2021</div>
-      </div>
-      <div class="testimony-card reveal">
-        <div class="testimony-role">Líder indígena · Sierra Nevada</div>
-        <div class="testimony-text">"Nuestros territorios no son el escenario de la guerra. Son nuestra vida. Cada árbol
-          que quemaron era un ancestro."</div>
-        <div class="testimony-name">Mamo del pueblo Arhuaco · 2018</div>
       </div>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-     S12 — CARIBE AFIRMATIVO
-══════════════════════════════════════ -->
   <section class="section part-2" id="s-caribe" data-era="Caribe Afirmativo · 2019" data-part="2"
     style="background:#0d2416; position:relative;">
     <div class="chalkboard-texture"></div>
@@ -2279,15 +2468,13 @@
       </div>
     </div>
     <div class="section-content">
-      <div class="era-badge reveal">2019</div>
-      <h2 class="section-era reveal">Caribe Afirmativo</h2>
+      <div class="era-badge reveal">Presente</div>
+      <h2 class="section-era reveal">Caribe<br>Afirmativo</h2>
       <div class="section-body reveal">
-        <p>Tras 1958, el conflicto mutó de una guerra bipartidista a una insurgencia impulsada por la exclusión y la
-          desigualdad agraria. En los ochenta, el narcotráfico degradó la lucha en una disputa por rentas ilícitas que
-          financió al paramilitarismo y ejecutó un despojo masivo de tierras. </p>
-        <p>Pese a la Constitución de 1991 y las
-          ofensivas estatales, la persistente ausencia institucional en las regiones mantiene vigente la violencia.
-          Colombia permanece como el escenario del conflicto sin negociar más antiguo del mundo. </p>
+        <p>En el Caribe colombiano, líderes LGBTIQ+ disputan el control de los grupos armados no con armas sino con
+          <strong>informes, memoria y presencia internacional</strong>.
+        </p>
+        <p>Caribe Afirmativo documenta lo que el Estado no registra y litiga ante la JEP. Esa es otra Colombia.</p>
       </div>
     </div>
   </section>
@@ -2333,7 +2520,7 @@
     <div class="section-number" style="color:rgba(94,198,98,0.04)">14</div>
     <div class="section-right" style="order:-1; padding: 80px 40px 80px 80px;">
       <div class="present-image">
-        <img src="imagenes/PTA.jpg">
+        <img src="imagenes/PTA.png">
       </div>
     </div>
     <div class="section-content">
@@ -2352,9 +2539,6 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════
-     PARTE 3 DIVIDER
-══════════════════════════════════════ -->
   <div class="part-divider part-3" style="background:#0c1a2e; position:relative;">
     <div class="future-grid"></div>
     <div class="future-glow"></div>
@@ -2364,79 +2548,98 @@
     <h2 class="part-divider-title reveal" style="color:#d8eaff;">La Colombia Posible</h2>
   </div>
 
-  <!-- ══════════════════════════════════════
-     S8 — FUTURO / RECONCILIACIÓN
-══════════════════════════════════════ -->
-  <section class="section part-3" id="s-futuro" data-era="La Colombia Posible" data-part="3"
+  <section class="section part-3" id="s-futuro" data-ambience="none" data-era="La Paz Imperfecta · 2016" data-part="3"
     style="background:#0c1a2e; position:relative;">
     <div class="future-grid"></div>
     <div class="future-glow"></div>
-    <div class="section-number" style="color:rgba(106,171,240,0.05)">8</div>
-    <div class="section-right" style="order:-1; padding: 80px 40px 80px 80px;">
-      <div class="present-image">
-        <img src="imagenes/AcuerdoPaz.webp">
-      </div>
-    </div>
+    <div class="section-number" style="color:rgba(106,171,240,0.05)">15</div>
     <div class="section-content">
       <div class="era-badge reveal" style="color:#6aabf0; border-color:rgba(106,171,240,0.3)">2016 — Hoy</div>
       <h2 class="section-era reveal" style="color:#d8eaff;">La Paz<br>Imperfecta</h2>
       <div class="section-body reveal" style="color:rgba(216,234,255,0.78)">
-        <p>El <strong>Acuerdo de Paz de 2016</strong> fue histórico. Las FARC se desmovilizaron. La JEP comenzó a
-          investigar los crímenes de guerra de todos los actores. Más de 13.000 excombatientes están en proceso de
-          reincorporación.</p>
-        <p>La paz no llegó de golpe. Llegó incompleta, cuestionada, amenazada por disidencias y por la violencia contra
-          líderes sociales. Pero llegó. Y eso, en Colombia, no es poco.</p>
+        <p>El <strong>Acuerdo de Paz de 2016</strong> fue el hito más audaz. Las FARC se desmovilizaron.</p>
+        <p>La paz no llegó de golpe. Llegó incompleta, cuestionada, amenazada por disidencias. Pero llegó.
+          Y eso, en Colombia, no es poco.</p>
+      </div>
+    </div>
+    <div class="section-right">
+      <div class="present-image">
+        <img src="imagenes/AcuerdoPaz.webp">
       </div>
     </div>
   </section>
 
+  <section class="hope-section part-3" id="s-brechas" data-ambience="none" data-era="Las Brechas · Colombia Hoy"
+    data-part="3" style="position:relative;">
+    <div class="future-grid"></div>
+    <div class="future-glow"></div>
+    <div class="section-number" style="color:rgba(106,171,240,0.05)">16</div>
+    <div class="section-right" style="order:-1; padding: 80px 40px 80px 80px;">
+      <div class="present-image">
+        <img src="imagenes/brechas.jpg">
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="era-badge reveal" style="color:#6aabf0; border-color:rgba(106,171,240,0.3)">Diagnóstico 2025</div>
+      <h2 class="section-era reveal" style="color:#d8eaff;">Las Tres<br>Brechas</h2>
+      <div class="section-body reveal" style="color:rgba(216,234,255,0.78)">
+        <p>Colombia vive simultáneamente en dos realidades: una constitucional y progresista en las ciudades, y otra
+          marcada por la violencia en los territorios.</p>
+      </div>
+    </div>
+  </section>
 
-  <!-- MÉTRICAS POSCONFLICTO -->
+  <section class="section part-3" id="s-internacional" data-ambience="none" data-era="Colombia en el Mundo · 2026"
+    data-part="3" style="position:relative; flex-direction: row-reverse;">
+    <div class="future-grid"></div>
+    <div class="future-glow"></div>
+    <div class="section-number" style="color:rgba(106,171,240,0.05)">15</div>
+    <div class="section-content">
+      <div class="era-badge reveal">Junio 2026</div>
+      <h2 class="section-era reveal" style="color:#d8eaff;">Colombia<br>ante el Mundo</h2>
+      <div class="section-body reveal" style="color:rgba(216,234,255,0.78)">
+        <p>En junio de 2026 el Experto Independiente de la ONU presentará sus hallazgos sobre Colombia ante el Consejo
+          de Derechos Humanos.</p>
+        <p>La disputa por los derechos ya no es solo una conversación nacional: es un asunto de escrutinio global.</p>
+      </div>
+    </div>
+    <div class="section-right">
+      <div class="present-image">
+        <img src="imagenes/colombiaAlMundo.jpg"
+          onerror="this.parentElement.style.background='rgba(106,171,240,0.08)'; this.style.display='none'">
+      </div>
+    </div>
+  </section>
+
   <div class="metrics-wrapper part-3">
     <div class="future-grid"></div>
     <div class="future-glow"></div>
     <div class="metrics-grid">
       <div class="metric-card reveal">
         <div class="metric-number">13.202</div>
-        <div class="metric-label">excombatientes FARC en proceso de reincorporación civil</div>
-      </div>
-      <div class="metric-card reveal">
-        <div class="metric-number">900+</div>
-        <div class="metric-label">páginas del informe de la Comisión de la Verdad (2022)</div>
+        <div class="metric-label">excombatientes FARC en proceso civil</div>
       </div>
       <div class="metric-card reveal">
         <div class="metric-number">8M</div>
-        <div class="metric-label">personas desplazadas internamente — la mayor crisis en América</div>
+        <div class="metric-label">personas desplazadas internamente</div>
       </div>
       <div class="metric-card reveal">
-        <div class="metric-number">220K</div>
-        <div class="metric-label">víctimas mortales del conflicto armado 1958–2016</div>
-      </div>
-      <div class="metric-card reveal">
-        <div class="metric-number">80K</div>
-        <div class="metric-label">personas desaparecidas forzosamente durante el conflicto</div>
-      </div>
-      <div class="metric-card reveal">
-        <div class="metric-number">2016</div>
-        <div class="metric-label">año de la firma del Acuerdo Final — La Habana, Cuba</div>
+        <div class="metric-number">2026</div>
+        <div class="metric-label">año en que ONU examina a Colombia</div>
       </div>
     </div>
   </div>
-  <!-- PULL QUOTE FINAL -->
+
   <div class="pull-quote-section part-3" style="background:#0c1a2e; position:relative;">
     <div class="future-grid" style="opacity:0.5;"></div>
     <div>
       <div class="pull-quote-text reveal" style="color:#d8eaff;">
         "Colombia no es el país de la violencia. Es el país que sobrevivió a ella, y que todavía tiene algo que decir."
       </div>
-      <div class="pull-quote-attr reveal" style="color:#6aabf0;">— Comisión para el Esclarecimiento de la Verdad · 2022
-      </div>
+      <div class="pull-quote-attr reveal" style="color:#6aabf0;">— Comisión de la Verdad · 2022</div>
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-     CRÉDITOS
-══════════════════════════════════════ -->
   <section id="credits" style="background:#0c1a2e; position:relative;">
     <div class="future-glow"></div>
     <div class="credits-flag">
@@ -2447,12 +2650,7 @@
     <h2 class="reveal" style="color:#d8eaff;">Colombia — El País que Hemos Creado</h2>
     <div class="credits-line" style="background:#6aabf0;"></div>
     <p class="reveal" style="color:rgba(216,234,255,0.5);">Un proyecto de memoria histórica y narrativa visual sobre el
-      conflicto armado colombiano, sus
-      víctimas, y la búsqueda de la paz.</p>
-    <p class="reveal" style="margin-top:16px; font-size:13px; color:rgba(216,234,255,0.25);">
-      Fuentes: Comisión para el Esclarecimiento de la Verdad (2022) · Centro Nacional de Memoria Histórica · ¡Basta Ya!
-      (2013) · Jurisdicción Especial para la Paz
-    </p>
+      conflicto armado.</p>
   </section>
 
   <script>
@@ -2493,11 +2691,8 @@
     // ERA LABEL + NAV DOTS
     // ══════════════════════════════════════════
     const eraLabel = document.getElementById('era-label');
-    const sections = document.querySelectorAll('[data-era]');
     const navDots = document.querySelectorAll('.nav-dot');
-    const allSections = ['hero', 's-violencia', 's-bogotazo', 's-presidencias', 's-paisexcluido', 's-farc', 's-narco', 's-paramilitarismo', 's-victimas', 's-constitucion', 's-procesos-paz', 's-verdad', 's-futuro'];
 
-    // Nav dot click — usa data-target directamente
     navDots.forEach((dot) => {
       dot.addEventListener('click', () => {
         const target = document.getElementById(dot.dataset.target);
@@ -2505,14 +2700,11 @@
       });
     });
 
-    // IntersectionObserver para era label y nav
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const era = entry.target.dataset.era;
           if (era) { eraLabel.textContent = era; }
-
-          // Actualizar nav dot activo por data-target
           navDots.forEach(d => d.classList.remove('active'));
           const matchDot = document.querySelector(`.nav-dot[data-target="${entry.target.id}"]`);
           if (matchDot) matchDot.classList.add('active');
@@ -2520,89 +2712,41 @@
       });
     }, { threshold: 0.4 });
 
-    document.querySelectorAll('.section, #hero').forEach(s => sectionObserver.observe(s));
+    document.querySelectorAll('.section, .timeline-section, .hope-section, #hero').forEach(s => sectionObserver.observe(s));
 
-    // ══════════════════════════════════════════
     // REVEAL ON SCROLL
-    // ══════════════════════════════════════════
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); }
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ══════════════════════════════════════════
-    // PARALLAX — 3 CAPAS
-    // ══════════════════════════════════════════
+    // PARALLAX
     const parallaxSections = document.querySelectorAll('.section');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (!prefersReducedMotion) {
       let ticking = false;
-
-      function updateParallax() {
-        parallaxSections.forEach(section => {
-          const rect = section.getBoundingClientRect();
-          const inView = rect.top < window.innerHeight && rect.bottom > 0;
-          if (!inView) return;
-
-          const scrollOffset = -rect.top;
-
-          // BG Layer: velocidad 0.3 → se mueve 70% del scroll
-          const bgLayer = section.querySelector('.bg-layer');
-          if (bgLayer) {
-            bgLayer.style.transform = `translateY(${scrollOffset * 0.3}px)`;
-          }
-
-          // PNG Layer: velocidad 1.15 → se mueve 15% MÁS que el scroll
-          const pngLayer = section.querySelector('.png-layer');
-          if (pngLayer) {
-            const baseRotate = pngLayer.style.transform.match(/rotate\(([^)]+)\)/);
-            const rot = baseRotate ? baseRotate[0] : '';
-            pngLayer.style.transform = `${rot} translateY(${scrollOffset * -0.12}px)`;
-          }
-        });
-        ticking = false;
-      }
-
       window.addEventListener('scroll', () => {
         if (!ticking) {
-          requestAnimationFrame(updateParallax);
+          requestAnimationFrame(() => {
+            parallaxSections.forEach(section => {
+              const rect = section.getBoundingClientRect();
+              const inView = rect.top < window.innerHeight && rect.bottom > 0;
+              if (!inView) return;
+              const scrollOffset = -rect.top;
+              const bgLayer = section.querySelector('.bg-layer');
+              if (bgLayer) bgLayer.style.transform = `translateY(${scrollOffset * 0.3}px)`;
+            });
+            ticking = false;
+          });
           ticking = true;
         }
       }, { passive: true });
     }
 
-    // ══════════════════════════════════════════
-    // TIMELINE DRAG TO SCROLL
-    // ══════════════════════════════════════════
-    const timelineContainer = document.getElementById('presidents-timeline');
-    if (timelineContainer) {
-      let isDragging = false, startX, scrollLeft;
-      timelineContainer.addEventListener('mousedown', e => {
-        isDragging = true;
-        startX = e.pageX - timelineContainer.offsetLeft;
-        scrollLeft = timelineContainer.scrollLeft;
-        timelineContainer.style.cursor = 'grabbing';
-      });
-      document.addEventListener('mouseup', () => {
-        isDragging = false;
-        timelineContainer.style.cursor = '';
-      });
-      timelineContainer.addEventListener('mousemove', e => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - timelineContainer.offsetLeft;
-        const walk = (x - startX) * 1.5;
-        timelineContainer.scrollLeft = scrollLeft - walk;
-      });
-    }
-
-    // Color del progress bar según parte
+    // Color del progress bar
     const partObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -2613,17 +2757,24 @@
         }
       });
     }, { threshold: 0.5 });
-
     document.querySelectorAll('[data-part]').forEach(s => partObserver.observe(s));
   </script>
-  <!-- AUDIO ENGINE -->
+
   <div id="audio-engine">
     <div id="audio-track-name"></div>
-    <div style="display:flex; align-items:center; gap:10px;">
-      <button id="audio-toggle" title="Activar audio de ambiente" aria-label="Activar audio" data-muted="false">
+    <div class="audio-btn-row">
+      <button id="audio-toggle" title="Activar música de ambiente" aria-label="Activar música" data-muted="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path id="audio-icon-path"
             d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.5m0 0l-3 .857A1.5 1.5 0 004.5 18h.001M9 15.75v-10.5"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+      <button id="voice-toggle" title="Silenciar voces y discursos" aria-label="Silenciar voces y discursos"
+        data-muted="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path id="voice-icon-path"
+            d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"
             stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </button>
@@ -2631,221 +2782,223 @@
         <span></span><span></span><span></span><span></span><span></span>
       </div>
     </div>
-    <div id="audio-label">AUDIO</div>
+    <div id="audio-label">MÚSICA · VOCES</div>
   </div>
 
   <nav id="mobile-nav">
     <button data-target="hero">Inicio</button>
-    <button data-target="s-violencia">1946</button>
-    <button data-target="s-bogotazo">1948</button>
-    <button data-target="s-presidencias">F. Nac.</button>
-    <button data-target="s-paisexcluido">Excluidos</button>
-    <button data-target="s-farc">Guerrillas</button>
-    <button data-target="s-narco">Narco</button>
-    <button data-target="s-paramilitarismo">Paracos</button>
-    <button data-target="s-victimas">Víctimas</button>
-    <button data-target="s-constitucion">1991</button>
-    <button data-target="s-procesos-paz">Paz</button>
-    <button data-target="s-verdad">Verdad</button>
-    <button data-target="s-futuro">Futuro</button>
+    <button data-target="s-violencia">La Violencia</button>
+    <button data-target="s-bogotazo">El Bogotazo</button>
+    <button data-target="s-presidencias">Frente Nacional</button>
+    <button data-target="s-paisexcluido">El País Excluido</button>
+    <button data-target="s-farc">FARC-ELN-M19</button>
+    <button data-target="s-narco">El Narco</button>
+    <button data-target="s-paramilitarismo">El Paramilitarismo</button>
+    <button data-target="s-victimas">Las Víctimas</button>
+    <button data-target="s-constitucion">La Constitución del 1991</button>
+    <button data-target="s-procesos-paz">Los Procesos de Paz</button>
+    <button data-target="s-resistencia">La Paz Autónoma</button>
+    <button data-target="s-verdad">La Verdad</button>
+    <button data-target="s-caribe">Caribe Afirmativo</button>
+    <button data-target="s-paro">El Paro 2021</button>
+    <button data-target="s-ptafi">PTA/FI</button>
+    <button data-target="s-futuro">La Paz Imperfecta</button>
+    <button data-target="s-brechas">Las Brechas</button>
+    <button data-target="s-internacional">Colombia en el Mundo</button>
   </nav>
 
   <script>
-    // ══════════════════════════════════════════
-    // MOBILE NAV — scroll activo + colores por era
-    // ══════════════════════════════════════════
     const mobileNav = document.getElementById('mobile-nav');
     const mobileButtons = mobileNav ? mobileNav.querySelectorAll('button') : [];
 
+    // 1. Al hacer clic: El navegador te lleva a la sección (Scroll vertical normal de la página)
     mobileButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const target = document.getElementById(btn.dataset.target);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
     });
 
-    // Actualizar botón activo en mobile nav y color de la barra
-    function updateMobileNav(sectionId, part) {
-      mobileButtons.forEach(btn => {
-        btn.classList.toggle('active-nav', btn.dataset.target === sectionId);
-      });
-      if (mobileNav) {
-        mobileNav.className = '';
-        mobileNav.id = 'mobile-nav';
-        if (part === '2') mobileNav.classList.add('era-2');
-        else if (part === '3') mobileNav.classList.add('era-3');
-        // Scroll the active button into view in the nav
-        const activeBtn = mobileNav.querySelector('.active-nav');
-        if (activeBtn) {
-          activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        }
-      }
-    }
-
-    // Observer to track current section for mobile nav
+    // 2. Al hacer scroll: El observador pinta el botón y mueve el menú horizontalmente
     const mobileNavObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const part = entry.target.dataset.part || '1';
-          updateMobileNav(entry.target.id, part);
+          mobileButtons.forEach(btn => {
+            // Revisamos si este botón corresponde a la sección actual en pantalla
+            const esBotonActivo = btn.dataset.target === entry.target.id;
+
+            // Agrega o quita la clase visual
+            btn.classList.toggle('active-nav', esBotonActivo);
+
+            // Si es el botón activo, lo centramos en el menú de navegación
+            if (esBotonActivo) {
+              btn.scrollIntoView({
+                behavior: 'smooth',   // Deslizamiento suave
+                inline: 'center',     // Lo centra horizontalmente en su contenedor
+                block: 'nearest'      // Evita que la página salte verticalmente sin querer
+              });
+            }
+          });
         }
       });
     }, { threshold: 0.45 });
 
-    document.querySelectorAll('.section, #hero').forEach(s => mobileNavObserver.observe(s));
+    document.querySelectorAll('.section, .timeline-section, .hope-section, #hero').forEach(s => mobileNavObserver.observe(s));
   </script>
 
-  <!-- PULL QUOTE — GAITÁN -->
   <script>
-    const gaitanQuote = document.querySelector('.quote-gaitan');
-    if (gaitanQuote) {
-      const observer = new IntersectionObserver((entries) => {
+    document.querySelectorAll('.quote-gaitan, .quote-galan').forEach(quote => {
+      let showTimer = null;
+      let dismissTimer = null;
+
+      new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            setTimeout(() => { gaitanQuote.classList.add('visible'); }, 3000);
+            // Cancela exit si vuelve a entrar
+            clearTimeout(dismissTimer);
+            quote.classList.remove('exiting');
+            // Aparece con delay dramático
+            showTimer = setTimeout(() => {
+              quote.classList.add('visible');
+              // Auto-dismiss: desaparece solos después de 6 segundos de estar visibles
+              dismissTimer = setTimeout(() => {
+                quote.classList.remove('visible');
+                quote.classList.add('exiting');
+                setTimeout(() => quote.classList.remove('exiting'), 3200);
+              }, 6000);
+            }, 1800);
+          } else {
+            // Sale del viewport: cancela show, inicia exit
+            clearTimeout(showTimer);
+            clearTimeout(dismissTimer);
+            if (quote.classList.contains('visible')) {
+              quote.classList.remove('visible');
+              quote.classList.add('exiting');
+              setTimeout(() => quote.classList.remove('exiting'), 3200);
+            }
           }
         });
-      }, { threshold: .20 });
-      observer.observe(gaitanQuote);
-    }
-
-    window.addEventListener('scroll', () => {
-      const figure = document.querySelector('.gaitan-parallax');
-      const section = document.querySelector('.quote-gaitan');
-      if (!figure || !section) return;
-      const rect = section.getBoundingClientRect();
-      const progress = (window.innerHeight - rect.top) * 0.25;
-      figure.style.transform = `translateX(-50%) translateY(${-progress}px) scale(1)`;
+      }, { threshold: 0.15 }).observe(quote);
     });
   </script>
 
-  <!-- PULL QUOTE — GALAN -->
-  <script>
-    const galanQuote = document.querySelector('.quote-galan');
-    if (galanQuote) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setTimeout(() => { galanQuote.classList.add('visible'); }, 2000);
-          }
-        });
-      }, { threshold: .20 });
-      observer.observe(galanQuote);
-    }
-  </script>
-
-  <!-- ══════════════════════════════════════════════════════
-     SISTEMA DE AUDIO — WEB AUDIO API
-     
-     Arquitectura:
-     - AudioContext con osciladores + filtros por era
-     - Parte 1 (sepia): frecuencia grave 40–80Hz, ruido filtrado
-       → Evoca tensión, tierra, papel viejo
-     - Parte 2 (verde): drone 110Hz + armónico 220Hz, reverb largo
-       → Evoca selva, montaña, neblina colombiana
-     - Parte 3 (azul): pad 528Hz + 432Hz, tono esperanzador
-       → Evoca apertura, futuro, posibilidad
-     
-     ESPACIO PARA DISCURSOS:
-     Cuando tengas los audios, cargarlos así:
-       audioSpeech.src = 'audios/gaitan_discurso.mp3';
-       audioSpeech.play();
-     Los <audio> elements están listos abajo.
-  ══════════════════════════════════════════════════════ -->
-
-  <!-- Elementos audio para discursos — descomenta src cuando tengas los archivos -->
   <audio id="speech-gaitan" preload="none">
-    <source src="audios/GalanQuote.mp3" type="audio/mpeg">
+    <source src="audios/GaitanQuote.mp3" type="audio/mpeg">
   </audio>
   <audio id="speech-galan" preload="none">
     <source src="audios/GalanQuote.mp3" type="audio/mpeg">
   </audio>
-  <audio id="speech-verdad" preload="none">
-    <source src="audios/GalanQuote.mp3" type="audio/mpeg">
+  <audio id="speech-verdad" preload="none"></audio>
+  <audio id="ambience-violencia" preload="auto">
+    <source src="audios/disparos.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="ambience-victimas" preload="auto">
+    <source src="audios/gritos.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="ambience-presente" loop preload="auto">
+    <source src="audios/pajaros.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    // ══════════════════════════════════════════════════════════════
-    // SISTEMA DE AUDIO COMPLETO
-    // ══════════════════════════════════════════════════════════════
-    //
-    // FRECUENCIAS REVISADAS — psicología + neurofisiología:
-    //
-    // PARTE 1 (sepia/conflicto):
-    //   - 55 Hz drone sine filtrado → sub-bass que se siente físicamente
-    //     sin ser dañino. Evoca peso, tierra, pasado oscuro.
-    //   - LFO 0.06 Hz modulando amplitud → respiración muy lenta, tensión.
-    //   - 165 Hz armónico (3x55) con ataque suave → añade cuerpo sin agresión.
-    //   - Todo por debajo de 200 Hz, reverb medio.
-    //   → Contexto: lectura crítica, memoria, gravedad. NO frecs > 200Hz
-    //     en parte 1 para evitar estimulación excesiva durante contenido pesado.
-    //
-    // PARTE 2 (verde/presente):
-    //   - 174 Hz sine (frecuencia de Solfeggio "anclaje") → serenidad
-    //   - 396 Hz (otro Solfeggio, "liberación de culpa") → apropiado
-    //     para testimonios, escucha activa, reflexión. Sutil, bajo gain.
-    //   - Reverb largo → sensación de espacio abierto, territorio.
-    //   - NO beating desestabilizador. Todo puro, limpio.
-    //
-    // PARTE 3 (azul/futuro):
-    //   - Patrón melódico en Do mayor (C4=261, E4=329, G4=392, A4=440)
-    //   - Arpeggio lento: notas cada ~4 seg con envolvente ADSR suave
-    //   - 174 Hz base continua como raíz
-    //   - Reverb largo → apertura, esperanza
-    //   → Melodía → no solo frecuencias, algo que se pueda "tararear" mentalmente
-    //
-    // AUDIOS DE DISCURSOS:
-    //   - Se activan UNA SOLA VEZ por sesión al hacer scroll a la pull quote
-    //   - Ambiente baja a 15% con fade-in 1.5s antes de que empiece el discurso
-    //   - El discurso entra con fade-in de 0.8s
-    //   - Al terminar: eco (reverb wet sube) y fade-out 2.5s, luego ambiente sube
-    //   - Si el usuario se devuelve, el discurso NO vuelve a sonar
-    //
-    // PARA ACTIVAR DISCURSOS:
-    //   1. Descomenta las <source> en los <audio> de arriba
-    //   2. Descomenta el bloque SPEECH SYSTEM abajo
-    // ══════════════════════════════════════════════════════════════
-
     (function () {
       'use strict';
 
-      // ── Estado global ──
       let audioCtx = null;
-      let isMuted = false;
+      let musicMuted = false;
+      let speechMuted = false;
       let currentPart = '1';
       let masterGain = null;
       let ambientNodes = [];
       let audioStarted = false;
       let transitioning = false;
 
-      // ── Speech: cada quote sólo se reproduce una vez ──
       const speechPlayed = { gaitan: false, galan: false, verdad: false };
 
       const audioToggle = document.getElementById('audio-toggle');
+      const voiceToggle = document.getElementById('voice-toggle');
       const audioWave = document.getElementById('audio-wave');
       const audioLabel = document.getElementById('audio-label');
       const audioTrackName = document.getElementById('audio-track-name');
 
-      // ──────────────────────────────────────────────
-      // HELPER: crea reverb impulse response sintético
-      // ──────────────────────────────────────────────
       function makeReverb(ctx, duration = 2.5, decay = 1.8) {
         const conv = ctx.createConvolver();
         const len = ctx.sampleRate * duration;
         const ir = ctx.createBuffer(2, len, ctx.sampleRate);
         for (let ch = 0; ch < 2; ch++) {
           const d = ir.getChannelData(ch);
-          for (let i = 0; i < len; i++) {
-            d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, decay);
-          }
+          for (let i = 0; i < len; i++) { d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, decay); }
         }
         conv.buffer = ir;
         return conv;
       }
 
-      // ──────────────────────────────────────────────
-      // HELPER: oscilador con fade-in suave
-      // ──────────────────────────────────────────────
+      function fadeAudio(audio, targetVolume, duration = 1500) {
+        if (!audio) return Promise.resolve();
+        return new Promise(resolve => {
+          const startVol = audio.volume;
+          const diff = targetVolume - startVol;
+          const startTime = performance.now();
+
+          function animate(now) {
+            const progress = Math.min((now - startTime) / duration, 1);
+            audio.volume = startVol + diff * progress;
+            if (progress < 1) requestAnimationFrame(animate);
+            else resolve();
+          }
+          requestAnimationFrame(animate);
+        });
+      }
+
+      const ambience = {
+        violencia: document.getElementById('ambience-violencia'),
+        victimas: document.getElementById('ambience-victimas'),
+        presente: document.getElementById('ambience-presente')
+      };
+
+      let currentAmbience = null;
+      let currentAmbienceName = null;
+
+      async function changeAmbience(name) {
+        if (currentAmbienceName === name) return;
+        currentAmbienceName = name;
+
+        // Manejo explícito de detención de ambientales ("none" en Parte 3)
+        if (name === 'none') {
+          if (currentAmbience) {
+            const old = currentAmbience;
+            currentAmbience = null;
+            await fadeAudio(old, 0, 1500);
+            old.pause();
+          }
+          return;
+        }
+
+        const next = ambience[name];
+        if (!next) return;
+
+        if (currentAmbience) {
+          const old = currentAmbience;
+          await fadeAudio(old, 0, 1500);
+          old.pause();
+        }
+
+        if (currentAmbienceName !== name) return;
+
+        next.currentTime = 0;
+        next.volume = 0;
+        currentAmbience = next;
+
+        const playPromise = next.play();
+        if (playPromise) {
+          try { await playPromise; } catch (err) { return; }
+        }
+
+        const targetVol = musicMuted ? 0 : 0.06;
+        await fadeAudio(next, targetVol, 2500);
+      }
+
       function makeOsc(ctx, type, freq, peakGain, fadeIn, dest) {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
@@ -2859,160 +3012,126 @@
         return { osc, gain };
       }
 
-      // ──────────────────────────────────────────────
-      // CONFIGURACIÓN DE AMBIENTES POR PARTE
-      // ──────────────────────────────────────────────
       const ambientConfig = {
-
+        // PARTE 1 — Melodía lúgubre, menor en La
         '1': {
-          label: 'MEMORIA · PESO',
-          trackName: 'Conflicto\n55 Hz + 165 Hz',
+          label: 'MEMORIA · PESO', trackName: 'El Pasado\nMenor en La',
           build(ctx, master) {
             const nodes = [];
-            const rev = makeReverb(ctx, 2.0, 2.2);
+            const rev = makeReverb(ctx, 3.5, 2.8);
             const revGain = ctx.createGain();
             revGain.gain.setValueAtTime(0, ctx.currentTime);
-            revGain.gain.linearRampToValueAtTime(0.22, ctx.currentTime + 5);
-            rev.connect(revGain);
-            revGain.connect(master);
-
-            // Drone 55 Hz — peso, tierra, pasado
-            const lp = ctx.createBiquadFilter();
-            lp.type = 'lowpass';
-            lp.frequency.value = 220;
-            lp.Q.value = 0.7;
-
-            const { osc: o1, gain: g1 } = makeOsc(ctx, 'sine', 55, 0.28, 4, lp);
-            lp.connect(master);
-            lp.connect(rev);
-
-            // LFO muy lento: respiración pesada 0.06 Hz
-            const lfo = ctx.createOscillator();
-            lfo.frequency.value = 0.06;
-            const lfoG = ctx.createGain();
-            lfoG.gain.value = 0.12;
-            lfo.connect(lfoG);
-            lfoG.connect(g1.gain);
-            lfo.start();
-
-            // Armónico 165 Hz (3x55) — añade cuerpo
-            const { osc: o2, gain: g2 } = makeOsc(ctx, 'triangle', 165, 0.08, 6, master);
-
-            nodes.push(o1, g1, lp, lfo, lfoG, o2, g2, rev, revGain);
-            return nodes;
-          }
-        },
-
-        '2': {
-          label: 'TERRITORIO · REFLEXIÓN',
-          trackName: 'Presente\n174 Hz + 396 Hz',
-          build(ctx, master) {
-            const nodes = [];
-            const rev = makeReverb(ctx, 3.5, 1.5);
-            const revGain = ctx.createGain();
-            revGain.gain.setValueAtTime(0, ctx.currentTime);
-            revGain.gain.linearRampToValueAtTime(0.28, ctx.currentTime + 6);
-            rev.connect(revGain);
-            revGain.connect(master);
-
-            // 174 Hz — anclaje, serenidad
-            const { osc: o1, gain: g1 } = makeOsc(ctx, 'sine', 174, 0.18, 5, master);
-            o1.connect(rev);
-
-            // LFO suave en vibrato 0.12 Hz
-            const lfo1 = ctx.createOscillator();
-            lfo1.frequency.value = 0.12;
-            const lfoG1 = ctx.createGain();
-            lfoG1.gain.value = 0.8;
-            lfo1.connect(lfoG1);
-            lfoG1.connect(o1.frequency);
-            lfo1.start();
-
-            // 396 Hz — Solfeggio, liberación, escucha activa
-            const { osc: o2, gain: g2 } = makeOsc(ctx, 'sine', 396, 0.055, 8, master);
-            o2.connect(rev);
-
-            // Leve pulso en 396
-            const lfo2 = ctx.createOscillator();
-            lfo2.frequency.value = 0.07;
-            const lfoG2 = ctx.createGain();
-            lfoG2.gain.value = 0.03;
-            lfo2.connect(lfoG2);
-            lfoG2.connect(g2.gain);
-            lfo2.start();
-
-            nodes.push(o1, g1, lfo1, lfoG1, o2, g2, lfo2, lfoG2, rev, revGain);
-            return nodes;
-          }
-        },
-
-        '3': {
-          label: 'ESPERANZA · MELODÍA',
-          trackName: 'Colombia Posible\nDo Mayor',
-          build(ctx, master) {
-            const nodes = [];
-            const rev = makeReverb(ctx, 4.0, 1.3);
-            const revGain = ctx.createGain();
-            revGain.gain.setValueAtTime(0, ctx.currentTime);
-            revGain.gain.linearRampToValueAtTime(0.35, ctx.currentTime + 7);
-            rev.connect(revGain);
-            revGain.connect(master);
-
-            // Base: 174 Hz continuo
-            const { osc: oBase, gain: gBase } = makeOsc(ctx, 'sine', 174, 0.1, 5, master);
-            oBase.connect(rev);
-
-            // Arpeggio melódico en Do mayor: C4, E4, G4, A4, G4, E4...
-            // Notas: 261.63, 329.63, 392.00, 440.00
-            const melody = [261.63, 329.63, 392.00, 440.00, 392.00, 329.63];
-            const noteLen = 4.2; // segundos por nota
-            let noteIdx = 0;
-            let arpActive = true;
-
-            function playNote() {
-              if (!arpActive || isMuted) return;
-              const freq = melody[noteIdx % melody.length];
-              noteIdx++;
-
-              const osc = ctx.createOscillator();
-              const env = ctx.createGain();
-              osc.type = 'triangle';
-              osc.frequency.value = freq;
-
-              // ADSR suave
+            revGain.gain.linearRampToValueAtTime(0.14, ctx.currentTime + 6);
+            rev.connect(revGain); revGain.connect(master);
+            // Drone La2 muy suave
+            const drone = ctx.createOscillator(); const droneG = ctx.createGain();
+            drone.type = 'sine'; drone.frequency.value = 110;
+            droneG.gain.setValueAtTime(0, ctx.currentTime);
+            droneG.gain.linearRampToValueAtTime(0.04, ctx.currentTime + 5);
+            drone.connect(droneG); droneG.connect(master); droneG.connect(rev); drone.start();
+            // Escala menor en La: A3-C4-E3-G3-A3-F3-E3-C3
+            const mNotes = [220, 261.6, 164.8, 196, 220, 174.6, 164.8, 130.8];
+            const mLen = 4.0; let mIdx = 0, mActive = true;
+            function playM1() {
+              if (!mActive || musicMuted) return;
+              const osc = ctx.createOscillator(); const env = ctx.createGain();
+              osc.type = 'triangle'; osc.frequency.value = mNotes[mIdx % mNotes.length]; mIdx++;
               const t = ctx.currentTime;
               env.gain.setValueAtTime(0, t);
-              env.gain.linearRampToValueAtTime(0.08, t + 0.4);   // attack
-              env.gain.linearRampToValueAtTime(0.055, t + 1.2);  // decay→sustain
-              env.gain.linearRampToValueAtTime(0, t + noteLen);  // release
-
-              osc.connect(env);
-              env.connect(master);
-              env.connect(rev);
-              osc.start(t);
-              osc.stop(t + noteLen + 0.1);
+              env.gain.linearRampToValueAtTime(0.04, t + 0.7);
+              env.gain.linearRampToValueAtTime(0.022, t + 2.2);
+              env.gain.linearRampToValueAtTime(0, t + mLen);
+              osc.connect(env); env.connect(master); env.connect(rev);
+              osc.start(t); osc.stop(t + mLen + 0.3);
               nodes.push(osc, env);
-
-              setTimeout(playNote, noteLen * 1000);
+              setTimeout(playM1, mLen * 1000);
             }
-
-            setTimeout(playNote, 2500); // delay inicial
-
-            // Cleanup helper
-            const cleanup = { stop: () => { arpActive = false; } };
-            nodes.push(oBase, gBase, rev, revGain, cleanup);
+            setTimeout(playM1, 3000);
+            nodes.push(drone, droneG, rev, revGain, { stop() { mActive = false; } });
+            return nodes;
+          }
+        },
+        // PARTE 2 — Melodía reflexiva, dórico en Re
+        '2': {
+          label: 'TERRITORIO · REFLEXIÓN', trackName: 'El Presente\nDórico en Re',
+          build(ctx, master) {
+            const nodes = [];
+            const rev = makeReverb(ctx, 4.2, 1.6);
+            const revGain = ctx.createGain();
+            revGain.gain.setValueAtTime(0, ctx.currentTime);
+            revGain.gain.linearRampToValueAtTime(0.16, ctx.currentTime + 7);
+            rev.connect(revGain); revGain.connect(master);
+            const pad = ctx.createOscillator(); const padG = ctx.createGain();
+            pad.type = 'sine'; pad.frequency.value = 146.8;
+            padG.gain.setValueAtTime(0, ctx.currentTime);
+            padG.gain.linearRampToValueAtTime(0.038, ctx.currentTime + 6);
+            pad.connect(padG); padG.connect(master); padG.connect(rev); pad.start();
+            const lfo = ctx.createOscillator(); const lfoG = ctx.createGain();
+            lfo.frequency.value = 0.12; lfoG.gain.value = 0.4;
+            lfo.connect(lfoG); lfoG.connect(pad.frequency); lfo.start();
+            // D4-E4-F4-A4-G4-F4-E4-D4
+            const mNotes = [293.7, 329.6, 349.2, 440, 392, 349.2, 329.6, 293.7];
+            const mLen = 4.8; let mIdx = 0, mActive = true;
+            function playM2() {
+              if (!mActive || musicMuted) return;
+              const osc = ctx.createOscillator(); const env = ctx.createGain();
+              osc.type = 'sine'; osc.frequency.value = mNotes[mIdx % mNotes.length]; mIdx++;
+              const t = ctx.currentTime;
+              env.gain.setValueAtTime(0, t);
+              env.gain.linearRampToValueAtTime(0.035, t + 0.9);
+              env.gain.linearRampToValueAtTime(0.02, t + 2.5);
+              env.gain.linearRampToValueAtTime(0, t + mLen);
+              osc.connect(env); env.connect(master); env.connect(rev);
+              osc.start(t); osc.stop(t + mLen + 0.3);
+              nodes.push(osc, env);
+              setTimeout(playM2, mLen * 1000);
+            }
+            setTimeout(playM2, 2500);
+            nodes.push(pad, padG, lfo, lfoG, rev, revGain, { stop() { mActive = false; } });
+            return nodes;
+          }
+        },
+        // PARTE 3 — Melodía esperanzadora, Do mayor
+        '3': {
+          label: 'ESPERANZA · FUTURO', trackName: 'Colombia Posible\nDo Mayor',
+          build(ctx, master) {
+            const nodes = [];
+            const rev = makeReverb(ctx, 5.0, 1.2);
+            const revGain = ctx.createGain();
+            revGain.gain.setValueAtTime(0, ctx.currentTime);
+            revGain.gain.linearRampToValueAtTime(0.18, ctx.currentTime + 8);
+            rev.connect(revGain); revGain.connect(master);
+            const base = ctx.createOscillator(); const baseG = ctx.createGain();
+            base.type = 'sine'; base.frequency.value = 130.8;
+            baseG.gain.setValueAtTime(0, ctx.currentTime);
+            baseG.gain.linearRampToValueAtTime(0.032, ctx.currentTime + 5);
+            base.connect(baseG); baseG.connect(master); base.start();
+            // C4-E4-G4-A4-G4-E4-D4-C4
+            const mNotes = [261.6, 329.6, 392, 440, 392, 329.6, 293.7, 261.6];
+            const mLen = 4.4; let mIdx = 0, mActive = true;
+            function playM3() {
+              if (!mActive || musicMuted) return;
+              const osc = ctx.createOscillator(); const env = ctx.createGain();
+              osc.type = 'triangle'; osc.frequency.value = mNotes[mIdx % mNotes.length]; mIdx++;
+              const t = ctx.currentTime;
+              env.gain.setValueAtTime(0, t);
+              env.gain.linearRampToValueAtTime(0.04, t + 0.5);
+              env.gain.linearRampToValueAtTime(0.025, t + 1.8);
+              env.gain.linearRampToValueAtTime(0, t + mLen);
+              osc.connect(env); env.connect(master); env.connect(rev);
+              osc.start(t); osc.stop(t + mLen + 0.3);
+              nodes.push(osc, env);
+              setTimeout(playM3, mLen * 1000);
+            }
+            setTimeout(playM3, 4000);
+            nodes.push(base, baseG, rev, revGain, { stop() { mActive = false; } });
             return nodes;
           }
         }
       };
 
-      // ──────────────────────────────────────────────
-      // GESTIÓN DEL CONTEXTO Y NODOS
-      // ──────────────────────────────────────────────
       function initCtx() {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         if (audioCtx.state === 'suspended') audioCtx.resume();
       }
 
@@ -3024,45 +3143,55 @@
           masterGain.gain.setValueAtTime(masterGain.gain.value, t);
           masterGain.gain.linearRampToValueAtTime(0, t + fadeDuration);
           setTimeout(() => {
-            ambientNodes.forEach(n => {
-              try { if (n.stop) n.stop(); n.disconnect(); } catch (e) { }
-            });
-            ambientNodes = [];
-            masterGain = null;
-            resolve();
+            ambientNodes.forEach(n => { try { if (n.stop) n.stop(); n.disconnect(); } catch (e) { } });
+            ambientNodes = []; masterGain = null; resolve();
           }, fadeDuration * 1000 + 100);
         });
       }
 
       async function launchAmbient(part) {
-        if (!audioCtx || isMuted) return;
+        if (!audioCtx || musicMuted) return;
         const config = ambientConfig[part] || ambientConfig['1'];
-
         masterGain = audioCtx.createGain();
-        masterGain.gain.value = isMuted ? 0 : 0.55;
+        masterGain.gain.value = musicMuted ? 0 : 0.38;
         masterGain.connect(audioCtx.destination);
-
         const nodes = config.build(audioCtx, masterGain);
         ambientNodes = [masterGain, ...nodes];
-
         audioLabel.textContent = config.label;
         audioTrackName.textContent = config.trackName;
         audioLabel.classList.add('visible');
         audioTrackName.classList.add('visible');
       }
 
+      let ambienceTimer = null;
+      const ambienceObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) {
+            // Si sale antes del delay, cancelar
+            clearTimeout(ambienceTimer);
+            return;
+          }
+          const ambienceName = entry.target.dataset.ambience;
+          if (!ambienceName) return;
+          // Solo dispara si el usuario se queda al menos 1.2s en la sección
+          clearTimeout(ambienceTimer);
+          ambienceTimer = setTimeout(() => changeAmbience(ambienceName), 1200);
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll('[data-ambience]').forEach(section => ambienceObserver.observe(section));
+
       async function switchPart(newPart) {
         if (transitioning || newPart === currentPart) return;
         transitioning = true;
         currentPart = newPart;
 
-        if (!isMuted && audioStarted) {
+        if (!musicMuted && audioStarted) {
           await stopAmbient(2.0);
           await launchAmbient(newPart);
         }
         transitioning = false;
 
-        // Actualizar color del botón
         const colors = {
           '1': { border: 'rgba(200,146,42,0.25)', color: 'rgba(200,146,42,0.65)', label: 'rgba(200,146,42,0.4)' },
           '2': { border: 'rgba(94,198,98,0.3)', color: 'rgba(94,198,98,0.7)', label: 'rgba(94,198,98,0.45)' },
@@ -3074,9 +3203,6 @@
         audioLabel.style.color = c.label;
       }
 
-      // ──────────────────────────────────────────────
-      // AUTOSTART: al primer scroll o interacción
-      // ──────────────────────────────────────────────
       async function startAudio() {
         if (audioStarted) return;
         audioStarted = true;
@@ -3085,13 +3211,10 @@
         audioToggle.classList.add('playing');
         audioWave.classList.add('active');
         audioToggle.setAttribute('data-muted', 'false');
-        audioToggle.setAttribute('aria-label', 'Silenciar audio de ambiente');
-        audioToggle.title = 'Silenciar';
-        // Icono: speaker con ondas → X
         updateToggleIcon(false);
+        if (voiceToggle) applyVoiceVisualState();
       }
 
-      // Autostart en primera interacción del usuario
       const startEvents = ['scroll', 'click', 'touchstart', 'keydown'];
       function onFirstInteraction() {
         startAudio();
@@ -3099,64 +3222,102 @@
       }
       startEvents.forEach(ev => window.addEventListener(ev, onFirstInteraction, { once: false, passive: true }));
 
-      // ──────────────────────────────────────────────
-      // MUTE / UNMUTE (botón de accesibilidad)
-      // ──────────────────────────────────────────────
       function updateToggleIcon(muted) {
         const path = audioToggle.querySelector('#audio-icon-path');
         if (!path) return;
-        if (muted) {
-          // Icono de parlante tachado
-          path.setAttribute('d', 'M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z');
+        if (muted) path.setAttribute('d', 'M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z');
+        else path.setAttribute('d', 'M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.5m0 0l-3 .857A1.5 1.5 0 004.5 18h.001M9 15.75v-10.5');
+      }
+
+      function updateVoiceIcon(muted) {
+        const path = voiceToggle ? voiceToggle.querySelector('#voice-icon-path') : null;
+        if (!path) return;
+        if (muted) path.setAttribute('d', 'M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z');
+        else path.setAttribute('d', 'M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z');
+      }
+
+      function applyVoiceVisualState() {
+        if (!voiceToggle) return;
+        if (speechMuted) {
+          voiceToggle.classList.remove('playing');
+          voiceToggle.classList.add('muted');
+          voiceToggle.setAttribute('data-muted', 'true');
+          voiceToggle.setAttribute('aria-label', 'Activar voces y discursos');
+          voiceToggle.title = 'Activar voces';
+          updateVoiceIcon(true);
         } else {
-          // Icono de nota musical
-          path.setAttribute('d', 'M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.5m0 0l-3 .857A1.5 1.5 0 004.5 18h.001M9 15.75v-10.5');
+          voiceToggle.classList.add('playing');
+          voiceToggle.classList.remove('muted');
+          voiceToggle.setAttribute('data-muted', 'false');
+          voiceToggle.setAttribute('aria-label', 'Silenciar voces y discursos');
+          voiceToggle.title = 'Silenciar voces';
+          updateVoiceIcon(false);
         }
       }
 
       audioToggle.addEventListener('click', async () => {
-        if (!audioStarted) {
-          await startAudio();
-          return;
-        }
+        if (!audioStarted) { await startAudio(); return; }
         initCtx();
-        isMuted = !isMuted;
-        audioToggle.setAttribute('data-muted', isMuted.toString());
+        musicMuted = !musicMuted;
+        audioToggle.setAttribute('data-muted', musicMuted.toString());
 
-        if (isMuted) {
-          // Fade out ambiente
+        if (musicMuted) {
           if (masterGain) {
             const t = audioCtx.currentTime;
             masterGain.gain.cancelScheduledValues(t);
             masterGain.gain.setValueAtTime(masterGain.gain.value, t);
             masterGain.gain.linearRampToValueAtTime(0, t + 1.5);
           }
+          if (currentAmbience) await fadeAudio(currentAmbience, 0, 1500);
           audioToggle.classList.remove('playing');
           audioWave.classList.remove('active');
-          audioToggle.setAttribute('aria-label', 'Activar audio');
-          audioToggle.title = 'Activar audio';
           updateToggleIcon(true);
         } else {
-          // Fade in ambiente
-          if (masterGain) {
+          if (!masterGain) await launchAmbient(currentPart);
+          else {
             const t = audioCtx.currentTime;
             masterGain.gain.cancelScheduledValues(t);
             masterGain.gain.setValueAtTime(0, t);
             masterGain.gain.linearRampToValueAtTime(0.55, t + 2);
-          } else {
-            await launchAmbient(currentPart);
           }
+          if (currentAmbience) await fadeAudio(currentAmbience, 0.06, 1500);
           audioToggle.classList.add('playing');
           audioWave.classList.add('active');
-          audioToggle.setAttribute('aria-label', 'Silenciar audio');
-          audioToggle.title = 'Silenciar';
           updateToggleIcon(false);
         }
       });
 
-      // ──────────────────────────────────────────────
-      // OBSERVER: cambio de parte → transición de ambiente
-      // ──────────────────────────────────────────────
+      if (voiceToggle) {
+        voiceToggle.addEventListener('click', async (e) => {
+          e.preventDefault(); e.stopPropagation();
+          speechMuted = !speechMuted;
+          applyVoiceVisualState();
+
+          if (!audioStarted) { await startAudio(); return; }
+
+          const allSpeech = [speechGaitan, speechGalan, speechVerdad].filter(Boolean);
+          if (speechMuted) {
+            // Fade out y pausa real
+            for (const el of allSpeech) {
+              if (el && !el.paused) {
+                await fadeAudio(el, 0, 700);
+                el.pause();
+              }
+            }
+          } else {
+            // Resume con fade in desde donde quedó
+            for (const el of allSpeech) {
+              // CORRECCIÓN: Se añade !el.ended para evitar que audios finalizados se reinicien
+              if (el && el.paused && el.currentTime > 0 && !el.ended) {
+                el.volume = 0;
+                try { await el.play(); } catch (err) { continue; }
+                fadeAudio(el, 0.42, 1000);
+              }
+            }
+          }
+        });
+      }
+
       const partObserver2 = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -3165,80 +3326,48 @@
           }
         });
       }, { threshold: 0.45 });
-
       document.querySelectorAll('[data-part]').forEach(el => partObserver2.observe(el));
 
-      // ──────────────────────────────────────────────
-      // SPEECH SYSTEM — audios de discursos
-      // Solo se reproducen UNA VEZ por sesión.
-      // Entran con fade + ambiente baja. Salen con eco.
-      // ACTIVA DESCOMENTANDO las <source> en los <audio>
-      // ──────────────────────────────────────────────
-      function playSpeech(audioEl, speechKey) {
-        if (speechPlayed[speechKey]) return;
-        speechPlayed[speechKey] = true; // marcar YA para no disparar dos veces
-
-        // Verificar que haya fuente de audio real (src en el elemento o en <source> hijo)
-        const hasSrc = (audioEl.src && audioEl.src !== window.location.href && audioEl.src !== '')
-          || (audioEl.querySelector('source')?.src);
-        if (!audioEl || !hasSrc) {
-          speechPlayed[speechKey] = false; // sin fuente → resetear para cuando se añada
-          return;
-        }
-
-        // Si el audio del contexto aún no ha arrancado, iniciarlo primero
-        if (!audioStarted) {
-          startAudio().then(() => doPlaySpeech(audioEl));
-        } else {
-          doPlaySpeech(audioEl);
-        }
+      async function playSpeechAudio(audioEl, speechKey) {
+        if (speechMuted || speechPlayed[speechKey]) return;
+        speechPlayed[speechKey] = true;
+        const hasSrc = (audioEl.src && audioEl.src !== window.location.href && audioEl.src !== '') || (audioEl.querySelector('source')?.src);
+        if (!audioEl || !hasSrc) { speechPlayed[speechKey] = false; return; }
+        if (!audioStarted) await startAudio();
+        await doPlaySpeechAudio(audioEl);
       }
 
-      function doPlaySpeech(audioEl) {
+      async function doPlaySpeechAudio(audioEl) {
         if (!audioCtx) return;
-
-        // Bajar ambiente con fade
-        if (masterGain && !isMuted) {
+        let musicWasPlaying = false;
+        if (masterGain && !musicMuted) {
+          musicWasPlaying = true;
           const t = audioCtx.currentTime;
           masterGain.gain.cancelScheduledValues(t);
           masterGain.gain.setValueAtTime(masterGain.gain.value, t);
-          masterGain.gain.linearRampToValueAtTime(0.10, t + 1.5);
+          masterGain.gain.linearRampToValueAtTime(0.05, t + 1.5);
         }
-
-        // Fade in del discurso tras 1.2s (deja que baje el ambiente antes)
-        audioEl.volume = 0;
-        audioEl.currentTime = 0;
-        setTimeout(() => {
+        let ambienceWasPlaying = false;
+        if (currentAmbience && !musicMuted) {
+          ambienceWasPlaying = true;
+          await fadeAudio(currentAmbience, 0.02, 1500);
+        }
+        audioEl.volume = 0; audioEl.currentTime = 0;
+        await new Promise(resolve => {
           const playPromise = audioEl.play();
-          if (playPromise) playPromise.catch(err => console.warn('Speech play error:', err));
-
-          let vol = 0;
-          const fadeIn = setInterval(() => {
-            vol = Math.min(vol + 0.04, 0.88);
-            audioEl.volume = vol;
-            if (vol >= 0.88) clearInterval(fadeIn);
-          }, 60);
-        }, 1200);
-
-        // Al terminar: eco gradual + subir ambiente
-        audioEl.onended = () => {
-          // Eco: bajar volumen lentamente (simula reverb tail)
-          let vol = audioEl.volume;
-          const echoFade = setInterval(() => {
-            vol = Math.max(vol - 0.025, 0);
-            audioEl.volume = vol;
-            if (vol <= 0) clearInterval(echoFade);
-          }, 100);
-
-          // Subir ambiente después de 2.5s
-          setTimeout(() => {
-            if (masterGain && !isMuted) {
-              const t = audioCtx.currentTime;
-              masterGain.gain.cancelScheduledValues(t);
-              masterGain.gain.setValueAtTime(masterGain.gain.value, t);
-              masterGain.gain.linearRampToValueAtTime(0.55, t + 3.5);
-            }
-          }, 2500);
+          if (playPromise) { playPromise.then(() => setTimeout(resolve, 200)).catch(() => resolve()); }
+          else resolve();
+        });
+        await fadeAudio(audioEl, speechMuted ? 0 : 0.42, 1500);
+        audioEl.onended = async () => {
+          await fadeAudio(audioEl, 0, 2500);
+          if (masterGain && musicWasPlaying && !musicMuted) {
+            const t = audioCtx.currentTime;
+            masterGain.gain.cancelScheduledValues(t);
+            masterGain.gain.setValueAtTime(masterGain.gain.value, t);
+            masterGain.gain.linearRampToValueAtTime(0.55, t + 3.5);
+          }
+          if (currentAmbience && ambienceWasPlaying && !musicMuted) await fadeAudio(currentAmbience, 0.06, 3500);
         };
       }
 
@@ -3246,24 +3375,24 @@
       const speechGalan = document.getElementById('speech-galan');
       const speechVerdad = document.getElementById('speech-verdad');
 
+      let speechTimers = {};
       const speechObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          if (entry.target.classList.contains('quote-gaitan')) playSpeech(speechGaitan, 'gaitan');
-          if (entry.target.classList.contains('quote-galan')) playSpeech(speechGalan, 'galan');
-          if (entry.target.id === 's-verdad') playSpeech(speechVerdad, 'verdad');
+          const id = entry.target.id || entry.target.className;
+          if (!entry.isIntersecting) {
+            clearTimeout(speechTimers[id]);
+            return;
+          }
+          clearTimeout(speechTimers[id]);
+          speechTimers[id] = setTimeout(() => {
+            if (entry.target.classList.contains('quote-gaitan') && speechGaitan) playSpeechAudio(speechGaitan, 'gaitan');
+            if (entry.target.classList.contains('quote-galan') && speechGalan) playSpeechAudio(speechGalan, 'galan');
+            if (entry.target.id === 's-verdad' && speechVerdad) playSpeechAudio(speechVerdad, 'verdad');
+          }, 1200);
         });
-      }, { threshold: 0.25 }); // threshold bajo: dispara cuando el 25% de la sección entra
+      }, { threshold: 0.25 });
+      document.querySelectorAll('.quote-gaitan, .quote-galan, #s-verdad').forEach(el => speechObserver.observe(el));
 
-      document.querySelectorAll('.quote-gaitan, .quote-galan, #s-verdad').forEach(el => {
-        speechObserver.observe(el);
-      });
-
-      // ──────────────────────────────────────────────
-      // GT SECTION — scroll-driven reveal
-      // El título "La guerra se transforma" se desvanece
-      // conforme el usuario hace scroll hacia el narco
-      // ──────────────────────────────────────────────
       const gtSection = document.getElementById('guerra-transforma');
       const gtSticky = gtSection ? gtSection.querySelector('.gt-sticky') : null;
       const gtTitleWrap = gtSticky ? gtSticky.querySelector('.gt-title-wrap') : null;
@@ -3271,23 +3400,55 @@
       if (gtSection && gtTitleWrap) {
         window.addEventListener('scroll', () => {
           const rect = gtSection.getBoundingClientRect();
-          // Cuánto del spacer hemos scrolleado (0 = entrando, 1 = casi saliendo)
           const scrolled = -rect.top / (rect.height - window.innerHeight);
           const clamped = Math.max(0, Math.min(1, scrolled));
-
-          // Primera mitad: el título se mantiene. Segunda mitad: desaparece
           const fadeStart = 0.4;
           const opacity = clamped < fadeStart ? 1 : 1 - ((clamped - fadeStart) / (1 - fadeStart));
           const translateY = clamped < fadeStart ? 0 : -((clamped - fadeStart) / (1 - fadeStart)) * 40;
           const blur = clamped < fadeStart ? 0 : ((clamped - fadeStart) / (1 - fadeStart)) * 8;
-
           gtTitleWrap.style.opacity = Math.max(0, opacity);
           gtTitleWrap.style.transform = `translateY(${translateY}px)`;
           gtTitleWrap.style.filter = `blur(${blur}px)`;
         }, { passive: true });
       }
 
-    })(); // end IIFE
+    })();
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      window.scrollTo(0, 0);
+
+      const splash = document.getElementById("splash-screen");
+      const enterBtn = document.getElementById("splash-enter");
+
+      if (!splash || !enterBtn) return;
+      document.documentElement.classList.add("splash-active");
+      document.body.classList.add("splash-active");
+
+      function preventScroll(e) { e.preventDefault(); }
+      window.addEventListener("wheel", preventScroll, { passive: false });
+      window.addEventListener("touchmove", preventScroll, { passive: false });
+
+      function preventKeys(e) {
+        if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(e.key)) e.preventDefault();
+      }
+      window.addEventListener("keydown", preventKeys);
+
+      enterBtn.addEventListener("click", () => {
+        enterBtn.disabled = true;
+        splash.classList.add("hidden");
+        setTimeout(() => {
+          document.documentElement.classList.remove("splash-active");
+          document.body.classList.remove("splash-active");
+          window.removeEventListener("wheel", preventScroll);
+          window.removeEventListener("touchmove", preventScroll);
+          window.removeEventListener("keydown", preventKeys);
+          splash.remove();
+        }, 1000);
+      });
+    });
   </script>
 </body>
 
