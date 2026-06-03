@@ -181,6 +181,10 @@
 
       @media (max-width:768px) {
 
+        #audio-engine {
+          bottom: 50px !important;
+        }
+
         .quote-stage {
           min-height: 520px;
         }
@@ -204,7 +208,7 @@
         }
 
         .galan-parallax {
-          left: 50% !important;
+          left: 0cap !important;
           max-height: 420px;
           bottom: -20px;
         }
@@ -320,6 +324,7 @@
 
     .hero-eyebrow {
       font-family: 'Bebas Neue', sans-serif;
+      text-align: center;
       font-size: 16px;
       letter-spacing: 10px;
       color: var(--sepia-acc);
@@ -343,9 +348,9 @@
       text-transform: uppercase;
     }
 
-    .hero-subtitle {
+    .hero-subtitle2 {
       /* Cambiamos a Serif para que contraste y no sature visualmente */
-      font-family: 'Source Serif 4', serif;
+      font-family: 'Special Elite', serif;
       /* Tamaño mucho más moderado para que sea legible y elegante */
       font-size: clamp(22px, 4vw, 42px);
       font-weight: 400;
@@ -1661,6 +1666,10 @@
     }
 
     @media (max-width: 768px) and (orientation: portrait) {
+      #audio-engine {
+        bottom: 50px !important;
+      }
+
       #splash-landscape-hint {
         display: flex;
       }
@@ -2001,14 +2010,6 @@
         </svg>
         <span><strong>Contenido sensible.</strong> Esta narrativa aborda el conflicto armado colombiano con testimonios
           y datos reales sobre violencia, desplazamiento y víctimas.</span>
-      </div>
-      <div class="splash-notice" id="splash-landscape-hint">
-        <svg class="splash-notice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path
-            d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18h3"
-            stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        <span><strong>Mejor en horizontal.</strong> Gira tu dispositivo para una experiencia visual más completa.</span>
       </div>
     </div>
     <button class="splash-enter-btn" id="splash-enter">ENTRAR A LA EXPERIENCIA</button>
@@ -2725,7 +2726,8 @@
       style="position:absolute; top:0; left:0; right:0; bottom:0; background: radial-gradient(circle at 50% 50%, rgba(106,171,240,0.06), transparent 70%); pointer-events:none;">
     </div>
 
-    <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2;">
+    <div
+      style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center;">
       <div class="credits-flag" style="display:flex; margin-bottom: 25px;">
         <div class="flag-stripe" style="background:#FFD700; width:40px; height:4px;"></div>
         <div class="flag-stripe" style="background:#003087; width:20px; height:4px;"></div>
@@ -2733,8 +2735,11 @@
       </div>
 
       <h2 class="reveal"
-        style="color:#d8eaff; font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 1px; margin-bottom: 10px; line-height: 1.1;">
-        Colombia - Conflicto, Memoria y Construcción de País</h2>
+        style="color:#d8eaff; font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 1px; margin-bottom: 10px; line-height: 1.1; text-align: center;">
+        Colombia
+        <br>
+        Conflicto, Memoria y Construcción de País
+      </h2>
       <div class="credits-line" style="background:#6aabf0; height:1px; width:100%; margin-bottom: 25px; opacity:0.25;">
       </div>
       <p class="reveal"
@@ -2760,9 +2765,25 @@
 
           <div style="margin-bottom: 25px;">
             <span
-              style="font-size: 0.8rem; text-transform: uppercase; color: rgba(216,234,255,0.45); display: block; letter-spacing: 1px; margin-bottom: 3px;">Lead
-              del Interactivo & Desarrollo</span>
+              style="font-size: 0.8rem; text-transform: uppercase; color: rgba(216,234,255,0.45); display: block; letter-spacing: 1px; margin-bottom: 3px;">
+              Lead de Interactivo & Desarrollo</span>
             <strong style="font-size: 1.2rem; color: #ffffff; font-weight: 600;">Camilo Jiménez Loaiza</strong>
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            <span
+              style="font-size: 0.8rem; text-transform: uppercase; color: rgba(216,234,255,0.45); display: block; letter-spacing: 1px; margin-bottom: 3px;">Síntesis
+              y Curaduría de Información</span>
+            <strong style="font-size: 1.2rem; color: #ffffff; font-weight: 600;">Tomás Romero Eusse</strong>
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            <span
+              style="font-size: 0.8rem; text-transform: uppercase; color: rgba(216,234,255,0.45); display: block; letter-spacing: 1px; margin-bottom: 3px;">Testing
+              & Feedback Team</span>
+            <strong style="font-size: 1.2rem; color: #ffffff; font-weight: 600;">Juan David Alzate Hincapié</strong>
+            <br>
+            <strong style="font-size: 1.2rem; color: #ffffff; font-weight: 600;">David Puentes Lopez</strong>
           </div>
 
           <div style="margin-bottom: 35px;">
@@ -2770,8 +2791,7 @@
               style="font-size: 0.8rem; text-transform: uppercase; color: rgba(216,234,255,0.45); display: block; letter-spacing: 1px; margin-bottom: 8px;">Investigación
               y Co-creación Estudiantil</span>
             <div
-              style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px 15px; font-size: 0.95rem; color: rgba(216,234,255,0.85); font-family: system-ui, -apple-system, sans-serif;">
-              <div>Juan David Alzate</div>
+              style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px 15px; font-size: 0.95rem; color: rgba(216,234,255,0.85);">
               <div>Miguel Ángel Barrios</div>
               <div>Juan David Bermudez</div>
               <div>Laura Mayerly Díaz</div>
@@ -2784,8 +2804,6 @@
               <div>Santiago Muñoz</div>
               <div>Juan Palacio Osorio</div>
               <div>Jeiner Perea Andrade</div>
-              <div>David Puentes</div>
-              <div>Tomás Romero Eusse</div>
               <div>Valentina Zuloaga</div>
             </div>
           </div>
@@ -3053,8 +3071,8 @@
     <button data-target="s-paramilitarismo">El Paramilitarismo</button>
     <button data-target="s-victimas">Las Víctimas</button>
     <button data-target="s-constitucion">La Constitución del 1991</button>
-    <button data-target="s-procesos-paz">Los Procesos de Paz</button>
     <button data-target="s-resistencia">La Paz Autónoma</button>
+    <button data-target="s-procesos-paz">Los Procesos de Paz</button>
     <button data-target="s-verdad">La Verdad</button>
     <button data-target="s-caribe">Caribe Afirmativo</button>
     <button data-target="s-paro">El Paro 2021</button>
